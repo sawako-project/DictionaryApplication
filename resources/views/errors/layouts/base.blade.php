@@ -27,10 +27,50 @@
       display: flex;
       justify-content: center
     }
-    .error-wrap button {
+    /* .error-wrap button {
       display: flex;
       justify-content: center
-    }
+    } */
+
+    /*  */
+footer {
+  /* font-family: 'M PLUS Rounded 1c', sans-serif; */
+  font-family: 'Kiwi Maru', serif;
+}
+
+/* scroll top */
+.back-to-top {
+  
+  width: 44px;
+  height: 44px;
+
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 1000;
+  
+  border-radius: 50px;
+  border: 2px solid #cda45e;
+
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  
+  transition: 0.4s;
+  opacity: 0;
+
+}
+
+.back-to-top i {
+  font-size: 14px;
+  color: #cda45e;
+  line-height: 0;
+  /* border-bottom: none!important; */
+}
+
+.scrolled .back-to-top {
+  opacity: 1;
+}
   </style>
 </head>
 <body>
