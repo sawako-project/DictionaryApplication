@@ -48,5 +48,20 @@
   </section>
 </div>
 
+<!-- スクロールトップ -->
+<div id="preloader"></div>
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+      <!-- Footer -->
+      <footer class=" text-center text-white" style="background-color:#333333;">
+    <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgb(33,37,41)"><!--#212529 rgba(0, 0, 0, 0.2) -->
+            © 2022 Copyright:
+            {{ config('app.name', 'DictionaryApplication') }}
+        </div>
+    <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+
 </body>
 </html>
