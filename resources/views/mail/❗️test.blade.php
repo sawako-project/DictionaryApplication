@@ -1,0 +1,3 @@
+こんにちわ mail.test
+
+{{ $date }}

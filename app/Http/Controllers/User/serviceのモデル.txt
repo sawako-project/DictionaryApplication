@@ -1,0 +1,433 @@
+｢app/Http/Controllers/DreamBoardController.php｣
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Auth;
+use App\User;
+use App\Dream;
+use App\DreamLike;
+use App\Services\DreamLike\DreamLikeService;
+
+class DreamBoardController extends Controller
+{
+    //
+    function show(Request $request, DreamLikeService $dreamLikeService){//file_path-.
+        $item_list = Dream::orderBy("id","desc")->paginate(10);
+        //DreamのIDだけ取り出す
+        $dream_id_list = [];
+        foreach($item_list as $dream){
+            $dream_id_list[] = $dream->id;
+        }
+        //dd($dream_id_list);//dreamのidたち全て 置き換え
+
+        $likes = $dreamLikeService->getAllLikes(Auth::id(),$dream_id_list);
+
+        //dd($likes[$like->dream_id]);//
+//dd($like);//最近の一件のみ拾う
+//$like->dream_id そのdream_id
+//$like->liked そのliked
+//dd($likes[$like->dream_id]);//= $like->liked
+
+//dd($likes);//今までのDreamLikeのdream_id(Dreamのid)とDreamLikeのliked(true,false)を配列に。リンクさせる
+//$like->dream_idと$like->likedが配列ズラーっリンクになったものが$likes
+        
+
+        
+        return view("user.dream_board",[
+            "item_list" => $item_list,
+            "likes" => $likes
+        ]);
+    }//"allLikes" => $like->dream_id
+    //$likesには
+    
+}
+
+////////////////////////////////////
+@component('components.dream_pager')
+    @slot("item_list",$item_list)
+@endcomponent
+
+<div class="container-fluid">
+<div class="row no-gutters">
+@foreach($item_list as $item)
+    <div class="col-3">
+        @component('components.dream_item')
+            @slot('dream', $item)
+            <!--この$item_listはDreamの要素だから-->
+            {{-- @slot('from', 'board') --}}
+            @slot('likes', $likes)
+        @endcomponent
+    </div>
+@endforeach
+
+⬇︎
+<!--これは簡易リスト、詳細に続く-->
+<div class="card dream-item">
+    <div class="card-body">
+    <ul>
+        <li>{{ $dream->id }} by {{ ($dream->user) ? $dream->user->name : "-"}}
+        </li>
+        <li>{{ $dream->name }}</li>
+        <li><time datetime="{{ $dream->created_at->format('Y-m-d H:i:s') }}">{{ $dream->created_at->format("Y-m-d H:i:s") }}</time></li>
+        <li><time datetime="{{ $dream->updated_at->format('Y-m-d H:i:s') }}">{{ $dream->updated_at->format("Y-m-d H:i:s") }}</time></li>
+    </ul>
+    
+    <div class="dream-image">
+        @if($dream->image)
+        <img src="{{ Storage::url($dream->image) }}" style="width:100%;"/>
+        @endif
+        <p>{{ $dream->file_name }}</p>
+    </div>
+    
+    <div class="like-function">
+        @if(isset($likes[$dream->id]) && $likes[$dream->id])
+            <a href="{{ url('/dream/like/'.$dream->id) }}">
+                <i class="fa fa-heart"></i>
+            </a>
+        @else
+            <a href="{{ url('/dream/like/'.$dream->id) }}">
+                <i class="far fa-heart"></i>
+            </a>
+        @endif
+    </div><!--- //.like-function -->
+
+    @isset($from)
+    <p><a class="btn btn-outline-primary" href="{{ url('/dream/detail/'.$dream->id) }}?from={{ $from }}">詳細</a></p>
+    @else
+    <p><a class="btn btn-outline-primary" href="{{ url('/dream/detail/'.$dream->id) }}">詳細</a></p>
+    @endisset
+    </div>
+</div>
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+｢app/Http/Controllers/DreamDetailController.php｣
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Auth;
+use DB;
+use App\User;
+use App\Dream;
+use App\DreamLike;
+use App\DreamReaction;
+
+
+class DreamDetailController extends Controller
+{
+    //
+    function __construct(){
+        $this->middleware('auth');//$thisはこのControllerのことを指す　毎回
+    }
+
+
+    function show(Request $request,$id){
+        $dream = Dream::find($id);
+        if(!$dream){
+            return back()->withError("これはだめだ");//return redirect()?
+        }
+
+        // if($dream->user_id != Auth::id()){
+        //     return back()->withError("これはだめだ");
+        // }
+
+        //Likeの取得
+        $like = DreamLike::where("user_id","=",Auth::id())
+            ->where("dream_id","=",$dream->id)->first();
+        //dd($like);
+
+        //Reaction
+        $reaction = DreamReaction::where("user_id","=",Auth::id())
+            ->where("dream_id","=",$dream->id)->first();
+
+
+        $reaction_count = [
+            "sad" => 0, 
+            "funny" => 0,
+            "surprised" => 0,
+            "uncomfortable" => 0
+        ];
+        
+        $reaction_result = DreamReaction::select(DB::raw('reaction, COUNT(user_id) AS count'))
+                        ->where("dream_id","=",$dream->id)
+                        ->groupBy('reaction')
+                        ->get()
+                        ->toArray()
+                        ;
+
+        foreach($reaction_result as $ret){
+            $key = $ret["reaction"];
+            $count = $ret["count"];
+            $reaction_count[$key] = $count;
+
+        }
+                
+        return view('user.dream_detail',[
+            'dream' => $dream,
+            "like" => $like,
+            "reaction" => $reaction,
+            "reaction_count" => $reaction_count,
+            "editable" => $dream->user_id == Auth::id()
+        ]);//id
+    }
+}
+
+///////////////////////////////////////////
+<div class="card">
+    <div class="card-body">
+
+        <ul>
+            <li>ID</li>
+                <p>{{ $dream->id }} by {{ ($dream->user) ? $dream->user->name : "-"}}</p>
+
+            <li>内容</li>
+                <p>{{ $dream->body }}</p>
+
+            <li>名前</li>
+                <p>{{ $dream->name }}</p>
+
+            <li>日付</li>
+                <p>{{ $dream->date }}</p>
+
+            <li>時間</li>
+                <p>{{ $dream->created_at->format("Y-m-d H:i:s") }}</p>
+                <!--<p>{{ $dream->updated_at->format("Y-m-d H:i:s") }}'/dream/edit/'.$dream->id</p>-->
+
+            <li>イラスト</li>
+                <p>{{ $dream->image }}</p>
+                <div style="width: 18rem; margin: 16px;">
+                @if($dream->image)
+                <img src="{{ Storage::url($dream->image) }}" style="width:100%;"/>
+                @endif
+                </div>
+        </ul>
+
+        <div>
+            <!--$likes[$item->id] $likes[$item->id] $likes[$like->dream_id]-->
+            @if($like && $like->liked == 1)
+            <a href="{{ url('/dream/like/'.$dream->id) }}">
+                <i class="fa fa-heart"></i>
+            </a>
+            @else
+            <a href="{{ url('/dream/like/'.$dream->id) }}">
+                <i class="far fa-heart"></i>
+            </a>
+            @endif
+
+        </div>
+        <div>
+
+        <form method="post" action="{{ url('/dream/reaction/' . $dream->id) }}">
+        @csrf
+
+            @if($reaction && $reaction->reaction == "funny")
+            <button class="btn btn-primary">面白い <span class="badge badge-light">{{ $reaction_count["funny"] }}</span></button>
+            @else 
+            <button type="submit" name="reaction_funny" value="1" class="btn btn-outline-primary">面白い <span class="badge badge-primary">{{ $reaction_count["funny"] }}</span></button>
+            @endif
+
+            @if($reaction && $reaction->reaction == "surprised")
+            <button class="btn btn-primary">びっくり<span class="badge badge-light">{{ $reaction_count["surprised"] }}</span></button>
+            @else 
+            <button type="submit" name="reaction_surprised" value="1" class="btn btn-outline-primary">びっくり<span class="badge badge-primary">{{ $reaction_count["surprised"] }}</span></button>
+            @endif
+
+            @if($reaction && $reaction->reaction == "uncomfortable")
+            <button class="btn btn-primary">うわぁ……<span class="badge badge-light ml-1">{{ $reaction_count["uncomfortable"] }}</span></button>
+            @else 
+            <button type="submit" name="reaction_uncomfortable" value="1" class="btn btn-outline-primary">うわぁ……<span class="badge badge-primary ml-1">{{ $reaction_count["uncomfortable"] }}</span></button>
+            @endif
+
+            @if($reaction && $reaction->reaction == "sad")
+            <button class="btn btn-primary">悲しい<span class="badge badge-light ml-1">{{ $reaction_count["sad"] }}</span></button>
+            @else 
+            <button type="submit" name="reaction_sad" value="1" class="btn btn-outline-primary">悲しい<span  class="badge badge-primary ml-1">{{ $reaction_count["sad"] }}</span></button>
+            @endif
+
+        </form>
+
+
+    </div>
+</div>
+
+@if($editable)
+<div class="card mt-3">
+    <div class="card-body">
+        <a href="{{ url('/dream/edit/'.$dream->id) }}" class="btn btn-primary">
+            <i class="fa fa-edit"></i>
+            編集
+        </a>
+    </div>
+</div>
+@endif
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+｢app/Http/Controllers/DreamLikeTrait.php｣
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\DreamLike;
+use Auth;
+
+trait DreamLikeTrait {
+
+    function getAllLikes($userId, $dream_id_list){
+
+        //whereInで絞り込み
+        $allLikes = DreamLike::where("user_id","=",$userId)
+            ->whereIn("dream_id",$dream_id_list)
+            ->get();
+            //dd($allLikes);//DreamLikeのidとdream_id,user_idの一覧。一回されると追加される
+        
+        //Viewで使いやすいように変換
+        $likes = [];
+        foreach($allLikes as $like){
+            $likes[$like->dream_id] = $like->liked;
+        }
+
+        return $likes;
+
+    }   
+
+}
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+｢app/Http/Controllers/DreamListController.php｣
+
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Auth;
+use DB;
+//use App\User;
+use App\Dream;
+use App\DreamLike;
+use App\Services\DreamLike\DreamLikeService;
+
+class DreamListController extends Controller
+{
+    //use DreamLikeTrait;
+
+    
+
+    function showOwn(Request $request){
+        $item_list = Dream::where("user_id","=",Auth::id())->orderBy("id","desc")->paginate(10);
+        
+
+        return view('user.dream_own_list',["item_list" => $item_list]);//
+    }
+
+    function showFavorites(Request $request, DreamLikeService $dreamLikeService){//Request $request,$id
+        //$item_list = Dream::where("user_id","=",Auth::id())->orderBy("id","desc")->paginate(10);
+    
+        //$dreams = Dream::get();
+        //dd($dream);つくったもの全て
+        //$likes= $dream->likes;これ
+        //dd($likes);
+
+        $item_list = DreamLike::where("user_id","=",Auth::id())
+            ->where('liked','=', 1)
+            ->orderBy("id","desc")
+            ->paginate(10);
+            
+        //dd($item_list);数値
+        $dreamIdList = $item_list->map(function($like){
+            return $like->dream_id;
+        });
+        //$dreamLikeService = new DreamLikeService();
+        $likes = $dreamLikeService->getAllLikes(Auth::id(), $dreamIdList);
+        
+        //$like = DreamLike::where('user_id','=',Auth::id())->where('dream_id','=',$id)->first();    
+        //select()->
+
+        //$favorites = App\Dream::where('user_id', '=', Auth::id())->where('dream.id', '=', 'dream_like.dream_id')->where('dream_like.liked','=', 1)->orderBy("id","desc")->paginate(10);
+
+
+        //クエリビルダ
+        //$favorites = DB::table('dream')->join('dream_like', 'dream.id', '=', 'dream_like.dream_id')->join('user', 'dream.user_id', '=', 'user.id')->where('dream_like.liked','=', 1)->orderBy("id","desc")->paginate(10);
+        //->select('dream.*', 'dream_like.liked')->where('dream_like.liked','=', 1)->get();
+    
+        //foreach($item_list as $item){
+            //$item_list[] = $dreams;
+
+        //}
+
+        return view('user.dream_favorites_list',[
+            "item_list" => $item_list,
+            "likes" => $likes
+        ]);
+        //["item_list" => $item_list]これエラーになってる
+    //"item_list" => $item_list//,"favorites" => $favorites
+    
+    }
+}//"="
+
+///////////////////////////////
+@component('components.dream_pager')
+    @slot("item_list",$item_list)
+@endcomponent
+
+</div>
+
+<div class="row no-gutters">
+@foreach($item_list as $item)
+    <div class="col-3">
+        
+        @component('components.dream_item')
+            @slot('dream', $item->dream)<!-- ここでの$item_listはDreamLike要素持ち。なのでdream()呼び出して->dream-->
+            @slot('from', 'favorites')
+            @slot('likes', $likes)
+        @endcomponent
+        
+    </div>
+
+    <!--<p><a class="btn btn-outline-primary" href="{{ url('/dream/detail/'.$item->id) }}">詳細</a></p>-->
+@endforeach
+</div>
+@if(count($item_list) < 1)
+<p>投稿がありません</p>
+@endif
+
+
+<a href="{{ url('/dream') }}" class="">会員トップに戻る</a>
+
+@endsection('content')
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+｢app/Services/DreamLike/DreamLikeService.php｣
+
+<?php
+namespace App\Services\DreamLike;
+
+use App\DreamLike;
+
+class DreamLikeService {
+
+    function getAllLikes($userId, $dream_id_list){
+
+        //whereInで絞り込み
+        $allLikes = DreamLike::where("user_id","=",$userId)
+            ->whereIn("dream_id",$dream_id_list)
+            ->get();
+            //dd($allLikes);//DreamLikeのidとdream_id,user_idの一覧。一回されると追加される
+        
+        //Viewで使いやすいように変換
+        $likes = [];
+        foreach($allLikes as $like){
+            $likes[$like->dream_id] = $like->liked;
+        }
+
+        return $likes;
+
+    }    
+
+}
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿
