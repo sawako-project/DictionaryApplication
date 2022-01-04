@@ -11,14 +11,11 @@
 @endif
 
 <div class="container">
-
+<div class="row">
             @auth
 
-            @if(isset($tag))
-            タグ: {{ $tag->phrase_tag }}
-
-            <!--  -->
-            <div class="phrase_create" id="phrase_create">
+              <!--  -->
+              <div class="phrase_create" id="phrase_create">
                 <a href="{{ route('user.phrase.create') }}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="表現追加"></i></a>
             
                 <!-- <div>
@@ -26,29 +23,42 @@
                 </div> -->
             </div>
             <!--  -->
-
-            @elseif(isset($category))
-            カテゴリ: {{ $category->phrase_category }}
+            @if(isset($tag))
+            
+            <p style="font-family: 'Kiwi Maru', serif;">タグ: <span class="btn btn-outline-secondary"> {{ $tag->phrase_tag }}</span></p>
 
             <!--  -->
-            <div class="phrase_create" id="phrase_create">
-                <a href="{{ route('user.phrase.create',['category_id[]' => $category->id]) }}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="表現追加"></i></a>
+            <!-- <div class="phrase_create" id="phrase_create">
+                <a href="{{-- route('user.phrase.create') --}}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="表現追加"></i></a> -->
+            
+                <!-- <div>
+                    <a style="margin: 15px;" href="{{-- route('user.phrase.create') --}}" class="btn btn-primary">表現追加</a>
+                </div> -->
+            <!-- </div> -->
+            <!--  -->
+
+            @elseif(isset($category))
+            <p style="font-family: 'Kiwi Maru', serif;">カテゴリ: <span class="btn btn-secondary"> {{ $category->phrase_category }}</span></p>
+
+            <!--  -->
+            <!-- <div class="phrase_create" id="phrase_create">
+                <a href="{{-- route('user.phrase.create',['category_id[]' => $category->id]) --}}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="表現追加"></i></a> -->
           
                <!-- <div>
                 <a style="margin: 15px;" href="{{-- route('user.phrase.create',['category_id[]' => $category->id]) --}}" class="btn btn-primary">表現追加</a>
             </div> -->
-            </div>
+            <!-- </div> -->
             <!--  -->
 
             @else
 
-            <div class="phrase_create" id="phrase_create">
-                <a href="{{ route('user.phrase.create') }}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="表現追加"></i></a>
+            <!-- <div class="phrase_create" id="phrase_create">
+                <a href="{{-- route('user.phrase.create') --}}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="表現追加"></i></a> -->
            
                 <!-- <div>
                     <a style="margin: 15px;" href="{{-- route('user.phrase.create') --}}" class="btn btn-primary">表現追加</a>
                 </div> -->
-            </div>
+            <!-- </div> -->
 
 
             @endif
@@ -60,7 +70,7 @@
             @endif
 
 <!-- phrase-list res-->
-<div class="row">
+<!-- <div class="row"> -->
     <div class="col-sm-12">
     @foreach($phrases as $phrase)
         <div class="card mb-5 pop-card">

@@ -18,11 +18,11 @@
  </div>
 @endauth
 
-@auth
+<!-- @auth
 <div class="event_create" id="event_create">
-   <a href="{{ route('user.event.create') }}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="イベントを作る"></i></a>
+   <a href="{{-- route('user.event.create') --}}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="イベントを作る"></i></a>
  </div>
-@endauth
+@endauth -->
  
 <br/>
  
