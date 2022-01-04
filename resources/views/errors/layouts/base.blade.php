@@ -19,7 +19,8 @@
       box-shadow: 0px 0px 8px #dcdcdc; */
       font-family: 'Kiwi Maru', serif;
       display: flex;
-      justify-content: center
+      justify-content: center;
+      background-color: rgb(250, 242, 232);
     }
     h1 { font-size: 18px; }
     p { margin-left: 10px; font-size: 12px; }
