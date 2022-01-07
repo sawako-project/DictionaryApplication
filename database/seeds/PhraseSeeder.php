@@ -17,7 +17,8 @@ class PhraseSeeder extends Seeder
              ['id' => 98, 'phrase' => '足で遠ざける'],
              ['id' => 99, 'phrase' => 'ペンを走らせる'],
              ['id' => 100, 'phrase' => '耳を傾ける'],
-         ];
+        ];
+
         DB::table('phrases')->insert($phrases);
         //DB::table('users')->truncate(); // 既存のユーザを削除
         // factory(User::class, 20)->create();

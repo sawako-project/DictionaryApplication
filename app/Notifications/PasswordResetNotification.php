@@ -17,7 +17,6 @@ class PasswordResetNotification extends ResetPassword
     public $token;
     protected $title = 'パスワードリセット 通知';
 
-
     /**
      * Create a new notification instance.
      *
@@ -48,30 +47,14 @@ class PasswordResetNotification extends ResetPassword
      */
     public function toMail($notifiable)
     {
-        // if (static::$toMailCallback) {
-        //     return call_user_func(static::$toMailCallback, $notifiable, $this->token);
-        // }
 
-        // return (new MailMessage)
-		// ->subject('パスワードリセット通知')//件名
-		// ->view('email.password_reset', [
-        //     'reset_url' => url(config('app.url').route('password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false))
-        // ]);//テンプレート
-
-        // return (new MailMessage)
-        //             ->line('The introduction to the notification.')
-        //             ->action('Notification Action', url('/'))
-        //             ->line('Thank you for using our application!');
-
-        ///////////////////////
         return (new MailMessage)
-          ->subject($this->title)
-          ->view(
-            'email.password_reset',
-            [
-              'reset_url' => url('/password/reset', $this->token),///reset
-            ]);
-        
+        ->subject($this->title)
+        ->view(
+        'auth.passwords.password_reset',
+        [
+            'reset_url' => url('/password/reset', $this->token),
+        ]);
     }
 
     /**
@@ -86,4 +69,5 @@ class PasswordResetNotification extends ResetPassword
             //
         ];
     }
+
 }

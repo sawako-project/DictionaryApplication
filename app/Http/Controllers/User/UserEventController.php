@@ -12,7 +12,7 @@ use App\Phrase;
 use App\PhraseCategory;
 use App\BaseCategory;
 use App\BaseCategoryMaster;
-use App\PhraseTag;//
+use App\PhraseTag;
 use App\Word;
 
 use App\PhraseLike;

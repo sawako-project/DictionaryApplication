@@ -40,8 +40,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Ephesis&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru&display=swap');
-
-
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
 
@@ -59,6 +57,7 @@ font-family: 'M PLUS Rounded 1c', sans-serif;丸、日本語
 /* body {
     background-color: pink;
 } */
+
 </style>
 </head>
 <body>

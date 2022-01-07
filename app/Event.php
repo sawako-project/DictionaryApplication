@@ -19,7 +19,6 @@ class Event extends Model
         return $this->hasMany("App\EventPost");
     }
 
-
     //
     function isClosed(){
     
@@ -32,9 +31,11 @@ class Event extends Model
     }
 
     function eventLabel(){
+
         $master = EventTypeMaster::getMaster($this->event_type);
         if(!$master)return "Unknown";
 
         return $master->label;
     }
+
 }

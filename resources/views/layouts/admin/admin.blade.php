@@ -16,23 +16,21 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-<!--  -->
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-   
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-   <!-- Bootstrap icon -->
-   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-   <!-- Styles -->
-   <!-- <link href="{{-- asset('css/app.css') --}}" rel="stylesheet">
-   <link rel="stylesheet" href="{{-- asset('css/style.css') --}}" type="text/css" media="all"> -->
+    <!-- Bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
 
-   <!-- CSS only -->
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- Styles -->
+    <!-- <link href="{{-- asset('css/app.css') --}}" rel="stylesheet">
+    <link rel="stylesheet" href="{{-- asset('css/style.css') --}}" type="text/css" media="all"> -->
 
-    <!--  -->
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- <link rel="stylesheet" href="{{-- asset('css/style.css') --}}" type="text/css" media="all"> -->
@@ -48,6 +46,7 @@
     <link href="https://unpkg.com/@yaireo/tagify/dist/tagify.css" rel="stylesheet" type="text/css" /> 
 
 <style>
+
 /* css/admin_style.css */
 
 /* #app {
@@ -55,26 +54,24 @@
 } */
 
 .table {
-  font-family: 'Kiwi Maru', serif!important;
+    font-family: 'Kiwi Maru', serif!important;
 }
 
 /* card */
 .base-card,.pop-card {/*.card*/
-  font-family: 'Kiwi Maru', serif;
-  overflow: hidden;
-
-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-border-radius: 10px!important;
-/* border-color:#cda45e!important; */
-/*  */
-position:relative;
-/* box-shadow:none; */
-transition:box-shadow 0.3s, transform 0.3s;
-/*  */
+    font-family: 'Kiwi Maru', serif;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px!important;
+    /* border-color:#cda45e!important; */
+    /*  */
+    position:relative;
+    /* box-shadow:none; */
+    transition:box-shadow 0.3s, transform 0.3s;
+    /*  */
 }
 
 </style>
-
 </head>
 <body>
     <div id="app">

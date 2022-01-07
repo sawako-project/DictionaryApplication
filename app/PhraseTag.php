@@ -23,12 +23,13 @@ class PhraseTag extends Model
      */
 
     public function phrases(){
-		return $this->belongsToMany(
-			"App\Phrase",	    //対象モデル
-			"rel_phrase_tag",	//中間テーブル
-			"phrase_tag_id",	//中間テーブル内での（自分の）IDと連携するカラム
-			"phrase_id"		    //中間テーブル内での（相手の）IDと連携するカラム
-		);
-  }
+      
+        return $this->belongsToMany(
+          "App\Phrase",	    //対象モデル
+          "rel_phrase_tag",	//中間テーブル
+          "phrase_tag_id",	//中間テーブル内での（自分の）IDと連携するカラム
+          "phrase_id"		    //中間テーブル内での（相手の）IDと連携するカラム
+        );
+    }
 
 }

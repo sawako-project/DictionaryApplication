@@ -4,11 +4,8 @@
 
 @section('content')
 
-
-
 <div class="user-event-post container">
     <div class="row justify-content-center">
-
         <div class="col-md-8">
             <div class="card base-card">
                 <div class="card-header">イベント情報</div>
@@ -40,8 +37,7 @@
                         <input
                         name="event_id"
                         type="hidden"
-                        value="{{ $event->id }}"
-                        />
+                        value="{{ $event->id }}"/>
 
                         <div class="form-group row">
                             <label for="post_text" class="col-md-4 col-form-label text-md-right">{{ __('エントリー') }}</label>
@@ -49,14 +45,10 @@
                                 <textarea class="form-control" rows="4" name="post_text">{{ old('post_text') }}</textarea>
                                 <span>はどう？</span>
                             </div>
-
-                        <!--  -->
                             <div class="col-md-6">
                                 <input type="checkbox" name="auto_phrase" value="1" checked/>
                                 表現にも自動で投稿する
                             </div>
-                        <!--  -->
-
                         </div>
 
                         <div class="form-group row mb-0">
@@ -72,9 +64,5 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 @endsection('content')

@@ -1,9 +1,8 @@
-<!-- @//extends('layouts.app',["title"=>"U_Dectionary"]) -->
 @extends('layouts.admin.admin',["title"=>"U_Dectionary"])
 
 @section('content')
 
-   <div class="container">
+<div class="container">
 	<div class="card base-card">
 		<div class="card-header">管理側TOP</div>
 		<div class="card-body">
@@ -14,7 +13,6 @@
             <button><a href="{{route('admin.phrase_category.index')}}">管理者カテゴリ一覧</a></button>
             <!-- <button><a href="{{--route('admin.base_category.index')--}}"> ｢管理者分類一覧｣</a></button> --> 
 			<button><a href="{{route('admin.event.index')}}">管理者イベント一覧</a></button>
-
 			<form method="post" action="{{ url('admin/logout') }}">
 				@csrf
 				<input type="submit" class="btn btn-danger" value="ログアウト" />

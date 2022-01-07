@@ -20,7 +20,7 @@
                     </div><br />
                 @endif
                     <form method="post" action="{{ route('user.phrase.store') }}">
-                        @csrf
+                    @csrf
                         <div class="form-group row">
                             <label for="phrase" class="col-4 col-form-label text-md-right">{{ __('表現') }}</label>
                             <div class="col-md-6 textarea-space">
@@ -32,27 +32,20 @@
 
                         <div class="form-group row">
                             <label for="phrase_category" class="col-md-4 col-form-label text-md-right">カテゴリ</label>
-                            
                             <div class="col-md-6 check-list">
-                            <small class="form-text text-muted">好きなだけ選んでください</small>
-
+                                <small class="form-text text-muted">好きなだけ選んでください</small>
                                 @foreach($phraseCategories as $phraseCategory)
-
-                                        <label>
-                                            <input 
-                                            type="checkbox" 
-                                            name="phrase_category[]" 
-                                            value="{{ $phraseCategory->id }}"
-                                            {{ in_array($phraseCategory->id, old("phrase_category", $category_ids)) ? 'checked="checked"' : '' }}
-                                            />
-                                            <span class="m-form-checkbox-name">
-                                                <span class="m-form-checkbox-text">{{ $phraseCategory->phrase_category }}</span>
-                                            </span>
-
-                                        </label>
-
+                                <label>
+                                    <input 
+                                    type="checkbox" 
+                                    name="phrase_category[]" 
+                                    value="{{ $phraseCategory->id }}"
+                                    {{ in_array($phraseCategory->id, old("phrase_category", $category_ids)) ? 'checked="checked"' : '' }}/>
+                                    <span class="m-form-checkbox-name">
+                                        <span class="m-form-checkbox-text">{{ $phraseCategory->phrase_category }}</span>
+                                    </span>
+                                </label>
                                 @endforeach
-
                             </div>
                         </div>
 
@@ -80,7 +73,6 @@
                             </ul> -->
                             <!--  -->
                         </div>
-                       
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -89,9 +81,6 @@
                                 </button>
                             </div>
                         </div>
-
-                   
-
                     </form>
                 </div>
             </div>
@@ -99,30 +88,31 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
 
 $(function(){
 
-//スクリプト内で次の様に取得します。
-var whitelist_str = '<?php echo $whitelist;?>';  //文字列を一度取得
-var whitelist = whitelist_str.split(','); 
+    //スクリプト内で次の様に取得します。
+    var whitelist_str = '<?php echo $whitelist;?>';  //文字列を一度取得
+    var whitelist = whitelist_str.split(','); 
     // The DOM element you wish to replace with Tagify
     var input = document.querySelector('#tags-input');
 
     // initialize Tagify on the above input node reference
     new Tagify(input,{
+
         whitelist: whitelist,//@json($whitelist),//whitelist
         dropdown: {
+
             maxItems: 20,           // <- mixumum allowed rendered suggestions
             classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
             enabled: 0,             // <- show suggestions on focus
             closeOnSelect: false    // <- do not hide the suggestions dropdown once an item has been selected
         }
     })
+    
 });
 
 </script>
-
 
 @endsection('content')

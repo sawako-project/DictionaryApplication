@@ -11,13 +11,12 @@ Breadcrumbs::for('top', function ($trail) {
 //     $trail->push('MyMenu', route('home'));//
 //     $trail->push('お問い合わせ', route('about.contact'));
 // });
+
 Breadcrumbs::for('about.contact.create', function ($trail) {
     $trail->parent('top');
     $trail->push('MyMenu', route('home'));
     $trail->push('お問い合わせ', route('about.contact.create'));
 });
-
-
 
 //ご利用ガイド
 Breadcrumbs::for('about.guide', function ($trail) {
@@ -60,11 +59,11 @@ Breadcrumbs::for('phrase.show', function ($trail,$phrase) {
     
     if(request()->input("from") == "my"){
         $trail->parent('user.phrase.index');
-     }elseif(request()->input("from") == "bookmark"){
+        }elseif(request()->input("from") == "bookmark"){
         $trail->parent('user.user_bookmark_list');
-     }else{
+        }else{
         $trail->parent('phrase.index');
-     }
+    }
 
     $trail->push("$phrase->phrase", url('/phrase/' . $phrase->id));
 });
@@ -80,13 +79,14 @@ Breadcrumbs::for('event.index', function ($trail) {
 Breadcrumbs::for('event.detail', function ($trail,$event) {
     $trail->parent('event.index');
     $trail->push("$event->event_text",url('/event/detail/' . $event->id));
- });
+});
 
 //エントリー詳細
 Breadcrumbs::for('event.post.detail', function ($trail,$post) {
     $trail->parent('event.detail', $post);
     $trail->push("$post->post_text",url('/event/post/detail' . $post->id));
 });
+
 ////////////////////guest/////////////////////
 
 /////////////////////user/////////////////////

@@ -42,16 +42,16 @@ class ContactSendmail extends Mailable
      */
     public function build()
     {
-            return $this->to($this->email)
-            //->from('example@gmail.com')//?
-            ->subject('自動送信メール')
-            ->view('contact.mail')
-            ->with([
-                'call_name' => $this->call_name,
-                'name' => $this->name,
-                'email' => $this->email,
-                'title' => $this->title,
-                'contact_text'  => $this->contact_text,
-            ]);
+        return $this->to($this->email)
+        ->subject('自動送信メール')
+        ->view('about.contact.mail')
+        ->with([
+            'call_name' => $this->call_name,
+            'name' => $this->name,
+            'email' => $this->email,
+            'title' => $this->title,
+            'contact_text'  => $this->contact_text,
+        ]);
     }
+
 }

@@ -22,7 +22,6 @@ use App\EventPost;
 use App\EventVote;
 use Carbon\Carbon;
 
-//
 class DictinaryController extends Controller
 {
 
@@ -80,6 +79,7 @@ class DictinaryController extends Controller
         $events_hold = Event::where("schedule_end", ">", $nowTime)->orderBy("updated_at", "desc")->take(3)->get();
 
         return view('dictionary_top', compact('phrases', 'phraseCategories_feelings', 'phraseCategories_actions', 'phraseCategories_expressions', 'event_soonEnd', 'events_hold'));
+    
     } 
 
 }

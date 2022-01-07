@@ -89,6 +89,7 @@ class AdminBaseCategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         $baseCategory = BaseCategory::find($id);
 
         $request->validate([

@@ -39,5 +39,4 @@ class BaseCategoryMaster
         $this->sample = $sample;
     }
 
-    
 }

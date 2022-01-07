@@ -20,8 +20,7 @@
                     </div><br />
                 @endif
                     <form method="post" action="{{ route('user.event.store') }}">
-                        @csrf
-
+                    @csrf
                         <div class="form-group row">
                             <label for="event_type" class="col-md-4 col-form-label text-md-right">イベントタイプ</label>
                             <div class="col-md-6 radio-list">
@@ -46,19 +45,19 @@
                         <div class="form-group row">
                             <label for="phrase_category" class="col-md-4 col-form-label text-md-right">{{ __('指定するカテゴリ') }}</label>
                             <div class="col-md-6 check-list">
-                                    @foreach($phraseCategories as $phraseCategory)
-                                        <label>
-                                            <input 
-                                            type="checkbox" 
-                                            name="phrase_category[]" 
-                                            value="{{ $phraseCategory->id }}"
-                                            {{ (in_array($phraseCategory->phrase_category, old("phrase_category", []))) ? 'checked="checked"' : '' }}
-                                            />
-                                            <span class="m-form-checkbox-name">
-                                                <span class="m-form-checkbox-text">{{ $phraseCategory->phrase_category }}</span>
-                                            </span>
-                                        </label>
-                                    @endforeach
+                                @foreach($phraseCategories as $phraseCategory)
+                                <label>
+                                    <input 
+                                    type="checkbox" 
+                                    name="phrase_category[]" 
+                                    value="{{ $phraseCategory->id }}"
+                                    {{ (in_array($phraseCategory->phrase_category, old("phrase_category", []))) ? 'checked="checked"' : '' }}
+                                    />
+                                    <span class="m-form-checkbox-name">
+                                        <span class="m-form-checkbox-text">{{ $phraseCategory->phrase_category }}</span>
+                                    </span>
+                                </label>
+                                @endforeach
                             </div>
 
                             <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">追加タグ</label>
@@ -100,7 +99,6 @@
                         </div>
 
                         <!-- <div class="eventForm phraseAboutSituationEvent">-->
-
                     </form>
                 </div><!-- <div class="card-body"> -->
             </div>
@@ -109,8 +107,8 @@
 </div>
 
 <script type="text/javascript">
-$(function(){
 
+$(function(){
 
     $('[name="event_type"]:radio').on("change",function() {
 
@@ -121,7 +119,6 @@ $(function(){
 
         $(".eventForm").find("input,select,textarea").prop('disabled', true);//選択on有効,findはplunk
         $(".eventForm." + value).find("input,select,textarea").prop('disabled', false);//off無効
-        
 
     });
 
@@ -148,8 +145,7 @@ $(function(){
 //////////////////
 
 });
+
 </script>
-
-
 
 @endsection('content')

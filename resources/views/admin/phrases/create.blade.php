@@ -1,4 +1,3 @@
-<!-- @//extends('layouts.app',["title"=>"U_Dectionary"]) -->
 @extends('layouts.admin.admin',["title"=>"U_Dectionary"])
 
 @section('content')
@@ -72,7 +71,6 @@
                             <label for="phrase_tag">{{ __('タグ') }}</label>
                             <input id="tags-input" type="text" class="form-control" name="phrase_tag" value="{{ old('phrase_tag') }}" />
                         </div>
-                       
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -81,9 +79,6 @@
                                 </button>
                             </div>
                         </div>
-
-                   
-
                     </form>
                 </div>
             </div>
@@ -93,36 +88,32 @@
 
 <button><a href="{{route('admin.phrase.index')}}">管理者表現一覧</a></button>
 
-
 <script type="text/javascript">
 
 $(function(){
 
-//スクリプト内で次の様に取得します。
-var whitelist_str = '<?php echo $whitelist;?>';  //文字列を一度取得
-var whitelist = whitelist_str.split(','); 
+    //スクリプト内で次の様に取得します。
+    var whitelist_str = '<?php echo $whitelist;?>';  //文字列を一度取得
+    var whitelist = whitelist_str.split(','); 
 
     // The DOM element you wish to replace with Tagify
     var input = document.querySelector('#tags-input');
 
     // initialize Tagify on the above input node reference
     new Tagify(input,{
+
         whitelist: whitelist,//@json($whitelist),
         dropdown: {
+
             maxItems: 20,           // <- mixumum allowed rendered suggestions
             classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
             enabled: 0,             // <- show suggestions on focus
             closeOnSelect: false    // <- do not hide the suggestions dropdown once an item has been selected
         }
     })
+    
 });
 
 </script>
 
-@endsection('content')   
-
-                  
-
-
- 
-
+@endsection('content')

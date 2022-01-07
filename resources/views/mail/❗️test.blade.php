@@ -1,3 +1,0 @@
-こんにちわ mail.test
-
-{{ $date }}

@@ -1,4 +1,3 @@
-<!-- @//extends('layouts.app',["title"=>"U_Dectionary"]) -->
 @extends('layouts.admin.admin',["title"=>"U_Dectionary"])
 
 @section('content')
@@ -18,28 +17,26 @@
             </div>
             <br />
             @endif
+
             <form method="post" action="{{ route('admin.phrase.update', $phrase->id) }}">
-                @csrf
+            @csrf
                 <div class="form-group">
                     <label for="phrase">表現</label>
                     <!-- <input type="text" class="form-control" name="phrase" value={{-- $phrase->phrase --}} /> -->
                     <textarea class="form-control" rows="4" name="phrase">{{ $phrase->phrase }}</textarea>
                 </div>
 
-                
                 <div class="form-group">
-                <label for="phrase_category">カテゴリ</label><br/>
+                    <label for="phrase_category">カテゴリ</label><br/>
                     @foreach($phraseCategories as $phraseCategory)
-
-                        <input type="checkbox" 
-                            name="phrase_category[]"
-                            value="{{ $phraseCategory->id }}"
-                            @if(in_array($phraseCategory->id, $selected_categories))
-                            checked
-                            @endif
-                        />
-                        {{ $phraseCategory->phrase_category }}
-                    
+                    <input type="checkbox" 
+                        name="phrase_category[]"
+                        value="{{ $phraseCategory->id }}"
+                        @if(in_array($phraseCategory->id, $selected_categories))
+                        checked
+                        @endif
+                    />
+                    {{ $phraseCategory->phrase_category }}
                     @endforeach    
                 </div>
                 
@@ -72,7 +69,7 @@
                 <div class="form-group">
                     <!-- <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{-- __('タグ') --}}</label> -->
                     <label for="phrase_tag">{{ __('タグ') }}</label>
-                        <input id="tags-input" type="text" class="form-control" name="phrase_tag" value="{{ old('phrase_tag',implode(', ', $tagList)) }}" />
+                    <input id="tags-input" type="text" class="form-control" name="phrase_tag" value="{{ old('phrase_tag',implode(', ', $tagList)) }}" />
                 </div>
                 <button type="submit" class="btn btn-primary">変更</button>
             </form>
@@ -94,8 +91,10 @@ var whitelist = whitelist_str.split(',');
 
     // initialize Tagify on the above input node reference
     new Tagify(input,{
+
         whitelist: whitelist,//@json($whitelist),//whitelist
         dropdown: {
+
             maxItems: 20,           // <- mixumum allowed rendered suggestions
             classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
             enabled: 0,             // <- show suggestions on focus
@@ -104,6 +103,7 @@ var whitelist = whitelist_str.split(',');
     })
     
 });
+
 </script>
 
 @endsection('content')

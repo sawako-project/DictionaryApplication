@@ -33,6 +33,7 @@ class PhraseCategorySeeder extends Seeder
             ['id' => 22, 'phrase_category' => '掴む'],
             ['id' => 23, 'phrase_category' => '摘む'],
         ];
+        
         DB::table('phrase_categories')->insert($phrase_categories);
         //DB::table('users')->truncate(); // 既存のユーザを削除
         // factory(User::class, 20)->create();

@@ -1,7 +1,7 @@
 <?php
 namespace App\Services\PhraseTag;
 
-use App\PhraseTag;//
+use App\PhraseTag;
 
 class PhraseTagService {
 
@@ -28,22 +28,23 @@ class PhraseTagService {
         $phraseTags = PhraseTag::all();
         //$tagList = $phrase->phraseTags()->pluck("phrase_tag")->toArray();
    
-         //PHP側で取り出したいキーの配列を文字列化します。
-         $whitelist = '';
-         foreach ($phraseTags as $key => $value) {
-   
-          $whitelist .= ','.$value['phrase_tag'];
-         }
-         $whitelist = substr($whitelist,1);
-   
+        //PHP側で取り出したいキーの配列を文字列化します。
+        $whitelist = '';
+        foreach ($phraseTags as $key => $value) {
+        $whitelist .= ','.$value['phrase_tag'];
+        }
+        $whitelist = substr($whitelist,1);
+
         //@TODO
-     //    $whitelist = [
-     //        "未分類","プラス","マイナス"
-     //    ];
+        //    $whitelist = [
+        //        "未分類","プラス","マイナス"
+        //    ];
+
         return array($phraseTags, $whitelist);
+
     }    
 
-    function phraseTagJsonDecode($tags){//
+    function phraseTagJsonDecode($tags){
 
         //$tags = $request->get('phrase_tag');
  
@@ -66,9 +67,9 @@ class PhraseTagService {
             }
             $tagList[] = $tag->id;
         }
- 
 
         //return array($tags, $tagList);
         return $tagList;
-    }    
+    }
+
 }

@@ -17,6 +17,7 @@ class PhraseTagSeeder extends Seeder
             // ['id' => 2, 'phrase_tags' => ''],
             // ['id' => 3, 'phrase_tags' => ''],
         ];
+        
         DB::table('phrase_tags')->insert($phrase_tags);
     }
 }

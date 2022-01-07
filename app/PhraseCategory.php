@@ -25,6 +25,7 @@ class PhraseCategory extends Model
     }
 
     public function phrases(){
+        
 		return $this->belongsToMany(
 			"App\Phrase",	//対象モデル
 			"rel_phrase_category",	//中間テーブル

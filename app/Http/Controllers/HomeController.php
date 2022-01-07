@@ -41,7 +41,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $req)//$id
+    public function index(Request $req)
     {
 
         //userの
@@ -82,6 +82,7 @@ class HomeController extends Controller
             'myAllPhraseLikes'=>$myAllPhraseLikes,
             "myAllPhraseLikesCount"=>$myAllPhraseLikesCount,
             'user'=>Auth::user()
-            ]);
+        ]);
     }
+
 }

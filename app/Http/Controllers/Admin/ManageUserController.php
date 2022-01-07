@@ -21,5 +21,5 @@ class ManageUserController extends Controller
 			"user" => $user
 		]);
 	}
+	
 }
-

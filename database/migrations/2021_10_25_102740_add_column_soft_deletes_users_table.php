@@ -16,7 +16,6 @@ class AddColumnSoftDeletesUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             //マイグレーションファイルで「$table->softDeletes();」を追加することでdeleted_atカラムを作成することができます。
             $table->softDeletes();
-
             //削除したユーザのメールアドレスはUNIQUE制約で再登録できない
             //emailとdeleted_atの２つのカラムでUNIQUE制約を設定
             //emailのユニークキーを削除
@@ -41,7 +40,6 @@ class AddColumnSoftDeletesUsersTable extends Migration
             //emailのユニークキーを復活
             $table->unique('email','users_email_unique');//個別？
             $table->dropUnique('users_email_unique');//セット名？
-                
 
         });
     }

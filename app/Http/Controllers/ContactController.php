@@ -26,7 +26,6 @@ class ContactController extends Controller
     
     public function confirm(Request $request)
     {
-
         //バリデーションを実行（結果に問題があれば処理を中断してエラーを返す）
         $request->validate([
             'call_name' => 'required',
@@ -66,8 +65,8 @@ class ContactController extends Controller
         if($action !== 'submit'){
 
             return redirect()
-                ->route('about.contact.create')
-                ->withInput($inputs);
+            ->route('about.contact.create')
+            ->withInput($inputs);
 
         }else{
                 

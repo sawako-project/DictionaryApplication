@@ -172,6 +172,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
 	Route::get('/admin/phrase/{id}', 'Admin\AdminPhraseController@edit')->name("admin.phrase.edit");
 	Route::post('/admin/phrase/{id}', 'Admin\AdminPhraseController@update')->name("admin.phrase.update");
 	Route::post('/admin/phrase/delete/{id}', 'Admin\AdminPhraseController@destroy')->name("admin.phrase.destroy");
+	
 	//phraseCategory
 	Route::get('/admin/phrase_category', 'Admin\AdminPhraseCategoryController@index')->name("admin.phrase_category.index");
 	Route::get('/admin/phrase_category/create', 'Admin\AdminPhraseCategoryController@create')->name("admin.phrase_category.create");
@@ -179,6 +180,7 @@ Route::group(['middleware' => ['auth.admin']], function () {
 	Route::get('/admin/phrase_category/{id}', 'Admin\AdminPhraseCategoryController@edit')->name("admin.phrase_category.edit");
 	Route::post('/admin/phrase_category/{id}', 'Admin\AdminPhraseCategoryController@update')->name("admin.phrase_category.update");
 	Route::post('/admin/phrase_category/delete/{id}', 'Admin\AdminPhraseCategoryController@destroy')->name("admin.phrase_category.destroy");
+	
 	//baseCategory
 	// Route::get('/admin/base_category', 'Admin\AdminBaseCategoryController@index')->name("admin.base_category.index");
 	// Route::get('/admin/base_category/create', 'Admin\AdminBaseCategoryController@create')->name("admin.base_category.create");
@@ -189,29 +191,29 @@ Route::group(['middleware' => ['auth.admin']], function () {
 
 	//event
 	//イベント
-Route::get('/admin/event','Admin\AdminEventController@index')->name("admin.event.index");
+	Route::get('/admin/event','Admin\AdminEventController@index')->name("admin.event.index");
 
-//イベントページネント
-Route::get('/admin/event/status/{status}','Admin\AdminEventController@index')->name("admin.event.index.status");
+	//イベントページネント
+	Route::get('/admin/event/status/{status}','Admin\AdminEventController@index')->name("admin.event.index.status");
 
-//イベント詳細
-Route::get('/admin/event/detail/{event_id}','Admin\AdminEventController@detail')->name("admin.event.detail");
+	//イベント詳細
+	Route::get('/admin/event/detail/{event_id}','Admin\AdminEventController@detail')->name("admin.event.detail");
 
-//エントリー詳細
-Route::get('/admin/event/post/detail/{event_post_id}','Admin\AdminEventController@postDetail')->name("admin.event.post.detail");
+	//エントリー詳細
+	Route::get('/admin/event/post/detail/{event_post_id}','Admin\AdminEventController@postDetail')->name("admin.event.post.detail");
 
-//エントリー投票
-//Route::get('/event/vote/{post_id}',	'Guest\GuestEventController@voteConfirm')->name("event.vote");//resources/views/guest/event/vote.blade.php
-//Route::post('/event/vote/{event_id}/{post_id}',	'Guest\GuestEventController@doVote')->name("event.doVote");//resources/views/guest/event/vote.blade.php
-Route::get('/admin/event/vote/{event_id}/{event_post_id}',	'Admin\AdminEventController@vote')->name("admin.event.vote");//resources/views/guest/event/vote.blade.php
+	//エントリー投票
+	//Route::get('/event/vote/{post_id}',	'Guest\GuestEventController@voteConfirm')->name("event.vote");//resources/views/guest/event/vote.blade.php
+	//Route::post('/event/vote/{event_id}/{post_id}',	'Guest\GuestEventController@doVote')->name("event.doVote");//resources/views/guest/event/vote.blade.php
+	Route::get('/admin/event/vote/{event_id}/{event_post_id}',	'Admin\AdminEventController@vote')->name("admin.event.vote");//resources/views/guest/event/vote.blade.php
 
-//イベント作成
-Route::get('/admin/event/create', 'Admin\AdminEventController@create')->name("admin.event.create");
-Route::post('/admin/event/create', 'Admin\AdminEventController@store')->name("admin.event.store");
+	//イベント作成
+	Route::get('/admin/event/create', 'Admin\AdminEventController@create')->name("admin.event.create");
+	Route::post('/admin/event/create', 'Admin\AdminEventController@store')->name("admin.event.store");
 
-//イベントエントリー//エントリー作成
-Route::get('/adminevent/post/{event_id}', 'Admin\AdminEventController@post')->name("admin.event.post");
-Route::post('/adminevent/post/{event_id}', 'Admin\AdminEventController@postDone')->name("admin.event.postDone");
+	//イベントエントリー//エントリー作成
+	Route::get('/adminevent/post/{event_id}', 'Admin\AdminEventController@post')->name("admin.event.post");
+	Route::post('/adminevent/post/{event_id}', 'Admin\AdminEventController@postDone')->name("admin.event.postDone");
 
 
 	//ユーザー一覧
@@ -231,6 +233,7 @@ Route::post('/adminevent/post/{event_id}', 'Admin\AdminEventController@postDone'
 Route::get('error/{code}', function ($code) {
 	abort($code);
   });
+
 // Route::get('error/404', function () {
 //     return view('errors.404');
 // });

@@ -44,10 +44,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //メンバ変数＄datesにdeleted_atをセットすることでモデル側で論理削除をできるようにする。
-    //5.7まではprotected $dates = [‘deleted_at’];の記述が必要だったが、5.8からは「SoftDeletesトレイトは自動的にdeleted_at属性をDateTime/Carbonインスタンスへ変換します。」ので不要。
-    //protected $dates = ['deleted_at']; //追記
-
     /**
      * Override to send for password reset notification.
      *
@@ -66,4 +62,5 @@ class User extends Authenticatable
     public function events(){
         return $this->hasMany("App\Event");
     }
+
 }

@@ -10,4 +10,3 @@ class BaseCategory extends Model
         return $this->belongsTo("App\PhraseCategory");
     }
 }
-

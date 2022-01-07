@@ -63,4 +63,5 @@ class EventPost extends Model
         $this->phrase_id = $phrase->id;
         $this->save();
     }
+    
 }

@@ -40,7 +40,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 
             //SimplePasswordAuth
-            \App\Http\Middleware\SimplePasswordAuth::class
+            //\App\Http\Middleware\SimplePasswordAuth::class
 
             //OnlyHttps
             //\App\Http\Middleware\OnlyHttps::class

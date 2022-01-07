@@ -95,6 +95,7 @@ class AdminEventController extends Controller
     }
         
     function detail(Request $request,$eventId){//{event_id}
+
         $event = Event::findOrFail($eventId);
         $eventPost = EventPost::where('event_id',$eventId)->orderBy("id", "desc")->paginate(10);
 
@@ -114,39 +115,38 @@ class AdminEventController extends Controller
         }
 
         //締切
-            if($event->isClosed()){//関数呼び出し
+        if($event->isClosed()){//関数呼び出し
 
-                if($event->event_type == "phraseAboutSituationEvent"){
+            if($event->event_type == "phraseAboutSituationEvent"){
 
-        $event = Event::findOrFail($eventId);
-        $eventPosts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc')->paginate(10);
-        $event_posts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc');//->get()->all();
-        //$array = $event_posts->get()->toArray();
-        $array = $event_posts->pluck('post_text')->toArray();
-        ////////////
-        //dd($array);
-//         //dd($event_posts);
-//         //dd($eventPosts);
-        $arrays = array_slice($array , 0, 3);
-        dd($arrays);
-// foreach($eventPost as $key => $value){
-//     dd( "キー(\$key) : {$key}　値(\$value) : {$value}<br/>\n");
-// }
-// foreach($arrays as  $value){
-//     //dd($value);
-// }
-        /////////////
+                $event = Event::findOrFail($eventId);
+                $eventPosts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc')->paginate(10);
+                $event_posts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc');//->get()->all();
+                //$array = $event_posts->get()->toArray();
+                $array = $event_posts->pluck('post_text')->toArray();
+                ////////////
+                //dd($array);
+                //         //dd($event_posts);
+                //         //dd($eventPosts);
+                $arrays = array_slice($array , 0, 3);
+                dd($arrays);
+                // foreach($eventPost as $key => $value){
+                //     dd( "キー(\$key) : {$key}　値(\$value) : {$value}<br/>\n");
+                // }
+                // foreach($arrays as  $value){
+                //     //dd($value);
+                // }
+                /////////////
 
-        return view('admin.event.closed_situation',[//guest.event.closed_detail
-            'event' => $event,
-            'eventPosts' => $eventPosts    
-        ]);
+                return view('admin.event.closed_situation',[//guest.event.closed_detail
+                    'event' => $event,
+                    'eventPosts' => $eventPosts    
+                ]);
 
-        }
+            }
 
         }else{
-        
-         
+    
             //開催中
             return view('admin.event.detail', [
                 'event' => $event,
@@ -154,6 +154,7 @@ class AdminEventController extends Controller
                 "votes" => $votes,
                 //"editable" => $eventPosts->user_id == Auth::id()
             ]);
+            
         }
 
     }
@@ -262,119 +263,76 @@ class AdminEventController extends Controller
             "event_type_list" => EventTypeMaster::all(),
             "phraseCategories" => PhraseCategory::all()
         ]);
-}
-
-public function store(Request $request){
-
-    $request->validate([
-    'event_text'=>'required',
-    'event_type' => 'required',
-    'schedule_end' => 'required'
-    ]);
-
-    $event = new Event();
-    $event->event_text = $request->get('event_text');
-    //$event->user_id = Auth::id();
-    // $event->save();
-
-    $event_type = $request->get('event_type');//radio
-    $event->event_type = $event_type;
-
-    $event->schedule_end = $request->input('schedule_end');//❌strtotime($request->input('schedule_end'));
-    //忘れた時は
-    if(!$event->schedule_end){
-    $event->schedule_end = new Carbon("+30 days");
     }
 
-    $event->save();
+    public function store(Request $request){
 
-    return redirect()->route("admin.event.index")->with('success', 'saved!');
+        $request->validate([
+        'event_text'=>'required',
+        'event_type' => 'required',
+        'schedule_end' => 'required'
+        ]);
 
-}
+        $event = new Event();
+        $event->event_text = $request->get('event_text');
+        //$event->user_id = Auth::id();
+        // $event->save();
 
-//お題に対した表現を投稿(ユーザーのみ)
-public function post($id)
-{
-    $event = Event::find($id);
-    if(!$event){
-        return redirect()->route("admin.event.index");
+        $event_type = $request->get('event_type');//radio
+        $event->event_type = $event_type;
+
+        $event->schedule_end = $request->input('schedule_end');//❌strtotime($request->input('schedule_end'));
+        //忘れた時は
+        if(!$event->schedule_end){
+        $event->schedule_end = new Carbon("+30 days");
+        }
+
+        $event->save();
+
+        return redirect()->route("admin.event.index")->with('success', 'saved!');
+
     }
-    return view('admin.event.post', compact('event'));
 
-}
+    //お題に対した表現を投稿(ユーザーのみ)
+    public function post($id)
+    {
+        $event = Event::find($id);
+        if(!$event){
+            return redirect()->route("admin.event.index");
+        }
+        return view('admin.event.post', compact('event'));
 
-public function postDone(Request $request,$eventId)
-{
-
-    $event = Event::find($eventId);
-    if(!$event){
-        return redirect()->route("admin.event.index");
     }
-    $request->validate([
-        'post_text'=>'required'
-    ]);
 
-    $event_post = new EventPost();
-    $event_post->post_text = $request->get('post_text');
+    public function postDone(Request $request,$eventId)
+    {
 
-    $event_post->event_id = $event->id;
-    //$event_post->user_id = Auth::id();
-    $event_post->save();
-    
+        $event = Event::find($eventId);
+        if(!$event){
+            return redirect()->route("admin.event.index");
+        }
+        $request->validate([
+            'post_text'=>'required'
+        ]);
 
-    //Phraseの自動作成
-    // if($request->input("auto_phrase")){
-    // $event_post->createPhrase($event);
+        $event_post = new EventPost();
+        $event_post->post_text = $request->get('post_text');
+
+        $event_post->event_id = $event->id;
+        //$event_post->user_id = Auth::id();
+        $event_post->save();
+        
+
+        //Phraseの自動作成
+        // if($request->input("auto_phrase")){
+        // $event_post->createPhrase($event);
+        // }
+
+        return redirect()->route("admin.event.detail",['event_id' => $eventId])->with('success', 'saved!');
+    }
+
+    // public function entryDone()//
+    // {
     // }
 
-    return redirect()->route("admin.event.detail",['event_id' => $eventId])->with('success', 'saved!');
-}
-
-// public function entryDone()//
-// {
-// }
-
 }//controller
-
-/*
-class PostDetail {
-
-    public $event = null;
-    public $evnetPost = null;
-    public $votes = [];
-
-    function __construct($eventPost, $votes){
-        $this->event = $eventPost->event;
-        $this->eventPost = $eventPost;
-        $this->votes = $eventPost->votes;
-    }
-
-    function eventLabel(){
-        return $this->event->eventLabel();
-    }
-
-    function isMine(){
-        return $this->eventPost->user_id == Auth::id();
-    }
-
-    function isVotable(){
-        return !$this->isMine();
-    }
-
-    function isVoted(){
-        return $this->vote && $this->vote == 1;
-    }
-
-    function getEditLink(){
-
-    }
-
-    function getLink($type){
-        if($type == "edit"){
-            return route('user.phrase.edit',$this->phrase->id);
-        }
-    }
-
-}
-*/
-

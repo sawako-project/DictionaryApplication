@@ -4,11 +4,8 @@
 
 @section('content')
 
-
-
 <div class="user-event-post container">
     <div class="row justify-content-center">
-
         <div class="col-md-8">
             <div class="card base-card">
                 <div class="card-header">イベント情報</div>
@@ -18,9 +15,9 @@
             </div>
         </div>
 
-        <!-- <div class="heading">
-    <h2><strong><span class="under">イベントエントリー</span></strong></h2>
-</div> -->
+                <!-- <div class="heading">
+            <h2><strong><span class="under">イベントエントリー</span></strong></h2>
+        </div> -->
 
         <div class="col-md-8 mb-5">
             <div class="card base-card">
@@ -42,7 +39,7 @@
                         type="hidden"
                         value="{{ $event->id }}"
                         />
-
+                        
                         <div class="form-group row">
                             <label for="post_text" class="col-md-4 col-form-label text-md-right">{{ __('エントリー') }}</label>
                             <div class="col-md-6">
@@ -72,9 +69,5 @@
         </div>
     </div>
 </div>
-
-
-
-
 
 @endsection('content')

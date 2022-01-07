@@ -8,14 +8,14 @@ use Illuminate\Http\Request;
 use Auth;
 //use Illuminate\Support\Facades\Auth;
 use DB;
-use App\User; //❗️
+use App\User;
 use Carbon\Carbon;
 
 use App\Phrase;
-use App\PhraseCategory; //
+use App\PhraseCategory;
 use App\BaseCategory;
 use App\BaseCategoryMaster;
-use App\PhraseTag; //
+use App\PhraseTag;
 use App\Word;
 
 use App\PhraseLike;
@@ -142,8 +142,5 @@ class UserInfoController extends Controller
         //退会後
         return redirect('/');
     }
-
-    
-    
 
 }

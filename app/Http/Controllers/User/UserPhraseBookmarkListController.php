@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 use Auth;
 use DB;
-//use App\User;
-
 use App\Phrase;
 use App\PhraseCategory;
 use App\BaseCategory;
@@ -26,6 +24,7 @@ class UserPhraseBookmarkListController extends Controller
     {
 
         $phraseCategory_id = $request->input("c");
+
         if($phraseCategory_id){
 
             $phraseLikes = Phrase::whereHas('likes', function($query){
@@ -41,6 +40,7 @@ class UserPhraseBookmarkListController extends Controller
         }
 
         $phraseTag_id = $request->input("t");
+
         if($phraseTag_id){
 
             $phraseLikes = Phrase::whereHas('likes', function($query){
@@ -63,33 +63,32 @@ class UserPhraseBookmarkListController extends Controller
         ->paginate(10);//get();
 
         //likesテーブルに入っているphrase_idを
-    $phraseIdList = $phraseLikes->map(function($like){
-        return $like->phrase_id;
-    });
+        $phraseIdList = $phraseLikes->map(function($like){
+            return $like->phrase_id;
+        });
 
-    ///////////////////////////////////////////////////
+        ///////////////////////////////////////////////////
 
-    //"phrase_id",$phraseIdListを絞り込み
-    // $allLikes = PhraseLike::where("user_id","=",Auth::id())
-    //         ->whereIn("phrase_id",$phraseIdList)
-    //         ->get();
+        //"phrase_id",$phraseIdListを絞り込み
+        // $allLikes = PhraseLike::where("user_id","=",Auth::id())
+        //         ->whereIn("phrase_id",$phraseIdList)
+        //         ->get();
+            
+        //     //Viewで使いやすいように変換
+        //     $likes = [];
+        //     foreach($allLikes as $like){
+        //         $likes[$like->phrase_id] = $like->liked;
+        //     }
         
-    //     //Viewで使いやすいように変換
-    //     $likes = [];
-    //     foreach($allLikes as $like){
-    //         $likes[$like->phrase_id] = $like->liked;
-    //     }
-    
-    ////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////
 
-    $likes = $phraseLikeService->getAllLikes(Auth::id(), $phraseIdList);
+        $likes = $phraseLikeService->getAllLikes(Auth::id(), $phraseIdList);
 
-    return view('user.user_bookmark_list',[
-        "phraseLikes" => $phraseLikes,
-        "likes" => $likes
-    ]);
+        return view('user.user_bookmark_list',[
+            "phraseLikes" => $phraseLikes,
+            "likes" => $likes
+        ]);
 
     }
 
-   
 }

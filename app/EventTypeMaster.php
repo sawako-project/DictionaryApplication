@@ -53,6 +53,7 @@ class EventTypeMaster
     }
 
     public $event_type;
+
     public $label;
     //public $sample;
     //public $categories = [];
@@ -68,6 +69,4 @@ class EventTypeMaster
         $this->label = $label;
     }
 
-
-    
 }

@@ -66,8 +66,8 @@ class GuestEventController extends Controller
             $soon_min = Carbon::today();
             $soon_max = Carbon::parse("+2 days");
             
-             $event_soonEnd = Event::where("schedule_end",">=",$soon_min)->where("schedule_end","<=",$soon_max)->orderBy('schedule_end','asc')->paginate(2, ["*"], 'event_soonEnd')->withPath("/event/status/event_soonEnd");
-             }
+            $event_soonEnd = Event::where("schedule_end",">=",$soon_min)->where("schedule_end","<=",$soon_max)->orderBy('schedule_end','asc')->paginate(2, ["*"], 'event_soonEnd')->withPath("/event/status/event_soonEnd");
+            }
 
         if($mode == "all" || $mode == "events_end"){
             $events_end = Event::where("schedule_end","<",$nowTime)->orderBy("updated_at","desc")->paginate(2, ["*"], 'events_end')->withPath("/event/status/events_end");
@@ -95,6 +95,7 @@ class GuestEventController extends Controller
     }
         
     function detail(Request $request,$eventId){//{event_id}
+
         $event = Event::findOrFail($eventId);
         $eventPost = EventPost::where('event_id',$eventId)->orderBy("id", "desc")->paginate(10);
 
@@ -114,63 +115,62 @@ class GuestEventController extends Controller
         }
 
         //締切
-            if($event->isClosed()){//関数呼び出し
+        if($event->isClosed()){//関数呼び出し
 
-                if($event->event_type == "phraseAboutSituationEvent"){
+            if($event->event_type == "phraseAboutSituationEvent"){
 
-        $event = Event::findOrFail($eventId);
-        $eventPosts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc')->paginate(10);
-        $event_posts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc');//->get()->all();
-        //$array = $event_posts->get()->toArray();
-        //$array = $event_posts->pluck('post_text')->toArray();
-        //////////////////
-        // $phrase->phrase = $event_posts->post_text;
+                $event = Event::findOrFail($eventId);
+                $eventPosts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc')->paginate(10);
+                $event_posts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc');//->get()->all();
+                //$array = $event_posts->get()->toArray();
+                //$array = $event_posts->pluck('post_text')->toArray();
+                //////////////////
+                // $phrase->phrase = $event_posts->post_text;
 
-        //Phraseの自動作成
-//    if($request->input("auto_phrase")){
-//     $event_post->createPhrase($event);
-//     }
+                //Phraseの自動作成
+                //    if($request->input("auto_phrase")){
+                //     $event_post->createPhrase($event);
+                //     }
  
-        // $phrase = new Phrase();
-        // // $phrase->phrase = $request->get('post_text');
-        // $phrase->phrase = $event_posts->post_text;
+                // $phrase = new Phrase();
+                // // $phrase->phrase = $request->get('post_text');
+                // $phrase->phrase = $event_posts->post_text;
 
-        // $phrase->user_id = $event_posts->user_id;
+                // $phrase->user_id = $event_posts->user_id;
+                
+                // $phrase->save();
+
+
+                //phraseがなければ作成
+                //  $phrase = new Phrase([
+                //     "user_id" => $event_posts->user_id,// $this->user_id
+                //     "phrase" => $event_posts->post_text,// $this->post_text
+                // ]);
+                // $phrase->save();
         
-        // $phrase->save();
+                ////////////
+                //dd($array);
+                //         //dd($event_posts);
+                //         //dd($eventPosts);
+                // $arrays = array_slice($array , 0, 3);
+                // dd($arrays);
+                // foreach($eventPost as $key => $value){
+                //     dd( "キー(\$key) : {$key}　値(\$value) : {$value}<br/>\n");
+                // }
+                // foreach($arrays as  $value){
+                //     //dd($value);
+                // }
+                /////////////
 
+                return view('guest.event.closed_situation',[//guest.event.closed_detail
+                    'event' => $event,
+                    'eventPosts' => $eventPosts    
+                ]);
 
-         //phraseがなければ作成
-        //  $phrase = new Phrase([
-        //     "user_id" => $event_posts->user_id,// $this->user_id
-        //     "phrase" => $event_posts->post_text,// $this->post_text
-        // ]);
-        // $phrase->save();
-        
-        ////////////
-        //dd($array);
-//         //dd($event_posts);
-//         //dd($eventPosts);
-        // $arrays = array_slice($array , 0, 3);
-        // dd($arrays);
-// foreach($eventPost as $key => $value){
-//     dd( "キー(\$key) : {$key}　値(\$value) : {$value}<br/>\n");
-// }
-// foreach($arrays as  $value){
-//     //dd($value);
-// }
-        /////////////
-
-        return view('guest.event.closed_situation',[//guest.event.closed_detail
-            'event' => $event,
-            'eventPosts' => $eventPosts    
-        ]);
-
-        }
+            }
 
         }else{
         
-         
             //開催中
             return view('guest.event.detail', [
                 'event' => $event,
@@ -186,6 +186,7 @@ class GuestEventController extends Controller
 
         $eventPost = EventPost::findOrFail($eventPostId);
         //$eventPost = EventPost::where('id',$eventPostId)->orderBy("id", "desc")->paginate(10);
+        
         if(!$eventPost){
             return back()->withError("これはだめだ");//return redirect()?
         }
@@ -194,8 +195,7 @@ class GuestEventController extends Controller
             //非会員
             $vote = EventVote::where("unuser_id","=",999)
             ->where("event_post_id","=",$eventPost->id)->first();
-        }else{
-            
+        }else{ 
             //会員
             $vote = EventVote::where("user_id","=",Auth::id())
             ->where("event_post_id","=",$eventPost->id)->first();
@@ -281,45 +281,3 @@ class GuestEventController extends Controller
     }//vote
 
 }//controller
-
-/*
-class PostDetail {
-
-    public $event = null;
-    public $evnetPost = null;
-    public $votes = [];
-
-    function __construct($eventPost, $votes){
-        $this->event = $eventPost->event;
-        $this->eventPost = $eventPost;
-        $this->votes = $eventPost->votes;
-    }
-
-    function eventLabel(){
-        return $this->event->eventLabel();
-    }
-
-    function isMine(){
-        return $this->eventPost->user_id == Auth::id();
-    }
-
-    function isVotable(){
-        return !$this->isMine();
-    }
-
-    function isVoted(){
-        return $this->vote && $this->vote == 1;
-    }
-
-    function getEditLink(){
-
-    }
-
-    function getLink($type){
-        if($type == "edit"){
-            return route('user.phrase.edit',$this->phrase->id);
-        }
-    }
-
-}
-*/

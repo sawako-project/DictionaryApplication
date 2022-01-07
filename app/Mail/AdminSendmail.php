@@ -59,6 +59,8 @@ class AdminSendmail extends Mailable
                 'email' => $this->email,
                 'title' => $this->title,
                 'contact_text'  => $this->contact_text,
-            ]);
+        ]);
+        
     }
+
 }

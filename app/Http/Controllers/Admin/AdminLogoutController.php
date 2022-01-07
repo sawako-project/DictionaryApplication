@@ -14,4 +14,3 @@ class AdminLogoutController extends Controller
 	}
 
 }
-

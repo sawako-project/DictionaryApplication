@@ -70,11 +70,11 @@ class AdminPhraseCategoryController extends Controller
         $phrase_category = new PhraseCategory();
         $phrase_category->phrase_category = $request->get('phrase_category');
 
-if(isset($phrase_category_name)){
-    $phrase_category_name = $request->get('phrase_category_name');
-    $phrase_category->phrase_category_name = $phrase_category_name;
-    $phrase_category->save();
-}
+        if(isset($phrase_category_name)){
+            $phrase_category_name = $request->get('phrase_category_name');
+            $phrase_category->phrase_category_name = $phrase_category_name;
+            $phrase_category->save();
+        }
 
         $phrase_category->save();
 
@@ -138,11 +138,11 @@ if(isset($phrase_category_name)){
 
         $phraseCategory->phrase_category = $request->get('phrase_category');
 
-$phrase_category_name = $request->get('phrase_category_name');
-if(isset($phrase_category_name)){
-    $phraseCategory->phrase_category_name = $phrase_category_name;
-    $phraseCategory->save();
-}
+        $phrase_category_name = $request->get('phrase_category_name');
+        if(isset($phrase_category_name)){
+            $phraseCategory->phrase_category_name = $phrase_category_name;
+            $phraseCategory->save();
+        }
 
         $phraseCategory->save();
 
@@ -156,6 +156,7 @@ if(isset($phrase_category_name)){
         //要らないものは削除する
         //check外したらdbから消えて
         $phraseCategory->baseCategories()->each(function($baseCategory) use($base_categories){
+            
             if(in_array($baseCategory->code, $base_categories)){//｢base_categories｣テーブルの｢code｣絡む
                 //チェックが入っているので削除しない
                 //絡むにその項目が登録されていたら
@@ -168,6 +169,7 @@ if(isset($phrase_category_name)){
         // current($names); next($names);
 
         foreach($base_categories as $code){//$code使いたいから？//checkされた項目の個々が｢code｣に存在しているものならスルー
+            
             if(in_array($code, $selected_basies)){//0→express,1→actionの配列にinputされた値があれば置き換えるor無視して
                 //既に作成済みなので追加しない
                 continue;//breakだと強制終了//return;//returnも終わってしまうん？
@@ -178,7 +180,6 @@ if(isset($phrase_category_name)){
             $baseCategory->code = $code;
             $baseCategory->save();
         }
-        
 
         return redirect()->route("admin.phrase_category.index")->with('success', 'saved!');
     }
@@ -196,4 +197,5 @@ if(isset($phrase_category_name)){
         PhraseCategory::find($id)->delete();
         return redirect()->route("admin.phrase_category.index")->with('success', 'deleted!');
     }
+    
 }
