@@ -90,25 +90,10 @@
         </div>
     </div>
 
-    <div class='d-flex pagination justify-content-center'>
-
-    {{ $phrases->links() }}
-
-        <style type="text/css">
-
-        .pagination {
-            /*display: inline-block;*/
-        }
-        
-        .pagination .page-item {
-            color: black;
-            float: center;
-            /* padding: 8px 16px; */
-            text-decoration: none;
-            list-style: none;
-        }
-
-        </style>
+    <div class='pagination justify-content-center'>
+    @component('parts.components.item_pager')
+        @slot("item_list",$phrases)
+    @endcomponent
     </div>
     <hr>
     <a class="btn btn-outline-primary" href="{{ url('/phrase') }}">表現一覧</a>

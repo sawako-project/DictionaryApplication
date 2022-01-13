@@ -67,24 +67,9 @@
 </div>
 
 <div class='pagination justify-content-center'>
-
-{{ $phraseCategories->links() }}
-
-    <style type="text/css">
-
-    .pagination {
-        /*display: inline-block;*/
-    }
-
-    .pagination .page-item {
-        color: black;
-        float: center;
-        /* padding: 8px 16px; */
-        text-decoration: none;
-        list-style: none;
-    }
-
-    </style>
+@component('parts.components.item_pager')
+   @slot("item_list",$phraseCategories)
+@endcomponent
 </div>
 
 <hr/>

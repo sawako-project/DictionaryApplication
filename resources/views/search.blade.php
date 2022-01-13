@@ -1,49 +1,15 @@
-{{--@extends('layouts.dictionary',["title"=>"Dectionary","show_mv" => true])--}}
 @extends('layouts.dictionary',["title"=>"Dectionary"])
 
 @section('header-title', '表現を探す')
 
 @section('content')
-<style>
 
-/* .search-bar {
-    font-family: 'Kiwi Maru', serif;
-    width: 30%!important;
-    text-align: center;
-    margin: 0 auto;
-    border-radius: 100px;
-} */
-/* .search-area {
-    font-family: 'Kiwi Maru', serif;
-    width: 30%!important;
-    text-align: center;
-    margin: 0 auto;
-    border-radius: 100px;
-} */
-
-</style>
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <!--  -->
-            <!-- <div class="search-bar">
-                <div class="search-bar-inner">
-                    <form action="{{-- url('/search_phrases')--}}" method="get" name="search">
-                        <div id="search" class="form-group">
-                            <div class="input-group">
-                                <input type="text" name="keyword" value="{{-- @//$keyword --}}" class="form-control" placeholder="言葉を入力して検索する" >
-                                <div class="input-group-append">
-                                    <button class="btn btn-light text-dark" type="submit"><span><i class="fas fa-search"></i></span></button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div> -->
-            <!--  -->
-        {{--@include("layouts.parts.search-bar")--}}
 
         @include("layouts.parts.search-bar")
+
         </div>
     </div>
 

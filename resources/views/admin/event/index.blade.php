@@ -42,7 +42,9 @@
             @endforeach
 
             <div class='pagination justify-content-center'>
-            {{ $events->links() }}
+            @component('parts.components.item_pager')
+                @slot("item_list",$events)
+            @endcomponent
             </div>
         @endisset
         </div>
@@ -66,7 +68,9 @@
             @endforeach
 
             <div class='pagination justify-content-center'>
-                {{ $events_hold->links() }}
+            @component('parts.components.item_pager')
+                @slot("item_list",$events_hold)
+            @endcomponent
             </div>
         @endisset
         </div>
@@ -90,7 +94,9 @@
             @endforeach
 
             <div class='pagination justify-content-center'>
-                {{ $event_soonEnd->links() }}
+            @component('parts.components.item_pager')
+                @slot("item_list",$event_soonEnd)
+            @endcomponent
             </div>
         @endisset
         </div>
@@ -113,35 +119,15 @@
                 @include("parts.event.event_info", ["event" => $event])
             
             @endforeach
-            <div class='pagination d-flex justify-content-center'>
-                {{ $events_end->links() }}
+            <div class='pagination justify-content-center'>
+            @component('parts.components.item_pager')
+                @slot("item_list",$events_end)
+            @endcomponent
             </div>
         @endisset
         </div>
     </div>
 </div>
-
-
-
-<style type="text/css">
-
-/* .pagination {
-    margin-top:24px;
-} */
-
-.pagination {
-    /*display: inline-block;*/
-}
-
-.pagination .page-item {
-    color: black;
-    float: center;
-    /* padding: 8px 16px; */
-    text-decoration: none;
-    list-style: none;
-}
-
-</style>
 
 <hr/>
 <a class="btn btn-outline-primary mx-1" href="{{route('admin.top')}}">管理者トップ</a>

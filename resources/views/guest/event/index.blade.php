@@ -60,7 +60,9 @@
 </div>
 
 <div class='pagination justify-content-center'>
-    {{ $events->links() }}
+@component('parts.components.item_pager')
+    @slot("item_list",$events)
+@endcomponent
 </div>
 @endisset
 
@@ -86,7 +88,9 @@
 </div>
 
 <div class='pagination justify-content-center'>
-    {{ $events_hold->links() }}
+@component('parts.components.item_pager')
+    @slot("item_list",$events_hold)
+@endcomponent
 </div>
 @endisset
 
@@ -112,7 +116,9 @@
 </div>
 
 <div class='pagination justify-content-center'>
-    {{ $event_soonEnd->links() }}
+@component('parts.components.item_pager')
+    @slot("item_list",$event_soonEnd)
+@endcomponent
 </div>
 @endisset
 
@@ -138,17 +144,12 @@
 </div>
 
 <div class='pagination justify-content-center'>
-    {{ $events_end->links() }}
+@component('parts.components.item_pager')
+    @slot("item_list",$events_end)
+@endcomponent
 </div>
 @endisset
 
-<style type="text/css">
-
-.pagination {
-    margin-top:24px;
-}
-
-</style>
 
 <hr>
 <a class="btn btn-outline-primary" href="{{ url('/event') }}">イベントメニューに戻る</a>

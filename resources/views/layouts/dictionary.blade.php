@@ -6,7 +6,6 @@
 </div>
 <div id="backgroundImg">
    <h1 class="glowAnime">表現を見つけましょう。</h1>
-   {{--@include("layouts.parts.search-bar")--}}
 </div>
 @else
 <div class="page-navbar">
@@ -14,18 +13,6 @@
 </div>
 @endif
 
-<style>
-/* .search-area {
-    font-family: 'Kiwi Maru', serif;
-    width: 30%!important;
-    text-align: center;
-    margin: 0 auto;
-    position: fixed;
-    top: 55%;
-    left: 35%;
-    border-radius: 100px;
-} */
-</style>
 <div id="app">
  
 <!-- @if(session()->get('success'))

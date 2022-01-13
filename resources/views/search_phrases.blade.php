@@ -1,4 +1,3 @@
-{{--@extends('layouts.dictionary',["title"=>"Dectionary","show_mv" => true])--}}
 @extends('layouts.dictionary',["title"=>"Dectionary"])
 
 @section('header-title', '表現の検索結果')
@@ -7,9 +6,9 @@
 
 <div class="container">
     <div class="row">
-    {{--@include("layouts.parts.search-bar")--}}
         
         @include("layouts.parts.search-bar")
+        
         <div class="col-sm-12">
             <div class="card base-card">
             <div class="card-header">検索結果: ｢<strong>{{ $keyword }}</strong>｣についての表現</div>

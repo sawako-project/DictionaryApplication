@@ -257,7 +257,6 @@ float: left;
 width: 110px;
 } */
 
-/* .m-form-checkbox input { */
 .check-list input {
     position: absolute;
     white-space: nowrap;
@@ -365,26 +364,6 @@ hr {
     color:#f3f3f3;
 }
 
-/* ページネント */
-/* .pagination { */
-  /*display: inline-block;*/
- /* } */
- 
- /* .pagination .page-item {
-   color: black;
-   float: center;
-   padding: 8px 16px;
-   text-decoration: none;
-   list-style: none;
- } */
-
-/* _____________________________________ */
-
-/* #search {
-  border: 1px solid #333;
- } */
-
-/* _____________________________________ */
 
 /* 個別 */
 
@@ -452,19 +431,6 @@ hr {
       text-shadow: 0 0 0 #fff,0 0 0 #fff;
     }
 }
-
-/* .search-area {
-    font-family: 'Kiwi Maru', serif;
-    width: 30%!important; */
-    /* display: flex!important; */
-    /* text-align: center;
-    margin: 0 auto; */
-    /* margin-top: 50%; */
-    /* position: fixed;
-    top: 55%;
-    left: 35%;
-    border-radius: 100px;
-} */
 
 /* phrase-list */
 .phrase-list {
@@ -539,6 +505,3 @@ hr {
     display: none;
 }
 
-/* .contact input,textarea{
-  visibility: hidden;
-} */
