@@ -10,11 +10,9 @@
 				<div class="card-body">
 					<a href="{{route('admin.phrase.index')}}" class="btn btn-primary">管理者表現一覧</a>
 					<a href="{{route('admin.phrase_category.index')}}" class="btn btn-primary">管理者カテゴリ一覧</a>
-					<!-- <a href="{{--route('admin.base_category.index')--}}" class="btn btn-primary">管理者分類一覧</a> -->
 					<a href="{{route('admin.event.index')}}" class="btn btn-primary">管理者イベント一覧</a>
 					<form method="post" action="{{ url('admin/logout') }}">
 						@csrf
-						<!-- <input type="submit" class="btn btn-danger" value="ログアウト" /> -->
 						<button type="submit" class="btn btn-danger my-1">
 							{{ __('ログアウト') }}
 						</button>

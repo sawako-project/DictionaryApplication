@@ -21,7 +21,7 @@
                     <p class="text-right"><a href="{{ url('/phrase') }}">表現一覧(掲示板)を開く(もっと見る)<span><i class="bi bi-arrow-right-short"></i></span></a></p>
                 </div>
             </div> 
-        </div><!--col-8 7-->
+        </div>
 
         <div class="col-sm-5">
             <div class="heading mb-5">
@@ -39,28 +39,26 @@
                     @foreach($event_soonEnd as $event)
                     <div class="item_box">
                         <h5 class="card-title">お題・テーマ: ｢<strong>{{ $event->event_text }}</strong>｣な状況(時)の表現</h5>
-                        <!-- <h6 class="card-subtitle mb-2 text-muted">終了日時：{{-- $event->schedule_end --}}</h6> -->
                         <p class="card-text"><i class="bi bi-person-fill"></i>イベント発案者: {{ ($event->user) ? $event->user->name : "-"}}</p>{{-- $event->user->name --}}
                         <p class="card-text">終了日時: {{ $event->schedule_end }}</p>
                         <p class="card-text">
                             <small class="text-muted"><time datetime="{{ $event->updated_at->format('Y-m-d H:i:s') }}">作成日時: {{ $event->updated_at->format("Y-m-d H:i:s") }}</time></small>
                         </p>
                         <p><span class="badge badge-primary">エントリー数: {{ $event->posts->count() }}件</span></p>
-                        <!-- <p class="text-right"><a href="{{-- url('/event/detail', ['event_id' => $event->id]) --}}">このイベントに参加する<span><i class="fas fa-arrow-right fa-2x fa-spin"></i></span></a></p> -->
                         <p class="text-right"><a href="{{ url('/event/detail', ['event_id' => $event->id]) }}">このイベントに参加する<span><i class="bi bi-arrow-right-short"></i></span></a></p>
                     </div>
                     <hr/>
                     @endforeach
 
-                    <div class='pagination justify-content-center'>
+                    <!-- <div class='pagination justify-content-center'>
                     {{-- $event_soonEnd->links() --}}
-                    </div>
+                    </div> -->
 
                     @endisset
                     <hr/>
                     <p class="text-right"><a href="{{ url('/event') }}">イベントを開く(もっと見る)<span><i class="bi bi-arrow-right-short"></i></span></a></p>
                 </div>
-            </div><!-- class="card mb-5 pop-card" -->
+            </div>
 
             <div class="card mb-5 pop-card">
                 <div class="card-header">開催中のイベント</div>
@@ -74,35 +72,33 @@
                     @foreach($events_hold as $event)
                     <div class="item_box">
                         <h5 class="card-title">その作成するグループタグに入れる表現についての説明(内容): {{ $event->event_text }}</h5>
-                        <!-- <h6 class="card-subtitle mb-2 text-muted">終了日時：{{-- $event->schedule_end --}}</h6> -->
                         <p class="card-text"><i class="bi bi-person-fill"></i>イベント発案者: {{ ($event->user) ? $event->user->name : "-"}}</p>{{-- $event->user->name --}}
                         <p class="card-text">終了日時: {{ $event->schedule_end }}</p>
                         <p class="card-text">
                             <small class="text-muted"><time datetime="{{ $event->updated_at->format('Y-m-d H:i:s') }}">作成日時: {{ $event->updated_at->format("Y-m-d H:i:s") }}</time></small>
                         </p>
                         <p><span class="badge badge-primary">エントリー数: {{ $event->posts->count() }}件</span></p>
-                        <!-- <p class="text-right"><a href="{{-- url('/event/detail', ['event_id' => $event->id]) --}}">このイベントに参加する<span><i class="fas fa-arrow-right fa-2x fa-spin"></i></span></a></p> -->
                         <p class="text-right"><a href="{{ url('/event/detail', ['event_id' => $event->id]) }}">このイベントに参加する<span><i class="bi bi-arrow-right-short"></i></span></a></p>
                     </div>
                     <hr/>
                     @endforeach
 
-                    <div class='pagination justify-content-center'>
+                    <!-- <div class='pagination justify-content-center'>
                         {{-- $events_hold->links() --}}
-                    </div>
+                    </div> -->
 
                     @endisset
                     <hr/>
                     <p class="text-right"><a href="{{ url('/event') }}">イベントを開く(もっと見る)<span><i class="bi bi-arrow-right-short"></i></span></a></p>
                 </div>
-            </div><!-- class="card mb-5 pop-card" -->
-        </div><!--col-4 5-->
-    </div><!--row-->
+            </div>
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-sm-12">
             <div class="heading mb-5">
-                <h2><strong><span class="under">カテゴリごとの表現</span></strong></h2><!-- カテゴリから探す -->
+                <h2><strong><span class="under">カテゴリごとの表現</span></strong></h2>
             </div>
             <div class="card mb-5 pop-card">
                 <div class="card-header">感情</div>
@@ -114,9 +110,6 @@
                     <span class="mr-2"></span>
                 @endforeach
                 <hr/>
-                <!-- {{--@//foreach($phraseCategories_feelings as $phraseCategories_feeling)plunk
-                    <span><a href="{{-- url('/search_phrases') --}}">{{-- $phraseCategories_feeling --}}</a></span>
-                @//endforeach --}} -->
                 </div>
             </div>
            
@@ -130,9 +123,6 @@
                     <span class="mr-2"></span>
                 @endforeach
                 <hr/>
-                <!-- {{--@//foreach($phraseCategories_actions as $phraseCategories_action)
-                    <span><a href="{{-- url('/search_phrases') --}}">{{-- $phraseCategories_action --}}</a></span>
-                @//endforeach--}} -->
                 </div>
             </div>
         
@@ -146,13 +136,10 @@
                     <span class="mr-2"></span>
                 @endforeach
                 <hr/>
-                <!-- {{--@//foreach($phraseCategories_expressions as $phraseCategories_expression)
-                    <span><a href="{{-- url('/search_phrases') --}}">{{-- $phraseCategories_expression --}}</a></span>
-                @//endforeach--}} -->
                 </div>
             </div>
-        </div><!-- class="col-sm-12" --> 
-    </div><!--class="row"-->
+        </div> 
+    </div>
 </div>
 
 @endsection('content')

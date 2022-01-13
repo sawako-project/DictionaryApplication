@@ -62,28 +62,6 @@
                             </div>
                         </div>
 
-                    <!-- <div class="form-group row">
-                            <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{-- __('タグ') --}}</label>
-                            <div class="col-md-6">
-                                <textarea name="phrase_tag" rows="4" class="form-control">{{-- old("phrase_tag") --}}</textarea> {{-- old("phrase_tag", implode("\n", $tagList)) --}}
-                            </div>
-                            <ul>
-                            @//foreach($phraseTags as $phraseTag)
-                                <li>
-                                    <label>
-                                        <input 
-                                        type="checkbox" 
-                                        name="phrase_tag[]" 
-                                        value="{{-- $phraseTag->id --}}"
-                                        {{-- in_array($phraseTag->phrase_tag, old("phrase_tag", [])) ? 'checked="checked"' : '' --}}
-                                        /> 
-                                        {{-- $phraseTag->phrase_tag --}}
-                                    </label>
-                                </li>
-                            @//endforeach
-                            </ul>
-                        </div> -->
-
                         <div class="form-group row">
                             <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{ __('タグ') }}</label>
                             <div class="col-md-6">
@@ -119,7 +97,7 @@ $(function(){
     // initialize Tagify on the above input node reference
     new Tagify(input,{
 
-        whitelist: whitelist,//@json($whitelist),
+        whitelist: whitelist,
         dropdown: {
 
             maxItems: 20,           // <- mixumum allowed rendered suggestions

@@ -68,8 +68,8 @@
 </div>
 @endif
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-6">
             <div class="card text-center mb-5 base-card">
                 <div class="card-body">

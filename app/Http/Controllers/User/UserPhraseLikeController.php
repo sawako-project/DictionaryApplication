@@ -17,20 +17,20 @@ class UserPhraseLikeController extends Controller
 
         if($phraseLike){
 
-            $phraseLike->liked = !$phraseLike->liked;//$like->liked = 0;false;
+            $phraseLike->liked = !$phraseLike->liked;
 
         }else{
 
             $phraseLike = new PhraseLike();
             $phraseLike->liked = true;
-            $phraseLike->user_id = Auth::id();//ログインしているidをDBのカラム｢user_id｣に入れる
+            $phraseLike->user_id = Auth::id();
             $phraseLike->phrase_id = $id;
         }
 
         $phraseLike->save();
 
         return back();
-        //return redirect("/phrase");//->withStatus("Like DONE");
+        //return redirect("/phrase");//->withStatus("ブックマークしました");
 
     }
 }

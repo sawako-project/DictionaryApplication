@@ -2,8 +2,6 @@
 
 namespace App;
 
-
-
 class EventTypeMaster
 {
     public static function all(){
@@ -22,7 +20,7 @@ class EventTypeMaster
         $labels = [];
 
         foreach($all as $master){
-            $labels[$master->event_type] = $master->label;//$labels[$master->code]
+            $labels[$master->event_type] = $master->label;
         }
 
         return $labels;
@@ -55,14 +53,6 @@ class EventTypeMaster
     public $event_type;
 
     public $label;
-    //public $sample;
-    //public $categories = [];
-
-    // private function __construct($event_type, $label, $sample){
-    //     $this->code = $code;
-    //     $this->label = $label;
-    //     $this->sample = $sample;
-    // }
 
     private function __construct($event_type, $label){
         $this->event_type = $event_type;

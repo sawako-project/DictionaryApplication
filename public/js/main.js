@@ -14,7 +14,7 @@ $(function(){
     });
 
     //smooth scroll
-    $('a[href^="#"]').on("click", function(){/** "#preloader"*/
+    $('a[href^="#"]').on("click", function(){
 
         let speed = 500;
         let href= $(this).attr("href");

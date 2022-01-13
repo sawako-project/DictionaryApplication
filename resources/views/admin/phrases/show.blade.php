@@ -8,23 +8,11 @@
 
     <div class="row justify-content-center">
         <div class="col-sm-12">
-            <!--  -->
-            <!-- <h1 class="display-3">表現確認</h1>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: {{--$phrase->id--}}</li>
-                <li class="list-group-item">表現: {{--$phrase-> phrase--}}</li>
-                <li class="list-group-item">カテゴリ: {{--$phrase-> phrase_category_id--}}</li>
-                <li class="list-group-item">サブカテゴリ: {{--$phrase-> phrase_tag_id--}}</li>
-            </ul> -->
-            <!--  -->
-
-            <!--  -->
             <h1 class="display-3">表現詳細</h1>
             <div class="card base-card">
                 <div class="card-header">表現詳細</div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <!-- <li class="list-group-item">イベントタイプ: {{-- $event->event_type --}}</li> -->
                         <li class="list-group-item">表現ID: <strong>{{ $phrase->id }}</strong></li>
                         <li class="list-group-item">表現: <strong>{{ $phrase->phrase }}</strong></li>
                         <li class="list-group-item">カテゴリ: 

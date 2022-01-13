@@ -10,8 +10,8 @@
 </div>
 @endif
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-12">
             <div class="card text-center mb-5 base-card">
                 <div class="card-body">
@@ -36,12 +36,6 @@
     <a href="{{ route('user.event.create') }}" class="btn btn-outline-primary text-nowrap mb-3">イベントを作る</a>
 </div>
 @endauth
-
-<!-- @auth
-<div class="event_create" id="event_create">
-   <a href="{{-- route('user.event.create') --}}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="イベントを作る"></i></a>
- </div>
-@endauth -->
  
 <br/>
 
@@ -53,8 +47,8 @@
 <p>イベントはありません</p>
 @endif
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         @foreach($events as $event)
         <div class="col-sm-12">
             
@@ -79,8 +73,8 @@
 <p>今開催しているイベントはありません</p>
 @endif
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         @foreach($events_hold as $event)
         <div class="col-sm-12">
 
@@ -105,8 +99,8 @@
 <p>まもなく終了するイベントはありません</p>
 @endif
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-12">
     @foreach($event_soonEnd as $event)
         
@@ -131,8 +125,8 @@
 <p>終了したイベントはありません</p>
 @endif
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         @foreach($events_end as $event)
         <div class="col-sm-12">
 

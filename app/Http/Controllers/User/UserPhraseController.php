@@ -38,7 +38,7 @@ class UserPhraseController extends Controller
 				//ここはPharseCategoryの絞り込み条件を書く
 				$query->where("phrase_category_id", $phraseCategory_id);
 
-			})->where('user_id','=', Auth::id())->orderBy("id", "desc")->paginate(10);//->get();
+			})->where('user_id','=', Auth::id())->orderBy("id", "desc")->paginate(10);
 
             return view('user.phrases.index', compact('phrases'));
         }
@@ -51,14 +51,14 @@ class UserPhraseController extends Controller
 				//ここはPhraseTagの絞り込み条件を書く
 				$query->where("phrase_tag_id", $phraseTag_id);
 
-			})->where('user_id','=', Auth::id())->orderBy("id", "desc")->paginate(10);//->get();
+			})->where('user_id','=', Auth::id())->orderBy("id", "desc")->paginate(10);
 
             return view('user.phrases.index', compact('phrases'));
         }
   
         $phrases = Phrase::where('user_id','=', Auth::id())
             ->orderBy('id','desc')
-            ->paginate(10);//->get();
+            ->paginate(10);
         return view('user.phrases.index', compact('phrases'));
 
     }
@@ -69,7 +69,7 @@ class UserPhraseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $req,PhraseTagService $phraseTagService)//(Request $req)
+    public function create(Request $req,PhraseTagService $phraseTagService)
     {
 
         $phraseCategories = PhraseCategory::all();
@@ -77,27 +77,8 @@ class UserPhraseController extends Controller
         //初期値
         $category_ids = $req->input("category_id", []);
 
-        //////////////////////////////////////////////
-        // $phraseTags = PhraseTag::all();
-
-        //    //$tagList = $phrase->phraseTags()->pluck("phrase_tag")->toArray();
-
-        //    //PHP側で取り出したいキーの配列を文字列化します。
-        //     $whitelist = '';
-        //     foreach ($phraseTags as $key => $value) {
-
-        //      $whitelist .= ','.$value['phrase_tag'];
-        //     }
-        //     $whitelist = substr($whitelist,1);
-
-        //    //@TODO
-        // //    $whitelist = [
-        // //        "未分類","プラス","マイナス"
-        // //    ];
-        //////////////////////////////////////////////
         list($phraseTags, $whitelist) = $phraseTagService->phraseTagWhitelist();
-        //$phraseTags = $phraseTags;
-        //$whitelist= $whitelist;
+
 
         return view('user.phrases.create', compact('phraseCategories','phraseTags','whitelist','category_ids'));
     
@@ -109,7 +90,7 @@ class UserPhraseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,PhraseTagService $phraseTagService)//(Request $request)
+    public function store(Request $request,PhraseTagService $phraseTagService)
     {
         $request->validate([
             'phrase'=>'required',
@@ -127,55 +108,9 @@ class UserPhraseController extends Controller
         $phrase->phraseCategories()->attach($phrase_category_id);
 
         //phrase_tag
-        ///////////////////////////////////////////////
-
-        // // textareaならこっち
-        // // $phraseTag = new PhraseTag();
-        // // $phraseTag->phrase_tag = $request->get('phrase_tag');
-        // // $phraseTag->save();
-
-        // //    $phraseTag = $request->get('phrase_tag');
-        // //    $phrase->phraseTags()->attach($phraseTag);
-
-        // $tags = $request->get('phrase_tag');
-
-        // //タグを改行で分割
-        // // $tags = array_unique(array_filter(			//空文字を除去
-		// // 	array_map("trim",explode("\n", $tags))	//改行で分割＆改行コードを除去
-		// // ));
-
-        // //tagfyでJSON形式になっている
-        // $tags = json_decode($tags, true);
-
-        // $tagList = [];
-        // if(is_array($tags)){
-        //     foreach($tags as $tagItem){
-        //         $tagLabel = $tagItem["value"];
-        //         $tag = PhraseTag::where("phrase_tag", $tagLabel)->first();
-        //         if(!$tag){
-        //             $tag = PhraseTag::create(["phrase_tag" => $tagLabel]);
-        //         }
-        //         $tagList[] = $tag->id;
-        //     }
-        // }
-        // $phrase->phraseTags()->attach($tagList);
-        // //$phrase->phraseTags()->sync($tags);
-        
-        // // if()checkboxならこっち
-        // //$phrase_tag_id = $request->get('phrase_tag');//
-        // //$phrase->phraseTags()->attach($phrase_tag_id);
-
-        ///////////////////////////////////////////
         $tags = $request->get('phrase_tag');
-        // $tags = json_decode($tags, true);❗️
 
-        // list($tags, $tagList) = $phraseTagService->phraseTagJsonDecode();
-        // $tags = $tags;
-        // $tagList= $tagList;
-
-        $tagList = $phraseTagService->phraseTagJsonDecode($tags);//
-        // $tags = $tags;
-        // $tagList= $tagList;
+        $tagList = $phraseTagService->phraseTagJsonDecode($tags);
 
         $phrase->phraseTags()->attach($tagList);
 
@@ -196,7 +131,7 @@ class UserPhraseController extends Controller
     //     $phrase = Phrase::find($id);
         
     //     if(!$phrase){
-    //         return back()->withError("これはだめだ");//return redirect()?
+    //         return back()->withError("エラーが発生しました");//return redirect()
     //     }
         
     //     //Likeの取得
@@ -217,7 +152,7 @@ class UserPhraseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id,PhraseTagService $phraseTagService)//($id)
+    public function edit($id,PhraseTagService $phraseTagService)
     {
         $phrase = Phrase::find($id);
 
@@ -226,36 +161,11 @@ class UserPhraseController extends Controller
         }
 
         $phraseCategories = PhraseCategory::all();
-        $selected_categories = $phrase->phraseCategories->pluck("id")->toArray();//()?
+        $selected_categories = $phrase->phraseCategories->pluck("id")->toArray();
         $baseCategoryLabels = BaseCategoryMaster::labels();
 
-        //////////////////////////////////////////////////
-        // $phraseTags = PhraseTag::all();
-        // $tagList = $phrase->phraseTags()->pluck("phrase_tag")->toArray();
-
-        // //PHP側で取り出したいキーの配列を文字列化します。
-        // $whitelist = '';
-        // foreach ($phraseTags as $key => $value) {
-        //     $whitelist .= ','.$value['phrase_tag'];
-        // }
-        // $whitelist = substr($whitelist,1); 
-
-        // //         @TODO
-        // //          $whitelist = [
-        // //              "未分類","プラス","マイナス",
-        // //          ];
-        // //         foreach ($phraseTags as $pt) {
-        // //            // $ptList = $pt->phrase_tag;
-        // //             $list = $pt;
-        // //         }
-
-        //         //$whitelist = $phraseTags;
-
-        //////////////////////////////////////////////////
 
         list($phraseTags, $whitelist) = $phraseTagService->phraseTagWhitelist();
-        // $phraseTags = $phraseTags;
-        // $whitelist= $whitelist;
 
         $tagList = $phrase->phraseTags()->pluck("phrase_tag")->toArray();
 
@@ -270,7 +180,7 @@ class UserPhraseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id,PhraseTagService $phraseTagService)//(Request $request, $id)
+    public function update(Request $request, $id,PhraseTagService $phraseTagService)
     {
 
         $phrase = Phrase::find($id);
@@ -291,41 +201,9 @@ class UserPhraseController extends Controller
         //sync categories        
         $checked_categories = $request->get("phrase_category");
         $phrase->phraseCategories()->sync($checked_categories);
+    
 
-        //$phrase->categories()->save();
-        //$phrase->categories()->sync($checked_categories);
-        //$phrase->categories()->syncWithoutDetaching($checked_categories);
-
-        //////////////////////////////////////////////////////
-
-        // $tags = $request->get('phrase_tag');
-
-        // //タグを改行で分割
-        // // $tags = array_unique(array_filter(			//空文字を除去
-		// // 	array_map("trim",explode("\n", $tags))	//改行で分割＆改行コードを除去
-		// // ));
-
-        // //tagfyでJSON形式になっている
-        // $tags = json_decode($tags, true);
-        
-        // $tagList = [];
-        // if(is_array($tags)) foreach($tags as $tagItem){
-        //     $tagLabel = $tagItem["value"];
-
-        //     $tag = PhraseTag::where("phrase_tag", $tagLabel)->first();
-        //     if(!$tag){
-        //         $tag = PhraseTag::create(["phrase_tag" => $tagLabel]);
-        //     }
-        //     $tagList[] = $tag->id;
-        // }
-        // $phrase->phraseTags()->sync($tagList);
-
-        //////////////////////////////////////////////////
         $tags = $request->get('phrase_tag');
-        //$tags = json_decode($tags, true);❗️
-        // list($tags, $tagList) = $phraseTagService->phraseTagJsonDecode();
-        // $tags = $tags;
-        // $tagList= $tagList;
 
         $tagList = $phraseTagService->phraseTagJsonDecode($tags);
         $phrase->phraseTags()->sync($tagList);

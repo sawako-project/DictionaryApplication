@@ -55,7 +55,6 @@
                             </div>
                         </div>
 
-                        <!-- <div class="eventForm phraseAboutSituationEvent"> -->
                         <div class="form-group row">
                             <label for="phrase_category" class="col-md-4 col-form-label text-md-right">{{ __('指定するカテゴリ') }}</label>
                             <div class="col-md-6 check-list">
@@ -78,8 +77,6 @@
                         <div class="form-group row">
                             <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">追加タグ</label>
                             <div class="col-md-6">
-                                <!-- <textarea class="form-control" rows="4" name="auto_tag">{{-- old('auto_tag') --}}</textarea> -->
-                                <!-- <input id="tags-input" type="text" name="phrase_tag" value="{{-- old('phrase_tag') --}}" class="tagfy-input rounded" /> -->
                                 <input type="text" name="auto_tag" value="{{ old('auto_tag') }}" class="m-form-text" />
                             </div>
                         </div>
@@ -92,7 +89,6 @@
                             </div>
                         </div>
 
-                        <!-- イベントタイプが"phraseAboutGroupedTagEvent", "グループタグ表現"の時は要るの？ -->
                         <div class="form-group row">
                             <label for="schedule_end" class="col-md-4 col-form-label text-md-right">{{ __('イベント終了日時') }}</label>
                             <div class="col-md-6">
@@ -113,9 +109,8 @@
                             </div>
                         </div>
 
-                        <!-- <div class="eventForm phraseAboutSituationEvent">-->
                     </form>
-                </div><!-- <div class="card-body"> -->
+                </div>
             </div>
         </div>
     </div>
@@ -139,25 +134,6 @@ $(function(){
 
     //初期状態
     $('[name="event_type"]:radio:checked').trigger("change");
-
-//////////////////
-//スクリプト内で次の様に取得します。
-// var whitelist_str = '<//?php echo $whitelist;?>';  //文字列を一度取得
-// var whitelist = whitelist_str.split(','); 
-//     // The DOM element you wish to replace with Tagify
-//     var input = document.querySelector('#tags-input');
-
-//     // initialize Tagify on the above input node reference
-//     new Tagify(input,{
-//         whitelist: whitelist,//@//json($whitelist),//whitelist
-//         dropdown: {
-//             maxItems: 20,           // <- mixumum allowed rendered suggestions
-//             classname: "tags-look", // <- custom classname for this dropdown, so it could be targeted
-//             enabled: 0,             // <- show suggestions on focus
-//             closeOnSelect: false    // <- do not hide the suggestions dropdown once an item has been selected
-//         }
-//     })
-//////////////////
 
 });
 

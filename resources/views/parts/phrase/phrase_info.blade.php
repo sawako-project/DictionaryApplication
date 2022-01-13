@@ -5,8 +5,6 @@
 <!-- phrase-list res-->
 <div class="phrase-list">
     <dl>
-        <!-- <dt>表現ID</dt> -->
-        <!-- <dd>{{-- $phrase->id --}}</dd> -->
         <dt>表現</dt>
         <dd><a href="{{ route('phrase.show', ['id' => $phrase->id]) }} ">{{ $phrase->phrase }}</a></dd>
         <dt>カテゴリ</dt>

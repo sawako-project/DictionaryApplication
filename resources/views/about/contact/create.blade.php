@@ -10,8 +10,8 @@
 </div>
 @endif
 
-<div class="container"><!-- container-fluid -->
-    <div class="row" ><!--justify-content-center"  -->
+<div class="container">
+    <div class="row" >
         <div class="col-md-12">
             <div class="card mb-3 base-card" >
                 <div class="card-header">{{ __('お問い合わせ') }}</div>
@@ -80,12 +80,12 @@
                             </div>
                         </div>
                     </form>
-                </div><!-- <div class="card-body"> -->
-            </div><!-- <div class="card"> -->
+                </div>
+            </div>
             <p>※下記のドメインを受信可能な設定となっているかご確認いただいた上でお問い合わせください。</p>
             <p>info@dream-site.sakura.ne.jp</p>
-        </div><!-- <div class="col"> -->
-    </div><!-- <div class="row"> -->
+        </div>
+    </div>
 </div>
 
 @endsection('content')

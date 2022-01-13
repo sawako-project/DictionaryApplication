@@ -4,9 +4,9 @@
 
 @section('content')
 
-<div class="container"><!-- container-fluid -->
-   <div class="row"><!-- row no-gutters -->
-      <div class="col-auto my-info"><!-- class="col offset-sm-2" --><!-- <div class="col-sm-12"> -->
+<div class="container">
+   <div class="row">
+      <div class="col-auto my-info">
          <div class="card mb-3 base-card" id="selectCard" >
             <div class="card-body">
                <ul>
@@ -17,7 +17,7 @@
                   <li><i class="bi bi-key-fill"></i>パスワード: **********</li>
                   <p><a href="{{ url('/user/reset/password') }}">パスワードの変更</a></p> 
                </ul>
-               <button type="button" class="btn btn-danger "><a href="{{ url('/user/info/delete') }}" class="text-white">退会する</a></button>
+               <a href="{{ url('/user/info/delete') }}"><button class="btn btn-danger text-white">退会する</button></a>
             </div>
          </div>
       </div>

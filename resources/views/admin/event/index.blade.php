@@ -21,18 +21,13 @@
                 <!-- <a style="margin: 15px;" href="{{-- route('admin.phrase_category.index')--}}" class="btn btn-primary">カテゴリ一覧</a> -->
                 <!-- <a style="margin: 15px;" href="{{-- route('admin.base_category.index')--}}" class="btn btn-primary">分類一覧</a> -->
             </div>
-            <!-- <div class="event_create" id="event_create"> -->
-                <!-- <a href="{{-- route('admin.event.create') --}}"><i class="bi bi-plus-square fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="イベントを作る"></i></a> -->
-                <!-- <button class="btn btn-outline-primary text-nowrap mb-3"><a href="{{-- route('admin.event.create') --}}" class="text-white">イベントを作る</a></button> -->
-            <!-- </div> -->
-            
             <br/>
         </div>
     </div>
 </div>
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-12">
         @isset($events)
             <div class="heading">
@@ -41,11 +36,11 @@
             @if(count($events) < 1)
             <p>イベントはありません</p>
             @endif
-            @foreach($events as $event)     
-            <!--  -->
+
+            @foreach($events as $event)
                 @include("parts.event.event_info", ["event" => $event])
-            <!--  -->
             @endforeach
+
             <div class='pagination justify-content-center'>
             {{ $events->links() }}
             </div>
@@ -54,8 +49,8 @@
     </div>
 </div>
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-12">
         @isset($events_hold)
             <div class="heading">
@@ -65,11 +60,11 @@
             @if(count($events_hold) < 1)
             <p>今開催しているイベントはありません</p>
             @endif
+
             @foreach($events_hold as $event)
-                <!--  -->
                 @include("parts.event.event_info", ["event" => $event])
-                <!--  -->
             @endforeach
+
             <div class='pagination justify-content-center'>
                 {{ $events_hold->links() }}
             </div>
@@ -78,8 +73,8 @@
     </div>
 </div>
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-12">
         @isset($event_soonEnd)
             <div class="heading">
@@ -89,11 +84,11 @@
             @if(count($event_soonEnd) < 1)
             <p>まもなく終了するイベントはありません</p>
             @endif
+
             @foreach($event_soonEnd as $event) 
-                <!--  -->
                 @include("parts.event.event_info", ["event" => $event])
-                <!--  -->
             @endforeach
+
             <div class='pagination justify-content-center'>
                 {{ $event_soonEnd->links() }}
             </div>
@@ -102,8 +97,8 @@
     </div>
 </div>
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-12">
         @isset($events_end)
             <div class="heading">
@@ -114,9 +109,9 @@
             <p>終了したイベントはありません</p>
             @endif
             @foreach($events_end as $event)
-                <!--  -->
+            
                 @include("parts.event.event_info", ["event" => $event])
-                <!--  -->
+            
             @endforeach
             <div class='pagination d-flex justify-content-center'>
                 {{ $events_end->links() }}

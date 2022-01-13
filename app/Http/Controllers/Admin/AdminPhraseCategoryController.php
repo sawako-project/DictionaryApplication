@@ -25,7 +25,7 @@ class AdminPhraseCategoryController extends Controller
         $baseCategory_id = $req->input("bc");
 
         $baseCategoryLabels = BaseCategoryMaster::labels();
-        $phraseCategories = PhraseCategory::orderBy('id','desc')->paginate(10);//->get();
+        $phraseCategories = PhraseCategory::orderBy('id','desc')->paginate(10);
 
         if($baseCategory_id){
             $phraseCategories = PhraseCategory::whereHas("baseCategories", function($query) use($baseCategory_id) {
@@ -33,7 +33,7 @@ class AdminPhraseCategoryController extends Controller
 				//ここはBaseCategoryの絞り込み条件を書く
 				$query->where("code", $baseCategory_id);
 
-			})->orderBy("id", "desc")->paginate(10);//->get();
+			})->orderBy("id", "desc")->paginate(10);
 
             return view('admin.phrase_categories.index', compact('phraseCategories', 'baseCategoryLabels'));
         }
@@ -97,11 +97,6 @@ class AdminPhraseCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     $phraseCategory = PhraseCategory::find($id);
-    //     return view('admin.phrase_categories.show', compact('phraseCategory'));
-    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -150,29 +145,30 @@ class AdminPhraseCategoryController extends Controller
         $base_categories = $request->get('base_categories');//checkされた項目
         
         //元々追加済み
-        $selected_basies = $phraseCategory->baseCategories->pluck("code")->toArray();//0→express,1→action
+        $selected_basies = $phraseCategory->baseCategories->pluck("code")->toArray();
 
         //増えていく
         //要らないものは削除する
-        //check外したらdbから消えて
+        //check外したらdbから消えてください
         $phraseCategory->baseCategories()->each(function($baseCategory) use($base_categories){
             
-            if(in_array($baseCategory->code, $base_categories)){//｢base_categories｣テーブルの｢code｣絡む
+            if(in_array($baseCategory->code, $base_categories)){//｢base_categories｣テーブルの｢code｣カラム
                 //チェックが入っているので削除しない
                 //絡むにその項目が登録されていたら
-                return;//continue;//
+                return;
+                //continue;
                 
             }
+
             //解除されたらデータから消す
             $baseCategory->delete();
         });
-        // current($names); next($names);
 
-        foreach($base_categories as $code){//$code使いたいから？//checkされた項目の個々が｢code｣に存在しているものならスルー
+        foreach($base_categories as $code){//checkされた項目の個々が｢code｣に存在しているものならスルー
             
             if(in_array($code, $selected_basies)){//0→express,1→actionの配列にinputされた値があれば置き換えるor無視して
                 //既に作成済みなので追加しない
-                continue;//breakだと強制終了//return;//returnも終わってしまうん？
+                continue;//breakだと強制終了//return;も終わってしまう
             }
             //なかったら登録
             $baseCategory = new BaseCategory();

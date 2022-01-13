@@ -13,12 +13,6 @@ class AboutController extends Controller
     }
 
     //
-    // public function contact()
-    // {
-    //     return view('about.contact');
-    // }
-
-    //
     public function rule()
     {
         return view('about.rule');

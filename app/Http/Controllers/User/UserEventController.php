@@ -49,9 +49,8 @@ class UserEventController extends Controller
         $event = new Event();
         $event->event_text = $request->get('event_text');
         $event->user_id = Auth::id();
-        // $event->save();
 
-        $event->schedule_end = $request->input('schedule_end');//❌strtotime($request->input('schedule_end'));
+        $event->schedule_end = $request->input('schedule_end');
 
             //忘れた時は
             if(!$event->schedule_end){
@@ -67,7 +66,6 @@ class UserEventController extends Controller
 
     }
 
-    //お題に対した表現を投稿(ユーザーのみ)
     public function post($id)
     {
         $event = Event::find($id);
@@ -105,8 +103,5 @@ class UserEventController extends Controller
         return redirect()->route("event.detail",['event_id' => $eventId])->with('success', 'saved!');
     }
 
-    // public function entryDone()//
-    // {
-    // }
 
 }

@@ -7,7 +7,7 @@
 {{ Breadcrumbs::render('user.phrase.edit', $phrase) }}
 
 <div class="container">
-    <div class="row justify-content-center"><!-- "row justify-content-center -->
+    <div class="row justify-content-center">
         <div class="col-sm-8">
             <div class="card base-card">
                 <div class="card-header">{{ __('表現変更') }}</div>
@@ -29,8 +29,6 @@
                         <div class="form-group row">
                             <label for="phrase" class="col-md-4 col-form-label text-md-right">表現</label>
                             <div class="col-md-6 textarea-space">
-                            <!-- <textarea class="form-control" rows="4" name="phrase">{{-- $phrase->phrase --}}</textarea> -->
-                            <!-- <input type="text" name="phrase" value="{{-- $phrase->phrase --}}" class="m-form-text" /> -->
                                 <textarea name="phrase" class="m-form-textarea" rows="2">{{ $phrase->phrase }}</textarea>
                                 <small class="form-text text-muted">max length is xxxxx</small>
                             </div>
@@ -58,24 +56,7 @@
                         <div class="form-group row">
                             <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{ __('タグ') }}</label>
                             <div class="col-md-6">
-                                <input id="tags-input" type="text" class="tagfy-input rounded" name="phrase_tag" value="{{ old('phrase_tag',implode(', ', $tagList)) }}" /><!-- m-form-text class="form-control"-->
-                                <!-- <textarea name="phrase_tag" rows="4" class="form-control">{{-- old("phrase_tag") --}}</textarea> -->
-                                        <!-- {{-- old("phrase_tag", implode("\n", $tagList)) --}} -->
-                                        <!-- <ul>
-                                @//foreach($phraseTags as $phraseTag)
-                                            <li>
-                                                <label>
-                                                    <input 
-                                                    type="checkbox" 
-                                                    name="phrase_tag[]" 
-                                                    value="{{-- $phraseTag->id --}}"
-                                                    {{-- in_array($phraseTag->phrase_tag, old("phrase_tag", $tagList)) ? 'checked="checked"' : '' --}}
-                                                    /> 
-                                                    {{-- $phraseTag->phrase_tag --}}
-                                                </label>
-                                            </li>
-                                        @//endforeach
-                                        </ul> -->
+                                <input id="tags-input" type="text" class="tagfy-input rounded" name="phrase_tag" value="{{ old('phrase_tag',implode(', ', $tagList)) }}" />
                             </div>
                         </div>
 

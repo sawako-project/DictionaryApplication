@@ -1,17 +1,21 @@
-@extends('layouts.dictionary',["title"=>"Dectionary","show_mv" => true])
+{{--@extends('layouts.dictionary',["title"=>"Dectionary","show_mv" => true])--}}
+@extends('layouts.dictionary',["title"=>"Dectionary"])
 
-@section('header-title', '検索結果')
+@section('header-title', '表現の検索結果')
 
 @section('content')
 
 <div class="container">
     <div class="row">
-        <div class="col-sm-12 "><!-- border -->
+    {{--@include("layouts.parts.search-bar")--}}
+        
+        @include("layouts.parts.search-bar")
+        <div class="col-sm-12">
             <div class="card base-card">
             <div class="card-header">検索結果: ｢<strong>{{ $keyword }}</strong>｣についての表現</div>
                 <div class="card-body">
                     <div class="item_box">
-                        <p class="card-title"><strong><span style="border-bottom: solid 1px #000;">カテゴリ</span></strong></p><!-- h5 -->
+                        <p class="card-title"><strong><span style="border-bottom: solid 1px #000;">カテゴリ</span></strong></p>
                         @isset($category_result)
                         
                         @foreach($category_result as $category)
@@ -27,7 +31,7 @@
                     </div>
                     <hr/>
                     <div class="item_box">
-                        <p class="card-title"><strong><span style="border-bottom: solid 1px #000;">タグ</span></strong></p><!-- h5 -->
+                        <p class="card-title"><strong><span style="border-bottom: solid 1px #000;">タグ</span></strong></p>
                         @isset($tag_result)
 
                         @foreach($tag_result as $tag)
@@ -43,7 +47,7 @@
                     </div>
                     <hr/>
                     <div class="item_box">
-                        <p class="card-title "><strong><span style="border-bottom: solid 1px #000;">表現</span></strong></p><!-- h5 -->
+                        <p class="card-title "><strong><span style="border-bottom: solid 1px #000;">表現</span></strong></p>
                         @isset($phrase_result)
                         
                         @foreach($phrase_result as $phrase)
@@ -59,7 +63,7 @@
                     </div>
                     <hr/>
                     <div class="item_box">
-                        <p class="card-title"><strong><span style="border-bottom: solid 1px #000;">結果</span></strong></p><!-- h5 -->
+                        <p class="card-title"><strong><span style="border-bottom: solid 1px #000;">結果</span></strong></p>
                         @isset($results)
 
                         @foreach($results as $phrase)
@@ -103,13 +107,13 @@
                     <p class="text-right"><a href="{{ url('/phrase') }}">表現一覧(掲示板)を開く(もっと見る)<span><i class="bi bi-arrow-right-short"></i></span></a></p>
                 </div>
             </div>  
-        </div><!-- //.col-8 -->
+        </div>
     </div><!-- "row" -->
 
     <div class="row">
         <div class="col-sm-12">
             <div class="heading mb-5">
-                <h2><strong><span class="under">カテゴリごとの表現</span></strong></h2><!-- カテゴリから探す -->
+                <h2><strong><span class="under">カテゴリから探す</span></strong></h2>
             </div>
             <div class="card mb-5 pop-card">
                 <div class="card-header">感情</div>
@@ -121,9 +125,6 @@
                     <span class="mr-2"></span>
                 @endforeach
                 <hr/>
-                <!-- {{--@//foreach($phraseCategories_feelings as $phraseCategories_feeling)plunk
-                    <span><a href="{{-- url('/search_phrases') --}}">{{-- $phraseCategories_feeling --}}</a></span>
-                @//endforeach --}} -->
                 </div>
             </div>
            
@@ -137,9 +138,6 @@
                     <span class="mr-2"></span>
                 @endforeach
                 <hr/>
-                <!-- {{--@//foreach($phraseCategories_actions as $phraseCategories_action)
-                    <span><a href="{{-- url('/search_phrases') --}}">{{-- $phraseCategories_action --}}</a></span>
-                @//endforeach--}} -->
                 </div>
             </div>
         
@@ -153,9 +151,6 @@
                     <span class="mr-2"></span>
                 @endforeach
                 <hr/>
-                <!-- {{--@//foreach($phraseCategories_expressions as $phraseCategories_expression)
-                    <span><a href="{{-- url('/search_phrases') --}}">{{-- $phraseCategories_expression --}}</a></span>
-                @//endforeach--}} -->
                 </div>
             </div>
         </div>

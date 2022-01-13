@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use Auth;
-//use Illuminate\Support\Facades\Auth;
 use DB;
 use App\User;
 use Carbon\Carbon;
@@ -25,7 +24,7 @@ use App\EventTypeMaster;
 use App\EventPost;
 use App\EventVote;
 
-use Illuminate\Support\Facades\Hash;//パスワードのハッシュ化用
+use Illuminate\Support\Facades\Hash;//パスワードのハッシュ化
 
 // use Illuminate\Foundation\Auth\RegistersUsers;
 // use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -68,9 +67,8 @@ class UserInfoController extends Controller
         $user->name = $request->get('name');
         $user->save();
 
-
         //return back();
-        return redirect()->route("user_name.edit")->with('success', 'saved!'); // | user_info.name
+        return redirect()->route("user_name.edit")->with('success', 'saved!');
     }
 
 
@@ -99,8 +97,6 @@ class UserInfoController extends Controller
         return redirect()->route("user_email.edit")->with('success', 'saved!');
     }
 
-
-    //
     public function passwordEdit(Request $request)
     {
         return view('user.profile.password_edit')->with([
@@ -121,13 +117,12 @@ class UserInfoController extends Controller
         $user->password = Hash::make($newPassword);
         $user->save();
 
-
         //return back();
         return redirect()->route("user_password.edit")->with('success', 'saved!');
     }
 
     //退会画面
-    public function delete_confirm() //Request $request,$id
+    public function delete_confirm()
     {
         return view('user.profile.delete_confirm')->with([
             'user' => Auth::user()
@@ -135,7 +130,7 @@ class UserInfoController extends Controller
     }
 
     //退会処理
-    public function delete($id) //Request $request,$id
+    public function delete($id)
     {
         $user = User::find($id);
         $user->delete();

@@ -3,8 +3,9 @@
 @section('header-title', 'メールアドレスの変更')
 
 @section('content')
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+
+<div class="container">
+    <div class="row">
         <div class="col-sm-12">
             <form method="post" action="{{ url('/user/reset/email') }}">
             @csrf

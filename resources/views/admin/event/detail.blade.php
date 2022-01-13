@@ -16,30 +16,14 @@
         </div>
     </div>
 </div>
-<!-- admin.event.create
-admin.event.post.detail
-admin.event.vote
-admin.event.post -->
-<!-- event -->
+
 <div class="container">
     <div class="row">
-        <!-- @//auth -->
-        <!-- <div class="event_post" id="event_post" >
-            <a href="{{-- route('admin.event.post', $event->id) --}}">
-                <i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="イベントエントリー"></i>
-            </a>
-        </div> -->
-        <!--  -->
-        <!-- <div>
-            <a style="margin: 15px;" href="{{-- route('admin.event.post', $event->id) --}}" class="btn btn-primary">イベントエントリー</a>
-        </div> -->
-        <!-- @//endauth -->
         <div class="col-sm-12">
             <div class="card base-card">
                 <div class="card-header">イベント情報</div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <!-- <li class="list-group-item">イベントタイプ: {{-- $event->event_type --}}</li> -->
                         <li class="list-group-item">お題・テーマ: <strong>{{ $event->event_text }}</strong>｣な状況(時)の表現</li>
                         <li class="list-group-item">イベントタイプ: {{ $event->eventLabel() }}</li>
                         <li class="list-group-item"><i class="bi bi-person-fill"></i> イベント発案者: {{ ($event->user) ? $event->user->name : "-"}}</li>
@@ -57,20 +41,12 @@ admin.event.post -->
     <h2><strong><span class="under">エントリー</span></strong></h2>
 </div>
 
-<!--  -->
-<div class="container"><!-- container-fluid -->
+<div class="container">
     <div class="row">
-        <!-- @//auth -->
-        <!-- <div class="event_post" id="event_post" >
-            <a href="{{-- route('admin.event.post', $event->id) --}}">
-                <i class="bi bi-plus-square fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="イベントエントリー"></i>
-            </a>
-        </div> -->
-        <!--  -->
+
         <div>
             <a style="margin: 15px;" href="{{ route('admin.event.post', $event->id) }}" class="btn btn-outline-primary">イベントエントリー</a>
         </div>
-        <!-- @//endauth -->
  
         <p><span class="badge badge-primary">エントリー数: {{ $event->posts->count() }}件</span></p>
         @if(count($eventPost) < 1)
@@ -78,7 +54,7 @@ admin.event.post -->
         @endif
 
         @foreach($eventPost as $post)
-        <div class="card post-item text-center mb-5 pop-card"><!-- <div class="card base-card post-item mb-5"> -->
+        <div class="card post-item text-center mb-5 pop-card">
             
             @include("parts.event.post_info", ["post" => $post])
 
@@ -94,25 +70,9 @@ admin.event.post -->
                     <i class="bi bi-hand-thumbs-up"></i> いいね！する <!--投票-->
                 </a>
             @endif
-            </div><!--vote-function -->
+            </div>
             @endif
 
-            <!--  -->
-            {{--@if($post->user_id !== Auth::id())--}}
-            <!-- <div> -->
-                <!--$likes[$phrase->id] $likes[$like->phrase_id]-->
-                {{--@if($vote && $vote->vote == 1)--}}
-                <!-- <a class="btn btn-primary" href="{{-- url('/event/vote', ['event_id' => $post->event_id, 'event_post_id' => $post->id]) --}}">
-                    <i class="bi bi-hand-thumbs-up-fill"></i> いいね! 
-                </a> --><!--投票済み-->
-                {{--@else--}}
-                <!-- <a class="btn btn-outline-primary" href="{{-- url('/event/vote', ['event_id' => $post->event_id, 'event_post_id' => $post->id]) --}}">
-                    <i class="bi bi-hand-thumbs-up"></i> いいね!する 
-                </a> --><!--投票-->
-                {{--@endif--}}
-            <!-- </div> -->
-            {{--@endif--}}
-            <!--  -->
         </div>
         @endforeach
     

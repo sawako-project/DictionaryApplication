@@ -28,10 +28,7 @@
             <h1 class="display-3">表現のカテゴリ一覧</h1> 
             <div>
                 <a style="margin: 15px;" href="{{ route('admin.phrase_category.create')}}" class="btn btn-primary">カテゴリ追加</a>
-                <!-- <a style="margin: 15px;" href="{{-- route('admin.phrase.index')--}}" class="btn btn-primary">表現一覧</a> -->
-                <!-- <a style="margin: 15px;" href="{{-- route('admin.base_category.index')--}}" class="btn btn-primary">分類一覧</a> -->
             </div>
-            <!--  table table-bordered-->
             <table class="table table-striped">
                 <thead>
                     <tr class="text-white bg-dark font-weight-bold">

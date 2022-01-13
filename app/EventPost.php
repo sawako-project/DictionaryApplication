@@ -29,7 +29,6 @@ class EventPost extends Model
         return $this->belongsTo("App\Phrase");
     }
 
-////////
     function isClosed(){
 
         $end = strtotime($this->event->schedule_end);
@@ -39,7 +38,6 @@ class EventPost extends Model
         
         return false;
     }
-////////
 
     // function createPhrase(Event $event){
 

@@ -48,7 +48,7 @@ class AdminBaseCategoryController extends Controller
             'base_category'=>'required',
         ]);
 
-        $baseCategory = new BaseCategory();//base_category
+        $baseCategory = new BaseCategory();
         $baseCategory->base_category = $request->get('base_category');
         $baseCategory->save();
 
@@ -62,11 +62,11 @@ class AdminBaseCategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     $baseCategory = BaseCategory::find($id);
-    //     return view('admin.base_categories.show', compact('baseCategory'));
-    // }
+    public function show($id)
+    {
+        $baseCategory = BaseCategory::find($id);
+        return view('admin.base_categories.show', compact('baseCategory'));
+    }
 
     /**
      * Show the form for editing the specified resource.

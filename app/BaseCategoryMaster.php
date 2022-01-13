@@ -31,7 +31,7 @@ class BaseCategoryMaster
     public $code;
     public $label;
     public $sample;
-    public $categories = [];
+    //public $categories = [];
 
     private function __construct($code, $label, $sample){
         $this->code = $code;

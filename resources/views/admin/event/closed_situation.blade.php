@@ -28,7 +28,6 @@
                 <div class="card-header">イベント情報</div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <!-- <li class="list-group-item">イベントタイプ: {{-- $event->event_type --}}</li> -->
                         <li class="list-group-item">お題・テーマ: <strong>{{ $event->event_text }}</strong>｣な状況(時)の表現</li>
                         <li class="list-group-item">イベントタイプ: {{ $event->eventLabel() }}</li>
                         <li class="list-group-item"><i class="bi bi-person-fill"></i> イベント発案者: {{ ($event->user) ? $event->user->name : "-"}}</li>
@@ -60,13 +59,10 @@
             <i class="bi bi-award fa-2x"></i>
 
             @foreach($eventPosts as $post)
-            <div class="card post-item text-center mb-5 pop-card"><!-- <div class="card base-card post-item mb-5"> -->
+            <div class="card post-item text-center mb-5 pop-card">
             
                 @include("parts.event.post_info", ["post" => $post])
-              <!--  -->
-            <!--  -->
-                <!-- <p><i class="bi bi-hand-thumbs-up-fill"></i>いいね!{{-- $post->votes_count --}}個</p> -->
-                <p><i class="bi bi-hand-thumbs-up-fill"></i><span class="badge badge-primary">いいね!: {{ $post->votes_count }}個</span></p>
+                <!-- <p><i class="bi bi-hand-thumbs-up-fill"></i><span class="badge badge-primary">いいね!: {{-- $post->votes_count --}}個</span></p> -->
             </div>
             @endforeach
 

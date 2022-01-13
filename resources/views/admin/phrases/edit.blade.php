@@ -28,7 +28,6 @@
         </div>
     </div>
 </div>
-<!--  -->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-sm-8">
@@ -41,7 +40,6 @@
                         <div class="form-group row">
                             <label for="phrase" class="col-md-4 col-form-label text-md-right">表現</label>
                             <div class="col-md-6">
-                            <!-- <input type="text" class="form-control" name="phrase" value={{-- $phrase->phrase --}} /> -->
                                 <textarea class="form-control" rows="2" name="phrase">{{ $phrase->phrase }}</textarea>
                             </div>
                         </div>
@@ -62,7 +60,6 @@
                             </div>    
                         </div>
                         <div class="form-group row">
-                            <!-- <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{-- __('タグ') --}}</label> -->
                             <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{ __('タグ') }}</label>
                             <div class="col-md-6">
                                 <input id="tags-input" type="text" class="form-control" name="phrase_tag" value="{{ old('phrase_tag',implode(', ', $tagList)) }}" />
@@ -99,7 +96,7 @@ var whitelist = whitelist_str.split(',');
     // initialize Tagify on the above input node reference
     new Tagify(input,{
 
-        whitelist: whitelist,//@json($whitelist),//whitelist
+        whitelist: whitelist,
         dropdown: {
 
             maxItems: 20,           // <- mixumum allowed rendered suggestions

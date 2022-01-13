@@ -1,15 +1,5 @@
-<style>
-
-/* user-event-post */
-/* .user-event-post .card {
-    margin-top: 50px;
-} */
-
-</style>
-
 <div class="card event-item text-center mb-5 pop-card">
     <div class="card-body">
-        <!-- <h5 class="card-title">その作成するグループタグに入れる表現についての説明(内容): {{-- $event->event_text --}}</h5> -->
         <h5 class="card-title">イベント</h5>
         <p class="card-text">お題・テーマ: ｢<strong>{{ $event->event_text }}</strong>｣<span>な状況(時)の表現</span></p>
         <p class="card-text">イベントタイプ: {{ $event->eventLabel() }}</p>

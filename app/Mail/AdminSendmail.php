@@ -41,16 +41,14 @@ class AdminSendmail extends Mailable
      */
     public function build()
     {
-        // if (count(Mail::failures()) == 0) {
-        //     dd(Mail::failures());
-        //    }
-        //Mailクラス使うなら use Illuminate\Support\Facades\Mail;
+        
+        //間違いがあったら表示してください
+        //Mailクラス使うなから use Illuminate\Support\Facades\Mail;
         if (count(Mail::failures()) !== 0) {
             dd(Mail::failures());
         }        
 
         return $this->to("contact@dream-site.sakura.ne.jp")
-            //->from('example@gmail.com')
             ->subject('問い合わせがあります。')
             ->view('admin.contact.request')
             ->with([

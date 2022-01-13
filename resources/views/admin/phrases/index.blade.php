@@ -18,11 +18,8 @@
             <h1 class="display-3">表現一覧</h1> 
             <div>
                 <a style="margin: 15px;" href="{{ route('admin.phrase.create')}}" class="btn btn-primary">表現追加</a>
-                <!-- <a style="margin: 15px;" href="{{-- route('admin.phrase_category.index')--}}" class="btn btn-primary">カテゴリ一覧</a> -->
-                <!-- <a style="margin: 15px;" href="{{-- route('admin.base_category.index')--}}" class="btn btn-primary">分類一覧</a> -->
             </div> 
 
-            <!--  table table-bordered-->
             <table class="table table-striped">
                 <thead>
                     <tr class="text-white bg-dark font-weight-bold">
@@ -48,11 +45,6 @@
                             @endforeach
                         </td>
                         <td>{{ ($phrase->user) ? $phrase->user->name : "-"}}</td>
-                        <!-- <td>
-                            @//foreach($phrase->phraseTags as $phraseTag)
-                            <a href="{{-- route('admin.phrase.index', ['pt' => $phraseTag->id]) --}}" class="btn btn-secondary">{{-- $phraseTag->phrase_tag --}}</a>
-                            @//endforeach
-                        </td> -->
                         @if(!$phrase->user_id)
                         <td>
                             <a href="{{ route('admin.phrase.edit',$phrase->id)}}" class="btn btn-primary">編集</a>

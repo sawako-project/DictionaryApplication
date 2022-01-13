@@ -14,10 +14,6 @@
 .error-wrap {
     margin: auto;
     padding: 5px 20px;
-    /* width: 300px; */
-    /* display: inline-block; */
-    /* border: 1px solid #dcdcdc;
-    box-shadow: 0px 0px 8px #dcdcdc; */
     font-family: 'Kiwi Maru', serif;
     display: flex;
     justify-content: center;
@@ -38,14 +34,7 @@ p {
     justify-content: center
 }
 
-/* .error-wrap button {
-  display: flex;
-  justify-content: center
-} */
-
-/*  */
 footer {
-    /* font-family: 'M PLUS Rounded 1c', sans-serif; */
     font-family: 'Kiwi Maru', serif;
 }
 
@@ -74,7 +63,6 @@ footer {
     font-size: 14px;
     color: #cda45e;
     line-height: 0;
-    /* border-bottom: none!important; */
 }
 
 .scrolled .back-to-top {
@@ -99,12 +87,10 @@ footer {
 
 <!-- Footer -->
 <footer class=" text-center text-white" style="background-color:#333333;">
-<!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgb(33,37,41)"><!--#212529 rgba(0, 0, 0, 0.2) -->
+    <div class="text-center p-3" style="background-color: rgb(33,37,41)">
         © 2022 Copyright:
         {{ config('app.name', 'Laravel') }}
     </div>
-<!-- Copyright -->
 </footer>
 <!-- Footer -->
 </body>

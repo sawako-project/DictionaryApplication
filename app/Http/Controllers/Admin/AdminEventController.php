@@ -33,24 +33,23 @@ class AdminEventController extends Controller
         $nowTime = Carbon::now();
         $eventTypeLabels = EventTypeMaster::labels();
 
-        // dd($mode);
-
-        // $mode = "all";
-        // if($request->input('events_end')){
-        //     $mode = "events_end";
-        // }
-        
-        // if($request->input('event_soonEnd')){
-        //     $mode = "event_soonEnd";
+        // if($request->input('events')){
+        //     $mode = "events";
         // }
 
         // if($request->input('events_hold')){
         //     $mode = "events_hold";
         // }
-
-        // if($request->input('events')){
-        //     $mode = "events";
+          
+        // if($request->input('event_soonEnd')){
+        //     $mode = "event_soonEnd";
         // }
+
+        // $mode = "all";
+        // if($request->input('events_end')){
+        //     $mode = "events_end";
+        // }
+
         
         if($mode == "all" || $mode == "events"){
             $events = Event::orderBy('updated_at','desc')->paginate(2, ["*"], 'events')->withPath("/admin/event/status/events");
@@ -58,11 +57,10 @@ class AdminEventController extends Controller
 
         if($mode == "all" || $mode == "events_hold"){
             $events_hold = Event::where("schedule_end",">",$nowTime)->orderBy("updated_at","desc")->paginate(2, ["*"], 'events_hold')->withPath("/admin/event/status/events_hold");
-            //$events_hold = Event::where("schedule_end",">",$nowTime)->orderBy("updated_at","desc")->get();
         }
 
         if($mode == "all" || $mode == "event_soonEnd"){
-            //まもなく終了(今日～2日後まで)
+            //まもなく終了(今日～2日後に)
             $soon_min = Carbon::today();
             $soon_max = Carbon::parse("+2 days");
             
@@ -73,24 +71,25 @@ class AdminEventController extends Controller
             $events_end = Event::where("schedule_end","<",$nowTime)->orderBy("updated_at","desc")->paginate(2, ["*"], 'events_end')->withPath("/admin/event/status/events_end");
         }
 
-        if($mode == "events_end"){
-            return view("admin.event.index", compact('eventTypeLabels','events_end'));
-        }
-
-        if($mode == "event_soonEnd"){
-            return view("admin.event.index", compact('eventTypeLabels','event_soonEnd'));
+        //view
+        if($mode == "events"){
+            return view("admin.event.index", compact('eventTypeLabels','events'));
         }
 
         if($mode == "events_hold"){
             return view("admin.event.index", compact('eventTypeLabels','events_hold'));
         }
 
-        if($mode == "events"){
-            return view("admin.event.index", compact('eventTypeLabels','events'));
+        if($mode == "event_soonEnd"){
+            return view("admin.event.index", compact('eventTypeLabels','event_soonEnd'));
         }
 
-        //mode ==all
-        return view("admin.event.index", compact('events','eventTypeLabels','events_end','events_hold','event_soonEnd'));
+        if($mode == "events_end"){
+            return view("admin.event.index", compact('eventTypeLabels','events_end'));
+        }
+
+        //mode == all
+        return view("admin.event.index", compact('eventTypeLabels','events','events_hold','event_soonEnd','events_end'));
         
     }
         
@@ -115,17 +114,14 @@ class AdminEventController extends Controller
         }
 
         //締切
-        if($event->isClosed()){//関数呼び出し
+        if($event->isClosed()){//関数の呼び出し
 
             if($event->event_type == "phraseAboutSituationEvent"){
 
                 $event = Event::findOrFail($eventId);
                 $eventPosts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc')->paginate(10);
-                $event_posts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc');//->get()->all();
-                //$array = $event_posts->get()->toArray();
-                $array = $event_posts->pluck('post_text')->toArray();
 
-                return view('admin.event.closed_situation',[//guest.event.closed_detail
+                return view('admin.event.closed_situation',[
                     'event' => $event,
                     'eventPosts' => $eventPosts    
                 ]);
@@ -138,8 +134,7 @@ class AdminEventController extends Controller
             return view('admin.event.detail', [
                 'event' => $event,
                 'eventPost' => $eventPost,
-                "votes" => $votes,
-                //"editable" => $eventPosts->user_id == Auth::id()
+                "votes" => $votes
             ]);
             
         }
@@ -149,7 +144,7 @@ class AdminEventController extends Controller
     function postDetail(Request $request,$eventPostId){
 
         $eventPost = EventPost::findOrFail($eventPostId);
-        //$eventPost = EventPost::where('id',$eventPostId)->orderBy("id", "desc")->paginate(10);
+
         if(!$eventPost){
 
             //return redirect()
@@ -167,24 +162,9 @@ class AdminEventController extends Controller
             ->where("event_post_id","=",$eventPost->id)->first();
         }
 
-        // $postIdList = [];
-        // foreach($eventPost as $post){
-        //     $postIdList[] = $post->id;
-        // }
-        
-        // $allVotes = EventVote::where("user_id","=",Auth::id())
-        // ->whereIn("event_post_id",$postIdList)
-        // ->get();
-
-        // $votes = [];
-        // foreach($allVotes as $vote){
-        //     $votes[$vote->event_post_id] = $vote->vote;
-        // }
-
         return view('admin.event.post_detail', [
             'eventPost' => $eventPost,
             'vote' => $vote
-            //"editable" => $eventPosts->user_id == Auth::id()
         ]);
 
     }
@@ -202,7 +182,7 @@ class AdminEventController extends Controller
 
         }else{
         
-            //userじゃなかったら//if(!Auth::id())
+            //userじゃなかったら
             if(!Auth::id()){
 
                 $eventVote = new EventVote();
@@ -214,13 +194,11 @@ class AdminEventController extends Controller
                     if (isset($eventId)){
                         $eventVote->event_id = $eventId;
                     }
-                    //else{//$eventIdがなければ
-                    //}   
 
                 $eventVote->event_post_id = $eventPostId;
                 $eventVote->save();
 
-            }else{//(Auth::id())があれば
+            }else{//userであれば
 
                 $eventVote = new EventVote();
                 $eventVote->vote = true;
@@ -229,13 +207,11 @@ class AdminEventController extends Controller
                     if (isset($eventId)){
                         $eventVote->event_id = $eventId;
                     }
-                    //else{    
-                    //}
 
                 $eventVote->event_post_id = $eventPostId;
                 $eventVote->save();
                 
-            }//else(Auth::id())
+            }
 
             $eventVote->save();
         
@@ -243,7 +219,6 @@ class AdminEventController extends Controller
         
         $eventVote->save();
         return back();
-        //return redirect()->route("event.vote", ['id' => $id,'theme_event_id' => $eventId])->with('success', 'saved!');
 
     }//vote
 
@@ -266,12 +241,12 @@ class AdminEventController extends Controller
         $event = new Event();
         $event->event_text = $request->get('event_text');
         //$event->user_id = Auth::id();
-        // $event->save();
 
         $event_type = $request->get('event_type');//radio
         $event->event_type = $event_type;
 
-        $event->schedule_end = $request->input('schedule_end');//❌strtotime($request->input('schedule_end'));
+        $event->schedule_end = $request->input('schedule_end');
+        
         //忘れた時は
         if(!$event->schedule_end){
         $event->schedule_end = new Carbon("+30 days");
@@ -283,13 +258,14 @@ class AdminEventController extends Controller
 
     }
 
-    //お題に対した表現を投稿(ユーザーのみ)
     public function post($id)
     {
         $event = Event::find($id);
+
         if(!$event){
             return redirect()->route("admin.event.index");
         }
+
         return view('admin.event.post', compact('event'));
 
     }
@@ -321,8 +297,5 @@ class AdminEventController extends Controller
         return redirect()->route("admin.event.detail",['event_id' => $eventId])->with('success', 'saved!');
     }
 
-    // public function entryDone()//
-    // {
-    // }
 
-}//controller
+}

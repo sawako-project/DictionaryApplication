@@ -44,18 +44,10 @@ class HomeController extends Controller
     public function index(Request $req)
     {
 
-        //userの
-
-        $everyAllPhrases = Phrase::orderBy("id","desc")->take(3)->get();
-        $everyAllPhrasesCount = Phrase::count();
+        // $everyAllPhrases = Phrase::orderBy("id","desc")->take(3)->get();
+        // $everyAllPhrasesCount = Phrase::count();
 
         //phraseの
-        //$myAllPhrases = Phrase::where('user_id','=',Auth::id())->get();
-        // $myAllPhrases = Phrase::whereHas("user", function($query) {
-        //     //ここはUserの絞り込み条件を書く
-        //     $query->where("id", Auth::id());
-        // })->get();
-        //$myAllPhrases = DB::table('users')->withCount('phrases')->get();
         $myAllPhrases = Phrase::where('user_id',Auth::id())->orderBy("id","desc")->take(3)->get();
         $myAllPhrasesCount = Phrase::where('user_id',Auth::id())->count();
 
@@ -64,7 +56,6 @@ class HomeController extends Controller
         $myAllPhraseLikesCount = PhraseLike::where('user_id',Auth::id())->where("liked",1)->count();
 
         //eventの
-        // $myAllEvents = User::where('id',Auth::id())->withCount('events')->orderBy('events_count','desc')->get();
         $myAllEvents = Event::where('user_id',Auth::id())->where('event_type','phraseAboutSituationEvent')->orderBy("id","desc")->take(3)->get();
         $myAllEventsCount = Event::where('user_id',Auth::id())->where('event_type','phraseAboutSituationEvent')->count();
 

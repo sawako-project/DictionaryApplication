@@ -10,10 +10,10 @@ class PhraseTag extends Model
     protected $table = "phrase_tags";
 
     protected $fillable = ['phrase_tag'];
-   
+
     // public function getLists()
     // {
-    //     $phraseTagPluck = PhraseTag::pluck('phrase_tag','user_id','phrase_id','phrase_category_id');//'id',
+    //     $phraseTagPluck = PhraseTag::pluck('phrase_tag','user_id','phrase_id','phrase_category_id');
         
     //     return $phraseTagPluck;
     // }

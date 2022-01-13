@@ -21,12 +21,16 @@ a:active {
     color: inherit;
 }
 
+/*  */
+.card-body a {
+    text-decoration: underline!important;
+}
+
 #app {
-    background-color: rgb(250, 242, 232);/** #f1bbc2 rgb(252, 225, 252); rgb(248, 248, 239); rgb(234,209,220)*/
+    background-color: rgb(250, 242, 232);
     width: 100%;
-    /* margin: o auto; */
-    position: relative;/*❗️*/
-    z-index:1;/*❗️*/
+    position: relative;
+    z-index:1;
 }
 
 /* .heading {
@@ -39,7 +43,7 @@ a:active {
 }
 
 .heading .under {
-    border-bottom: dotted 3px #cda45e!important;/* rgb(131, 128, 128) */
+    border-bottom: dotted 3px #cda45e!important;
 }
 
 /* nav */
@@ -74,13 +78,11 @@ a:active {
 .navbar-brand {
     font-size: 200px;
     font-family: 'Ephesis', cursive;
-    /*font-family: 'Kaushan Script', cursive;*/
     overflow: hidden;
 }
 
 .nav-item {
     padding: 0 5px;
-    /* font-family: 'M PLUS Rounded 1c', sans-serif; */
     font-family: 'Kiwi Maru', serif; 
 }
 
@@ -128,7 +130,6 @@ a:active {
 
 /*  */
 footer {
-    /* font-family: 'M PLUS Rounded 1c', sans-serif; */
     font-family: 'Kiwi Maru', serif;
 }
 
@@ -157,7 +158,6 @@ footer {
     font-size: 14px;
     color: #cda45e;
     line-height: 0;
-    /* border-bottom: none!important; */
 }
 
 .scrolled .back-to-top {
@@ -165,52 +165,45 @@ footer {
 }
 
 /* card */
-.base-card,.pop-card {/*.card*/
+.base-card,.pop-card {
     font-family: 'Kiwi Maru', serif;
     overflow: hidden;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     border-radius: 10px!important;
-    /* border-color:#cda45e!important; */
-    /*  */
     position:relative;
-    /* box-shadow:none; */
     transition:box-shadow 0.3s, transform 0.3s;
-    /*  */
 }
 
-.pop-card:active {/*.pop-card|.card*/
+.pop-card:active {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px;
-    /*rgba(0, 0, 0, 0.3) 0px 19px 38px; 0 2px 5px rgba(0, 0, 0, 0.3) rgba(0, 0, 0, 0.35) 0px 5px 15px*/
     transform:scale(1.02);
     border-color:#cda45e!important;
 }
 
-.pop-card:hover {/*.pop-card|.card*/
+.pop-card:hover {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px;
     transform:scale(1.02);
-    /* border-color:#cda45e!important; */
     border-color:#cda45e!important;
 }
 
-/* .card:hover {
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px;
-  transform:scale(1.02);
-  border-color:#cda45e!important;
-} */
 
-/* card */
-
-/* フォームのあれこれ */
+/* フォーム */
 .form-group {
     font-family: 'Kiwi Maru', serif;
     display: flex;
-    justify-content: center
+    justify-content: center;
+    margin: 10px 0;
 }
 
 /* .form-group button {
   display: flex;
   justify-content: center
 } */
+
+.form-check {
+    float: left;
+    text-align: left;
+}
 
 .radio-list input {
     position: absolute;
@@ -229,7 +222,7 @@ footer {
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    color: #666;/*  Rgb : rgb(102,102,102) 灰黒*/
+    color: #666;
 }
 
 .m-form-radio-name:before {
@@ -237,25 +230,25 @@ footer {
     display: inline-block;
     width: 1em;
     height: 1em;
-    border: 1px solid #ccc;/*  rgb(204,204,204) 灰 */
+    border: 1px solid #ccc;
     border-radius: 50%;
     margin-right: 4px;
     flex-shrink: 0;
 }
 .radio-list input:checked + .m-form-radio-name:before {
-    border: 0.3em solid  rgb(205,164,94);/* rgb(33, 150, 243)青 rgb(255,181,46)*/
+    border: 0.3em solid  rgb(205,164,94);
 }
 
 .radio-list input:checked + .m-form-radio-name {
-    color:  rgb(205,164,94);/* rgb(33, 150, 243)青 rgb(255,181,46)*/
+    color:  rgb(205,164,94);
 }
 
 .radio-list input:focus + .m-form-radio-name {
-    color:  rgb(205,164,94);/* rgb(33, 150, 243)青 rgb(255,181,46)*/
+    color:  rgb(205,164,94);
 }
 
 .radio-list input.focus-visible + .m-form-radio-name .m-form-radio-text {
-    background: linear-gradient(transparent 90%, rgba(205,164,94, 0.3) 90%);/* rgba(33, 150, 243, 0.3)青 rgba(255,181,46, 0.3)*/
+    background: linear-gradient(transparent 90%, rgba(205,164,94, 0.3) 90%);
 }
 
 /* .check-list label{
@@ -282,7 +275,7 @@ width: 110px;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    color: #666;/*  */
+    color: #666;
     position: relative;
 }
 
@@ -291,21 +284,21 @@ width: 110px;
     display: inline-block;
     width: 1em;
     height: 1em;
-    border: 1px solid #ccc;/*  */
+    border: 1px solid #ccc;
     border-radius: 3px;
     margin-right: 6px;
     flex-shrink: 0;
 }
 
 .check-list input:checked + .m-form-checkbox-name:before {
-    border: 1px solid rgb(205,164,94);/*rgb(255,181,46) rgb(33, 150, 243) #cda45e rgb(205,164,94)*/
-    background-color: rgb(205,164,94);/* rgb(33, 150, 243) #cda45e rgb(205,164,94)*/
+    border: 1px solid rgb(205,164,94);
+    background-color: rgb(205,164,94);
 }
 
 .check-list input:checked + .m-form-checkbox-name:after {
     content: "";
     position: absolute;
-    border: solid #fff;/* 白 */
+    border: solid #fff;
     border-width: 0 2px 2px 0;
     left: 0.3em;
     top: 0;
@@ -317,15 +310,15 @@ width: 110px;
 }
 
 .check-list input:checked + .m-form-checkbox-name {
-    color: rgb(205,164,94);/* rgb(33, 150, 243) #cda45e rgb(205,164,94)*/
+    color: rgb(205,164,94);
 }
 
 .check-list input:focus-visible + .m-form-checkbox-name .m-form-checkbox-text {
-    background: linear-gradient(transparent 90%, rgba(205,164,94, 0.3) 90%);/* rgba(33, 150, 243, 0.3) #cda45e rgb(205,164,94)*/
+    background: linear-gradient(transparent 90%, rgba(205,164,94, 0.3) 90%);
 }
 
 .check-list input.focus-visible + .m-form-checkbox-name .m-form-checkbox-text {
-    background: linear-gradient(transparent 90%, rgba(205,164,94, 0.3) 90%);/* rgba(33, 150, 243, 0.3) #cda45e rgb(205,164,94)*/
+    background: linear-gradient(transparent 90%, rgba(205,164,94, 0.3) 90%);
 }
 
 .textarea-space textarea {
@@ -368,25 +361,6 @@ width: 110px;
 }
 
 /*  */
-.form-group {
-    margin: 10px 0;
-}
-
-.form-check {
-    float: left;
-    text-align: left;
-}
-
-.card-body a {
-    text-decoration: underline!important;
-}
-
-/*  */
-.item_box {
-    border: 1px solid #f3f3f3;
-    border-radius: 10px;
-}
-
 hr {
     color:#f3f3f3;
 }
@@ -410,23 +384,6 @@ hr {
   border: 1px solid #333;
  } */
 
-/*========= レイアウトのためのCSS ===============*/
-/* body{
-  background:#333;
-}
-p{
-  text-align: center;
-  margin: 20px 0;
-  font-size:1.5rem;
-  color: #fff;
-} */
-
-/* .phraseAboutSituationEvent label{
-  display: block;
-  float: left;
-  width: 110px;
-} */
-
 /* _____________________________________ */
 
 /* 個別 */
@@ -437,55 +394,34 @@ p{
     /*backgroundScrollを全画面で見せる*/
     width:100%;
     height: 100vh;
-    position: relative;/*❗️*/
+    position: relative;
 }
 
 #backgroundImg:before {
     /*backgroundScroll の疑似要素に背景画像を指定*/
     content:"";
-    position:fixed;/*❗️*/
+    position:fixed;
     top:0;
     left:0;
-    z-index:-1;/*❗️*/
+    z-index:-1;
     width:100%;
     height: 100vh;
     /*背景画像設定*/
     background:url("../img/iStock-698734060.jpg") no-repeat center;
-    /* or
-    background-image: url("../img/calendar-gd50c90a80_1920.jpg") ; */
-    /* ⭕️../img/calendar-gd50c90a80_1920.jpg
-      ❌../public/img/calendar-gd50c90a80_1920.jpg */
     background-size:cover;
 }
 
 /*========= レイアウトのためのCSS ===============*/
   
 #backgroundImg h1 {
-    position: fixed;/*❗️*/
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translateY(-50%) translateX(-50%);
     color:whitesmoke;
     text-shadow: 0 0 15px #666;
     text-align: center;
-    /* font-size: 100px; */
     font-family: 'Kiwi Maru', serif;
-    /* z-index: 1; */
-}
-
-/* ❗️ */
-#backgroundImg p {
-    position: fixed;/*❗️*/
-    top: 60%;
-    left: 50%;
-    transform: translateY(-50%) translateX(-50%);
-    /* color:#fff; */
-    color: rgb(94, 91, 91);
-    text-shadow: 0 0 15px #666;
-    text-align: center;
-    font-size: 20px;
-    font-family: 'Kiwi Maru', serif;
-    /* z-index: 1; */
 }
 
 /*========= 光りながら出現させるためのCSS ===============*/
@@ -517,22 +453,17 @@ p{
     }
 }
 
-.search-area {
+/* .search-area {
     font-family: 'Kiwi Maru', serif;
-    width: 30%!important;
+    width: 30%!important; */
     /* display: flex!important; */
-    text-align: center;
-    margin: 0 auto;
+    /* text-align: center;
+    margin: 0 auto; */
     /* margin-top: 50%; */
-    position: fixed;/*❗️*/
+    /* position: fixed;
     top: 55%;
     left: 35%;
     border-radius: 100px;
-}
-
-/* admin */
-/* .table {
-  font-family: 'Kiwi Maru', serif!important;
 } */
 
 /* phrase-list */
@@ -543,8 +474,8 @@ p{
 .phrase-list dl {
     display: flex;
     flex-flow: row wrap;
-    width: 100%;/** 70%*/
-    margin: 0px auto;/** 50px*/
+    width: 100%;
+    margin: 0px auto;
 }
 
 .phrase-list dt {
@@ -552,7 +483,6 @@ p{
     padding: 20px;
     background-color: #f1f1f1;
       border-top: 1px solid #ccc;
-    /* border-bottom: 1px solid #ccc; */
 }
 
 .phrase-list dd {
@@ -574,7 +504,7 @@ p{
    border-bottom: 1px solid #ccc;
 } */
 
-@media screen and (max-width: 990px) {/**768px 559px*/
+@media screen and (max-width: 990px) {
 
     .phrase-list dl {
         flex-flow: column;
@@ -593,6 +523,11 @@ p{
     }
 }
 
+/*  */
+.item_box {
+    border: 1px solid #f3f3f3;
+    border-radius: 10px;
+}
 
 /*  */
 .tagify__tag>div::before {
@@ -603,12 +538,6 @@ p{
 .eventForm {
     display: none;
 }
-
-/*  */
-/* user-event-post */
-/* .user-event-post .card {
-  margin-top: 50px;
-} */
 
 /* .contact input,textarea{
   visibility: hidden;

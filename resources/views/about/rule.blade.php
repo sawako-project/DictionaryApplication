@@ -10,7 +10,7 @@
 </div>
 @endif
 
-<div class="container"><!-- container-fluid -->
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-3 base-card" >
@@ -78,10 +78,10 @@
                     </p>
                     <p class="text-right">以上</p>
                     
-                </div><!-- <div class="card-body"> -->
-            </div><!-- <div class="card"> -->
-        </div><!-- <div class="col-md-12"> -->
-    </div><!-- <div class="row"> -->
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="heading">
         <h2><strong><span class="under">プライバシーポリシー</span></strong></h2>
     </div>

@@ -1,3 +1,14 @@
+<style>
+.search-area {
+    font-family: 'Kiwi Maru', serif;
+    width: 30%!important;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 100px;
+}
+
+</style>
+
 <!-- <div id="backgroundImg">
     <h1 class="glowAnime">表現を見つけましょう。</h1> -->
     <div class="search-area">

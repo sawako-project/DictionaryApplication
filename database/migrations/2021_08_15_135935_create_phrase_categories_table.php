@@ -13,8 +13,6 @@ class CreatePhraseCategoriesTable extends Migration
      */
     public function up()
     {
-        //phrase_categories -> hasMany -> base_categories
-        //base_categories -> belongsTo -> phrase_categories
         Schema::create('phrase_categories', function (Blueprint $table) {
             $table->id();
             $table->string('phrase_category');

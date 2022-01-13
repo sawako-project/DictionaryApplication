@@ -3,6 +3,7 @@
 @section('header-title', '自分の表現')
 
 @section('content')
+
 <div class="container">
     <div class="row py-3">
 
@@ -21,11 +22,6 @@
             <a style="margin: 15px;" href="{{-- route('user.phrase.create') --}}" class="btn btn-primary">表現を作成する</a>
         </div> -->
     </div>
-
-    <!-- <div class="phrase_create" id="phrase_create">
-        <a href="{{-- route('user.phrase.create') --}}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="追加する"></i></a> -->
-    <!-- <a style="margin: 15px;" href="{{-- route('user.phrase.create') --}}{{-- route('user.base_category.index')--}}" class="btn btn-primary">表現追加・分類一覧</a> -->
-    <!-- </div> -->
 
     @if(count($phrases) < 1)
     <p>自分の表現がありません</p>

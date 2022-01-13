@@ -21,8 +21,8 @@
 <br />
 @endif
 
-<div class="container"><!-- container-fluid -->
-    <div class="row"><!-- row no-gutters -->
+<div class="container">
+    <div class="row">
         <div class="col-sm-12">
             <form method="post" action="{{ url('/user/reset/password') }}">
             @csrf
@@ -42,7 +42,6 @@
                 <div class="form-group row">
                     <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('パスワードの再確認') }}</label>
                     <div class="col-md-6 textarea-space">
-                        <!-- <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password"> -->
                         <input id="password-confirm" type="password" class="m-form-text @error('password') is-invalid @enderror" name="password_confirmation" required autocomplete="new-password"/>
                     </div>
                 </div>

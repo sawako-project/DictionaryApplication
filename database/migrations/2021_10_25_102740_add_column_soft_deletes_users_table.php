@@ -19,8 +19,8 @@ class AddColumnSoftDeletesUsersTable extends Migration
             //削除したユーザのメールアドレスはUNIQUE制約で再登録できない
             //emailとdeleted_atの２つのカラムでUNIQUE制約を設定
             //emailのユニークキーを削除
-            $table->dropUnique('users_email_unique');//個別？
-            $table->unique(['email', 'deleted_at'], 'users_email_unique');//セット名？
+            $table->dropUnique('users_email_unique');
+            $table->unique(['email', 'deleted_at'], 'users_email_unique');
 
         });
     }
@@ -33,13 +33,12 @@ class AddColumnSoftDeletesUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            //
             $table->dropSoftDeletes();
             //SoftDeletesを削除='deleted_at'カラム削除
             $table->dropColumn('deleted_at');
             //emailのユニークキーを復活
-            $table->unique('email','users_email_unique');//個別？
-            $table->dropUnique('users_email_unique');//セット名？
+            $table->unique('email','users_email_unique');
+            $table->dropUnique('users_email_unique');
 
         });
     }

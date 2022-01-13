@@ -15,7 +15,7 @@ class CreateEventPostsTable extends Migration
     {
         Schema::create('event_posts', function (Blueprint $table) {
             $table->id();
-            $table->text('post_text');// お題に対しての投稿
+            $table->text('post_text');// エントリー
             $table->foreignId('user_id')->constraind("users")->onDelete('cascade')->nullable();
             $table->foreignId('event_id')->constraind("events")->onDelete('cascade')->nullable();
             $table->timestamps();

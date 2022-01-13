@@ -28,7 +28,7 @@ class PhraseCategorySeeder extends Seeder
             ['id' => 17, 'phrase_category' => '着る'],
             ['id' => 18, 'phrase_category' => '蹴る'],
             ['id' => 19, 'phrase_category' => '転ぶ'],
-            ['id' => 20, 'phrase_category' => '叩く'],//(人を)(ドアを)
+            ['id' => 20, 'phrase_category' => '叩く'],
             ['id' => 21, 'phrase_category' => '立つ'],
             ['id' => 22, 'phrase_category' => '掴む'],
             ['id' => 23, 'phrase_category' => '摘む'],

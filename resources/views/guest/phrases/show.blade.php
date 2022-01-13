@@ -13,7 +13,6 @@
                 <div class="card-header">表現確認(詳細)</div>
                 <div class="card-body">
                     <ul class="list-group list-group-flush">
-                        <!-- <li class="list-group-item">ID: {{--$phrase->id--}}</li>  -->
                         <li class="list-group-item">表現: {{$phrase-> phrase}}</li>
                         <li class="list-group-item">カテゴリ: 
                         @foreach($phrase->phraseCategories as $phraseCategory) 
@@ -28,7 +27,7 @@
                         
                         @if($phrase->user_id)
                         <li class="list-group-item">
-                            作成ユーザー: {{ ($phrase->user) ? $phrase->user->name : "-"}}{{-- $phrase->user->name --}}
+                            作成ユーザー: {{ ($phrase->user) ? $phrase->user->name : "-"}}
                         </li>
                     </ul>
 
@@ -49,21 +48,15 @@
                     <div class="like-function">
                         {{--@if(isset($likes[$phrase->id]) && $likes[$phrase->id])--}}<!--$likes[$like->phrase_id]-->
                         @if($like && $like->liked == 1)
-                        <!-- <a href="{{-- url('/user/phrase/like/'.$phrase->id) --}}">
-                            <i class="bi bi-bookmark-fill"></i>
-                        </a> -->
                         <a href="{{ url('/user/phrase/like/'.$phrase->id) }}" class="btn btn-light">
                             <i class="bi bi-bookmark-fill"></i>
                         </a>
                         @else
-                        <!-- <a href="{{-- url('/user/phrase/like/'.$phrase->id) --}}">
-                            <i class="bi bi-bookmark"></i>
-                        </a> -->
                         <a href="{{ url('/user/phrase/like/'.$phrase->id) }}" class="btn btn-light">
                             <i class="bi bi-bookmark"></i>
                         </a>
                         @endif
-                    </div><!--like-function -->
+                    </div>
                     @endguest
 
                     @auth
@@ -71,56 +64,26 @@
                     <div class="like-function">  
                         {{--@if(isset($likes[$phrase->id]) && $likes[$phrase->id])--}}<!--$likes[$like->phrase_id]-->
                         @if($like && $like->liked == 1)
-                        <!-- <a href="{{-- url('/user/phrase/like/'.$phrase->id) --}}">
-                            <i class="bi bi-bookmark-fill"></i>
-                        </a> -->
                         <a href="{{ url('/user/phrase/like/'.$phrase->id) }}" class="btn btn-light">
                             <i class="bi bi-bookmark-fill"></i>
                         </a>
                         @else
-                        <!-- <a href="{{-- url('/user/phrase/like/'.$phrase->id) --}}">
-                            <i class="bi bi-bookmark"></i>
-                        </a> -->
                         <a href="{{ url('/user/phrase/like/'.$phrase->id) }}" class="btn btn-light">
                             <i class="bi bi-bookmark"></i>
                         </a>
                         @endif
-                    </div><!--like-function -->
+                    </div>
                     @endif
                     @endauth
-<!--  -->
-                </div><!-- card-body -->
-            </div><!--card-->
+                </div>
+            </div>
 
-            <!--  -->
-            <!-- <ul class="list-group list-group-flush">
-                <li class="list-group-item">ID: {{--$phrase->id--}}</li>
-                <li class="list-group-item">表現: {{--$phrase-> phrase--}}</li>
+        </div>
+    </div>
+</div>
 
-                {{--@foreach($phrase->phraseCategories as $phraseCategory)--}}
-                <li class="list-group-item">カテゴリ: <a href="">{{-- $phraseCategory->phrase_category --}}</a></li>
-                {{--@endforeach--}}
-
-                <li class="list-group-item">タグ: 
-                {{--@foreach($phrase->phraseTags as $phraseTag)--}}
-                {{-- $phraseTag->phrase_tag --}}<span>,</span>
-                {{--@endforeach--}}
-                </li>
-
-                {{--@if($phrase->user_id)--}}
-                <li class="list-group-item">
-                    Create by {{-- $phrase->user->name --}}
-
-                    <a href="{{-- route('user.phrase.edit',$phrase->id)--}}" class="btn btn-primary">編集</a>
-                </li>
-                {{--@endif--}}
-            </ul> -->
-            <!--  -->
-
-        </div><!-- col -->
-    </div><!-- row -->
-    <!-- <hr/> -->
-    <!-- <a href="{{-- route('phrase.index')--}}">戻る</a> -->
-</div><!-- container -->
-
+<hr/>
+<a class="btn btn-outline-primary" href="{{ url('/phrase') }}">表現一覧</a>
+<a class="btn btn-outline-primary" href="{{ url('/') }}">トップ</a>
+        
 @endsection('content')

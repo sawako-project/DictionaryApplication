@@ -15,9 +15,8 @@ use App\BaseCategoryMaster;
 use App\PhraseTag;
 use App\Word;
 use App\PhraseLike;
-use App\Services\PhraseLike\PhraseLikeService;//getAllLikes($userId, $phrase_id_list) return $likes;
+use App\Services\PhraseLike\PhraseLikeService;
 
-//ユーザー認証していたらそのまま使える
 
 class GuestPhraseController extends Controller
 {
@@ -37,14 +36,12 @@ class GuestPhraseController extends Controller
 				//ここはPharseTagの絞り込み条件を書く
 				$query->where("phrase_tag_id", $phraseTag_id);
 
-			})->orderBy("id", "desc")->paginate(10);//->get();
+			})->orderBy("id", "desc")->paginate(10);
 
             return view('guest.phrases.index', compact('phrases'));
         }
   
-        $phrases = Phrase::orderBy('id','desc')->paginate(10);//->get();
-        //$likes = $this->getLikes($phrases);
-        //////////////////////////////////
+        $phrases = Phrase::orderBy('id','desc')->paginate(10);
 
         //Serviceにて共通化
         $phrase_id_list = [];
@@ -53,7 +50,6 @@ class GuestPhraseController extends Controller
         }
         $likes = $phraseLikeService->getAllLikes(Auth::id(),$phrase_id_list);
 
-        //////////////////////////////////
 
         return view('guest.phrases.index', compact('phrases','likes'));
     }
@@ -62,7 +58,8 @@ class GuestPhraseController extends Controller
     {
         $phrase = Phrase::find($id);
         if(!$phrase){
-            return back()->withError("これはだめだ");//return redirect()?
+            //return redirect()
+            return back()->withError("これはだめだ");
         }
         
         //Likeの取得
@@ -81,7 +78,8 @@ class GuestPhraseController extends Controller
 
         $category = PhraseCategory::where("phrase_category","=",$category)->first();
         if(!$category){
-            return back()->withError("これはだめだ");//return redirect()?
+            //return redirect()
+            return back()->withError("これはだめだ");
         }
 
         $phraseCategory_id = $category->id;
@@ -91,7 +89,7 @@ class GuestPhraseController extends Controller
             //ここはPharseCategoryの絞り込み条件を書く
             $query->where("phrase_category_id", $phraseCategory_id);
 
-        })->orderBy("id", "desc")->paginate(10);//->get();
+        })->orderBy("id", "desc")->paginate(10);
 
         $likes = $this->getLikes($phrases);
 
@@ -103,7 +101,8 @@ class GuestPhraseController extends Controller
 
         $tag = PhraseTag::where("phrase_tag","=",$tag)->first();
         if(!$tag){
-            return back()->withError("これはだめだ");//return redirect()?
+            //return redirect()
+            return back()->withError("これはだめだ");
         }
 
         $phraseTag_id = $tag->id;
@@ -113,7 +112,7 @@ class GuestPhraseController extends Controller
             //ここはPharseTagの絞り込み条件を書く
             $query->where("phrase_tag_id", $phraseTag_id);
 
-        })->orderBy("id", "desc")->paginate(10);//->get();
+        })->orderBy("id", "desc")->paginate(10);
 
         $likes = $this->getLikes($phrases);
 
@@ -121,7 +120,6 @@ class GuestPhraseController extends Controller
 
     }
 
-    //
     function getLikes($phrases){
 
         $phrase_id_list = [];
@@ -133,10 +131,9 @@ class GuestPhraseController extends Controller
         $allLikes = PhraseLike::where("user_id","=",Auth::id())
             ->whereIn("phrase_id",$phrase_id_list)
             ->get();
-        //dd($allLikes);//DreamLikeのidとdream_id,user_idの一覧。一回されると追加される
 
         //Viewで使いやすいように変換
-        $likes = [];//空配列つくって
+        $likes = [];
         foreach($allLikes as $like){
             $likes[$like->phrase_id] = $like->liked;
         }

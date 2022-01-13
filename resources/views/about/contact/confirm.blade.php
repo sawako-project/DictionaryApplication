@@ -13,13 +13,12 @@
 
 .contact input,textarea {
     visibility: hidden;
-    /* display: none; */
 }
 
 </style>
 
-<div class="container"><!-- container-fluid -->
-    <div class="row justify-content-center"><!--justify-content-center"  -->
+<div class="container">
+    <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card mb-3 base-card" >
                 <div class="card-header">{{ __('お問い合わせ') }}</div>
@@ -34,7 +33,6 @@
                     </div><br />
                     @endif
                     <div class="contact">
-                        <!--  -->
                         <form method="post" action="{{ route('about.contact.send') }}">
                         @csrf
                             <label for="name" class="col-md-4 col-form-label text-md-right">お問い合わせ時氏名(漢字)</label>
@@ -69,7 +67,7 @@
 
                             <div class="form-group mb-1 text-center row">
                                 <div class="col-md-6">
-                                    <button type="submit" name="action" class="btn btn-outline-primary" value="back"><!-- class="btn btn-primary"class="btn btn-success"-->
+                                    <button type="submit" name="action" class="btn btn-outline-primary" value="back">
                                         {{ __('内容を修正する') }}
                                     </button>
                                 </div>
@@ -77,19 +75,18 @@
 
                             <div class="form-group mb-1 text-center row">
                                 <div class="col-md-6">
-                                    <button type="submit" name="action" class="btn btn-primary" value="submit"><!-- class="btn btn-primary"class="btn btn-success"-->
+                                    <button type="submit" name="action" class="btn btn-primary" value="submit">
                                         {{ __('送信する') }}
                                     </button>
                                 </div>
                             </div>
                             
                         </form>
-                        <!--  -->
                     </div>
-                </div><!-- <div class="card-body"> -->
-            </div><!-- <div class="card"> -->
-        </div><!-- <div class="col"> -->
-    </div><!-- <div class="row"> -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection('content')

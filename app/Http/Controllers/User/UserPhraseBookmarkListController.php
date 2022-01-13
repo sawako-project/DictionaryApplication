@@ -14,13 +14,13 @@ use App\BaseCategoryMaster;
 use App\PhraseTag;
 use App\Word;
 use App\PhraseLike;
-use App\Services\PhraseLike\PhraseLikeService;//getAllLikes($userId, $phrase_id_list) return $likes;
+use App\Services\PhraseLike\PhraseLikeService;
 
 
 class UserPhraseBookmarkListController extends Controller
 {
     //
-    public function index(Request $request,PhraseLikeService $phraseLikeService)//,$id
+    public function index(Request $request,PhraseLikeService $phraseLikeService)
     {
 
         $phraseCategory_id = $request->input("c");
@@ -34,7 +34,7 @@ class UserPhraseBookmarkListController extends Controller
                 $query->where("phrase_category_id", $phraseCategory_id);
             })
             ->orderBy("id", "desc")
-            ->paginate(10);//->get();
+            ->paginate(10);
 
             return view('user.user_bookmark_list', compact('phraseLikes'));
         }
@@ -50,7 +50,7 @@ class UserPhraseBookmarkListController extends Controller
 				$query->where("phrase_tag_id", $phraseTag_id);
 			})
             ->orderBy("id", "desc")
-            ->paginate(10);//->get();
+            ->paginate(10);
 
             return view('user.user_bookmark_list', compact('phraseLikes'));
         }
@@ -60,27 +60,12 @@ class UserPhraseBookmarkListController extends Controller
             $query->where('liked', 1)->where('user_id','=',Auth::id());
         })
         ->orderBy("id", "desc")
-        ->paginate(10);//get();
+        ->paginate(10);
 
-        //likesテーブルに入っているphrase_idを
+        //likesテーブルに入っているphrase_idをまとめる
         $phraseIdList = $phraseLikes->map(function($like){
             return $like->phrase_id;
         });
-
-        ///////////////////////////////////////////////////
-
-        //"phrase_id",$phraseIdListを絞り込み
-        // $allLikes = PhraseLike::where("user_id","=",Auth::id())
-        //         ->whereIn("phrase_id",$phraseIdList)
-        //         ->get();
-            
-        //     //Viewで使いやすいように変換
-        //     $likes = [];
-        //     foreach($allLikes as $like){
-        //         $likes[$like->phrase_id] = $like->liked;
-        //     }
-        
-        ////////////////////////////////////////////////////
 
         $likes = $phraseLikeService->getAllLikes(Auth::id(), $phraseIdList);
 

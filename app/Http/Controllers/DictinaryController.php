@@ -40,30 +40,28 @@ class DictinaryController extends Controller
 
     public function index(Request $request)
     {
-        //search
-
 
         //表現
-        $phrases = Phrase::orderBy('updated_at', 'desc')->take(10)->get();//'id','desc'
+        $phrases = Phrase::orderBy('updated_at', 'desc')->take(10)->get();
 
         //"code", "feeling"
         $phraseCategories_feelings = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "feeling");
-        })->orderBy("phrase_category_name", "asc")->get();//->pluck("phrase_category");->get();//
+        })->orderBy("phrase_category_name", "asc")->get();
 
         //"code", "action"
         $phraseCategories_actions = PhraseCategory::whereHas("baseCategories", function ($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "action");
-        })->orderBy("phrase_category_name", "asc")->get();//->get();//
+        })->orderBy("phrase_category_name", "asc")->get();
 
 
         //"code", "expression"
         $phraseCategories_expressions = PhraseCategory::whereHas("baseCategories", function ($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "expression");
-        })->orderBy("phrase_category_name", "asc")->get();//->get();//
+        })->orderBy("phrase_category_name", "asc")->get();
 
         //イベント
         $nowTime = Carbon::now();//現在時刻

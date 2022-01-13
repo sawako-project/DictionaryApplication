@@ -1,5 +1,4 @@
 @extends('layouts.dictionary',["title"=>"U_Dectionary"])
-<!--@//extends('layouts.app')-->
  
 @section('content')
 

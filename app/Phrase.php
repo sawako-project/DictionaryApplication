@@ -15,7 +15,7 @@ class Phrase extends Model
 
     // public function getLists()
     // {
-    //     $phrasePluck = Phrase::pluck('phrase','user_id','phrase_category_id','phrase_tag_id');//,'id'
+    //     $phrasePluck = Phrase::pluck('phrase','user_id','phrase_category_id','phrase_tag_id');
 
     //     return $phrasesPluck;
     // }
@@ -23,6 +23,7 @@ class Phrase extends Model
     /**
      * RelashinShip
      */
+    
     public function user(){
         return $this->belongsTo("App\User");
     }
