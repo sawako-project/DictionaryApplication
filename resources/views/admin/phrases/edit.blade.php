@@ -3,9 +3,16 @@
 @section('content')
 
 <div class="container">
+
+{{ Breadcrumbs::render('admin.phrase.edit',$phrase) }}
+
     <div class="row">
-        <div class="col-sm-8 offset-sm-2">
-            <h1 class="display-3">内容変更</h1>
+        <div class="col-sm-12">
+            @if(session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }} 
+            </div>
+            @endif
 
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -18,66 +25,66 @@
             <br />
             @endif
 
-            <form method="post" action="{{ route('admin.phrase.update', $phrase->id) }}">
-            @csrf
-                <div class="form-group">
-                    <label for="phrase">表現</label>
-                    <!-- <input type="text" class="form-control" name="phrase" value={{-- $phrase->phrase --}} /> -->
-                    <textarea class="form-control" rows="4" name="phrase">{{ $phrase->phrase }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="phrase_category">カテゴリ</label><br/>
-                    @foreach($phraseCategories as $phraseCategory)
-                    <input type="checkbox" 
-                        name="phrase_category[]"
-                        value="{{ $phraseCategory->id }}"
-                        @if(in_array($phraseCategory->id, $selected_categories))
-                        checked
-                        @endif
-                    />
-                    {{ $phraseCategory->phrase_category }}
-                    @endforeach    
-                </div>
-                
-                            <!-- <div class="form-group row">
-                <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{-- __('タグ') --}}</label>
-                <div class="col-md-6"> -->
-                    <!-- <textarea name="phrase_tag" rows="4" class="form-control">{{-- old("phrase_tag") --}}</textarea> -->
-                    <!-- {{-- old("phrase_tag", implode("\n", $tagList)) --}} -->
-                    <!-- <ul>
-            @//foreach($phraseTags as $phraseTag)
-                        <li>
-                            <label>
-                                <input 
-                                type="checkbox" 
-                                name="phrase_tag[]" 
-                                value="{{-- $phraseTag->id --}}"
-                                {{-- in_array($phraseTag->phrase_tag, old("phrase_tag", $tagList)) ? 'checked="checked"' : '' --}}
-                                /> 
-                                {{-- $phraseTag->phrase_tag --}}
-                            </label>
-                        </li>
-                    @//endforeach
-                    </ul> -->
-                <!-- </div> -->
-            <!-- </div> -->
-            <!-- <div>-->
-                <!-- </div> -->
-            <!-- </div> -->
-
-                <div class="form-group">
-                    <!-- <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{-- __('タグ') --}}</label> -->
-                    <label for="phrase_tag">{{ __('タグ') }}</label>
-                    <input id="tags-input" type="text" class="form-control" name="phrase_tag" value="{{ old('phrase_tag',implode(', ', $tagList)) }}" />
-                </div>
-                <button type="submit" class="btn btn-primary">変更</button>
-            </form>
         </div>
     </div>
 </div>
+<!--  -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <h1 class="display-3">表現変更</h1>
+			<div class="card base-card">
+				<div class="card-header">表現変更</div>
+				<div class="card-body">
+                    <form method="post" action="{{ route('admin.phrase.update', $phrase->id) }}">
+                    @csrf
+                        <div class="form-group row">
+                            <label for="phrase" class="col-md-4 col-form-label text-md-right">表現</label>
+                            <div class="col-md-6">
+                            <!-- <input type="text" class="form-control" name="phrase" value={{-- $phrase->phrase --}} /> -->
+                                <textarea class="form-control" rows="2" name="phrase">{{ $phrase->phrase }}</textarea>
+                            </div>
+                        </div>
 
-<button><a href="{{route('admin.phrase.index')}}">管理者表現一覧</a></button>
+                        <div class="form-group row">
+                            <label for="phrase_category" class="col-md-4 col-form-label text-md-right">カテゴリ</label><br/>
+                            <div class="col-md-6">
+                                @foreach($phraseCategories as $phraseCategory)
+                                <input type="checkbox" 
+                                    name="phrase_category[]"
+                                    value="{{ $phraseCategory->id }}"
+                                    @if(in_array($phraseCategory->id, $selected_categories))
+                                    checked
+                                    @endif
+                                />
+                                {{ $phraseCategory->phrase_category }}
+                                @endforeach
+                            </div>    
+                        </div>
+                        <div class="form-group row">
+                            <!-- <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{-- __('タグ') --}}</label> -->
+                            <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{ __('タグ') }}</label>
+                            <div class="col-md-6">
+                                <input id="tags-input" type="text" class="form-control" name="phrase_tag" value="{{ old('phrase_tag',implode(', ', $tagList)) }}" />
+                            </div>
+                        </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('変更') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>   
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<hr/>
+<a href="{{ route('admin.top')}}" class="btn btn-outline-primary mx-1">管理者トップ</a>
+<a href="{{ route('admin.phrase.index') }}" class="btn btn-outline-primary mx-1">管理者表現一覧</a>
 
 <script type="text/javascript">
 

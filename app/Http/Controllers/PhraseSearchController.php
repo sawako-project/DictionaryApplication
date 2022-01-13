@@ -42,19 +42,19 @@ class PhraseSearchController extends Controller
         $phraseCategories_feelings = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "feeling");
-        })->orderBy("id", "desc")->get();//->pluck("phrase_category");
+        })->orderBy("phrase_category_name", "asc")->get();//->orderBy("id", "desc")->get();//->pluck("phrase_category");
         
         //code,actionでphrase_category_idのphrase_category
         $phraseCategories_actions = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "action");
-        })->orderBy("id", "desc")->get();//->pluck("phrase_category");
+        })->orderBy("phrase_category_name", "asc")->get();//->orderBy("id", "desc")->get();//->pluck("phrase_category");
 
         //BaseCategory;::code,expressionでphrase_category_idのphrase_category
         $phraseCategories_expressions = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "expression");
-        })->orderBy("id", "desc")->get();//->pluck("phrase_category");
+        })->orderBy("phrase_category_name", "asc")->get();//->orderBy("id", "desc")->get();//->pluck("phrase_category");
 
         return view('search', compact('phrases','phraseCategories_feelings','phraseCategories_actions','phraseCategories_expressions'));
         //return view('search',compact('keyword','phrasesData', 'category_result', 'phrase_result'));
@@ -82,19 +82,19 @@ class PhraseSearchController extends Controller
         $phraseCategories_feelings = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "feeling");
-        })->orderBy("id", "desc")->get();//->pluck("phrase_category");
+        })->orderBy("phrase_category_name", "asc")->get();//->orderBy("id", "desc")->get();//->pluck("phrase_category");
         
         //"code", "action"
         $phraseCategories_actions = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "action");
-        })->orderBy("id", "desc")->get();//->pluck("phrase_category");
+        })->orderBy("phrase_category_name", "asc")->get();//->orderBy("id", "desc")->get();//->pluck("phrase_category");
 
         //"code", "expression"
         $phraseCategories_expressions = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "expression");
-        })->orderBy("id", "desc")->get();//->pluck("phrase_category");
+        })->orderBy("phrase_category_name", "asc")->get();//->orderBy("id", "desc")->get();//->pluck("phrase_category");
         
         return view('search_phrases',compact('keyword','category_result','tag_result', 'phrase_result','results','phrases','phraseCategories_feelings','phraseCategories_actions','phraseCategories_expressions'));//$phrasesData
 

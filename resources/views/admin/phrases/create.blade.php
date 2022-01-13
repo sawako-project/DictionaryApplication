@@ -3,8 +3,24 @@
 @section('content')
 
 <div class="container">
+
+{{ Breadcrumbs::render('admin.phrase.create') }}
+
+    <div class="row">
+        <div class="col-sm-12">
+            @if(session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }} 
+            </div>
+            @endif
+        </div>
+    </div>
+</div>
+
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1 class="display-3">表現登録</h1>
             <div class="card base-card">
                 <div class="card-header">{{ __('表現登録') }}</div>
                 <div class="card-body">
@@ -21,9 +37,10 @@
                         @csrf
                         <div class="form-group row">
                             <label for="phrase" class="col-md-4 col-form-label text-md-right">{{ __('表現') }}</label>
-                            <textarea class="form-control" rows="4" name="phrase">{{ old('phrase') }}</textarea>
+                            <div class="col-md-6">
+                                <textarea class="form-control" rows="2" name="phrase">{{ old('phrase') }}</textarea>
+                            </div>
                         </div>
-
                         <div class="form-group row">
                             <label for="phrase_category" class="col-md-4 col-form-label text-md-right">カテゴリ</label>
                             <div class="col-md-6">
@@ -67,9 +84,11 @@
                             </ul>
                         </div> -->
 
-                        <div class="form-group">
-                            <label for="phrase_tag">{{ __('タグ') }}</label>
-                            <input id="tags-input" type="text" class="form-control" name="phrase_tag" value="{{ old('phrase_tag') }}" />
+                        <div class="form-group row">
+                            <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">{{ __('タグ') }}</label>
+                            <div class="col-md-6">
+                                <input id="tags-input" type="text" class="form-control" name="phrase_tag" value="{{ old('phrase_tag') }}" />
+                            </div>
                         </div>
 
                         <div class="form-group row mb-0">
@@ -85,8 +104,6 @@
         </div>
     </div>
 </div>
-
-<button><a href="{{route('admin.phrase.index')}}">管理者表現一覧</a></button>
 
 <script type="text/javascript">
 

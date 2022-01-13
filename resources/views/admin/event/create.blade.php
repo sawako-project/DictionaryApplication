@@ -1,12 +1,26 @@
 @extends('layouts.admin.admin',["title"=>"U_Dectionary"])
 
-{{--@section('header-title', 'イベント作成')--}}
-
 @section('content')
+
+<div class="container">
+
+{{ Breadcrumbs::render('admin.event.create') }}
+
+    <div class="row">
+        <div class="col-sm-12">
+            @if(session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }} 
+            </div>
+            @endif
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1 class="display-3">イベント作成</h1>
             <div class="card base-card">
                 <div class="card-header">{{ __('イベント作成') }}</div>
                 <div class="card-body">
@@ -59,7 +73,9 @@
                                 </label>
                             @endforeach
                             </div>
+                        </div>
 
+                        <div class="form-group row">
                             <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">追加タグ</label>
                             <div class="col-md-6">
                                 <!-- <textarea class="form-control" rows="4" name="auto_tag">{{-- old('auto_tag') --}}</textarea> -->
@@ -67,7 +83,7 @@
                                 <input type="text" name="auto_tag" value="{{ old('auto_tag') }}" class="m-form-text" />
                             </div>
                         </div>
-
+                        
                         <div class="form-group row">
                             <label for="event_text" class="col-md-4 col-form-label text-md-right">{{ __('お題・テーマ') }}</label>
                             <div class="col-md-6 textarea-space">

@@ -22,9 +22,9 @@
                     <form method="post" action="{{ route('user.phrase.store') }}">
                     @csrf
                         <div class="form-group row">
-                            <label for="phrase" class="col-4 col-form-label text-md-right">{{ __('表現') }}</label>
+                            <label for="phrase" class="col-md-4 col-form-label text-md-right">表現</label>
                             <div class="col-md-6 textarea-space">
-                                <textarea name="phrase" class="m-form-textarea" placeholder="例)頬を緩ませる">{{ old('phrase') }}</textarea><!--class="form-control" type="text" rows="4"-->
+                                <textarea name="phrase" rows="2" class="m-form-textarea" placeholder="例)頬を緩ませる">{{ old('phrase') }}</textarea><!--class="form-control" type="text" rows="4"-->
                                 <!-- <input type="text" name="phrase" value="{{-- old('phrase') --}}" class="m-form-text" /> -->
                                 <small class="form-text text-muted">最大文字数は200文字です。</small>
                             </div>
@@ -34,7 +34,10 @@
                             <label for="phrase_category" class="col-md-4 col-form-label text-md-right">カテゴリ</label>
                             <div class="col-md-6 check-list">
                                 <small class="form-text text-muted">好きなだけ選んでください</small>
+                                <!--  -->
+                                <ul>
                                 @foreach($phraseCategories as $phraseCategory)
+                                <li>
                                 <label>
                                     <input 
                                     type="checkbox" 
@@ -45,7 +48,10 @@
                                         <span class="m-form-checkbox-text">{{ $phraseCategory->phrase_category }}</span>
                                     </span>
                                 </label>
+                                </li>
                                 @endforeach
+                                </ul>
+                                <!--  -->
                             </div>
                         </div>
 

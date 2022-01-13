@@ -10,6 +10,8 @@
 </div>
 @endif
 
-<h1>{{ __('送信完了') }}</h1>
+<h1 class="text-center" style="font-family: 'Kiwi Maru', serif;">{{ __('送信完了') }}</h1>
+
+<p class="text-center" style="font-family: 'Kiwi Maru', serif;"><a href="{{ url('/') }}">{{ __('トップに戻る') }}</a></p>
 
 @endsection('content')

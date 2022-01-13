@@ -30,44 +30,7 @@
                </div>
  
                <!--  -->
-               {{--@if($eventPost->event->schedule_end >= date("Y/m/d H:i:s")))--}}
-@guest
-              
-               <hr/>
-               <div class="text-center">
-                   <!--(isset($votes[$post->id]) && $votes[$post->id])-->
-                   @if($vote && $vote->vote == 1)
-                   <a class="btn btn-info" href="{{ url('/event/vote', ['event_id' => $eventPost->event_id, 'event_post_id' => $eventPost->id]) }}"><!--  class="btn btn-light"-->
-                       <i class="bi bi-hand-thumbs-up-fill"></i> いいね! <!--投票済み-->
-                   </a>
-                   @else
-                   <a class="btn btn-light" href="{{ url('/event/vote', ['event_id' => $eventPost->event_id, 'event_post_id' => $eventPost->id]) }}">
-                       <i class="bi bi-hand-thumbs-up"></i> いいね!する <!--投票-->
-                   </a>
-                   @endif
-               </div>
-               @endguest
- 
-               @auth
-              
-               @if($eventPost->user_id !== Auth::id())
-               <hr/>
-               <div class="text-center">
-                   <!--(isset($votes[$post->id]) && $votes[$post->id])-->
-                   @if($vote && $vote->vote == 1)
-                   <a class="btn btn-info" href="{{ url('/event/vote', ['event_id' => $eventPost->event_id, 'event_post_id' => $eventPost->id]) }}"><!--  class="btn btn-light"-->
-                       <i class="bi bi-hand-thumbs-up-fill"></i> いいね! <!--投票済み-->
-                   </a>
-                   @else
-                   <a class="btn btn-light" href="{{ url('/event/vote', ['event_id' => $eventPost->event_id, 'event_post_id' => $eventPost->id]) }}">
-                       <i class="bi bi-hand-thumbs-up"></i> いいね!する <!--投票-->
-                   </a>
-                   @endif
-               </div>
-               @endif
-               @endauth
- 
-               {{--@endif--}}
+         
 
 <!--  -->
  

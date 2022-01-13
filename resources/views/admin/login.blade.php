@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-	<div class="row">
+	<div class="row justify-content-center">
 		<div class="col-my-8">
 			<div class="card base-card">
 				<div class="card-header">ログイン</div>

@@ -276,9 +276,9 @@ transition: all 1s -0.2s ease-in-out;
                     <li><a href="{{ url('/search') }}">表現を探す</a></li>
                     <li><a href="{{ url('/phrase') }}">表現を見る</a></li>
                     <li><a href="{{ url('/event') }}">イベント</a></li>
-                    <li><a href="{{ url('/user/phrase/create') }}">表現登録</a></li>
+                    <li><a href="{{ url('/user/phrase/create') }}">表現作成</a></li>
                     <li><a href="{{ url('/user/phrase') }}">自分の表現</a></li>
-                    <li><a href="{{ url('/user/bookmark_list') }}">ブックマーク(しおり)</a></li>
+                    <li><a href="{{ url('/user/bookmark_list') }}">ブックマーク</a></li>
                     <li><a href="{{ url('/user/event/create') }}">イベント作成</a></li>
                     <li><a href="{{ url('/user/info') }}">プロフィール情報(設定)</a></li><!-- /user/plot '/user/info/{user_name}' -->
                     <li><a href="{{ url('/logout') }}" class="" onclick="event.preventDefault();document.getElementById('logout-form').submit();">ログアウト</a></li>
@@ -305,19 +305,20 @@ transition: all 1s -0.2s ease-in-out;
                     <div class="col-md-4">
                         <div class="card mb-3 pop-card" >
                             <div class="card-body">
-                                <a href="{{ url('/user/bookmark_list') }}">
-                                    <h5 class="card-title">ブックマーク(しおり)</h5>
-                                    <p class="card-text"> あなたのブックマーク表現全般</p>
+                                <!-- <a href="{{-- url('/user/bookmark_list') --}}"> -->
+                                    <h5 class="card-title">ブックマーク</h5>
+                                    <p class="card-text">{{ $myAllPhraseLikesCount }}個</p>
+                                    <!-- <p class="card-text"> あなたのブックマーク表現全般</p> -->
                                     <div class="item_box">
                                     @if($myAllPhraseLikes)
                                         @foreach ($myAllPhraseLikes as $myAllPhraseLike)
                                         <p class="card-text">{{ $myAllPhraseLike->phrase->phrase }}</p>
-                                        <hr/>
+                                        <!-- <hr/> -->
                                         @endforeach
                                     @endif
                                     </div>
-                                    <p class="card-text">{{ $myAllPhraseLikesCount }}個</p>
-                                </a>
+                                    
+                                <!-- </a> -->
                             </div>
                             <hr/>
                             <p class="text-right"><a href="{{ url('/phrase') }}">お気に入りを探しにいく(見つける)<span><i class="bi bi-arrow-right-short"></i></span></a></p>
@@ -327,9 +328,10 @@ transition: all 1s -0.2s ease-in-out;
                     <div class="col-md-4">
                         <div class="card mb-3 pop-card" >
                             <div class="card-body">
-                                <a href="{{ url('/user/phrase') }}">
+                                <!-- <a href="{{-- url('/user/phrase') --}}"> -->
                                     <h5 class="card-title">自分の表現</h5>
-                                    <p class="card-text"> あなたの作った表現全般</p>
+                                    <p class="card-text">{{ $myAllPhrasesCount }}個</p>
+                                    <!-- <p class="card-text"> あなたの作った表現全般</p> -->
                                     <div class="item_box">
                                     @if($myAllPhrases)
                                         @foreach ($myAllPhrases as $myAllPhrase)
@@ -338,8 +340,7 @@ transition: all 1s -0.2s ease-in-out;
                                         @endforeach
                                     @endif
                                     </div>                   
-                                    <p class="card-text">{{ $myAllPhrasesCount }}個</p>
-                                </a>
+                                <!-- </a> -->
                             </div>
                             <hr/>
                             <p class="text-right"><a href="{{ url('/user/phrase/create') }}">表現を作る<span><i class="bi bi-arrow-right-short"></i></span></a></p>
@@ -349,10 +350,11 @@ transition: all 1s -0.2s ease-in-out;
                     <div class="col-md-4">
                         <div class="card mb-3 pop-card" >
                             <div class="card-body ">
-                                <a href="{{ url('/event') }}">
+                                <!-- <a href="{{-- url('/event') --}}"> -->
                                     <h5 class="card-title">イベント</h5>
-                                    <p class="card-text"><i class="bi bi-person-fill"></i></p>
-                                    <p class="card-text"> あなたの作ったイベント全般</p>
+                                    <p class="card-text">{{ $myAllEventsCount }}個</p>
+                                    <!-- <p class="card-text"><i class="bi bi-person-fill"></i></p> -->
+                                    <!-- <p class="card-text"> あなたの作ったイベント全般</p> -->
                                     <div class="item_box">
                                     @if($myAllEvents)      
                                         @foreach ($myAllEvents as $myAllEvent)
@@ -361,8 +363,7 @@ transition: all 1s -0.2s ease-in-out;
                                         @endforeach
                                     @endif
                                     </div>              
-                                    <p class="card-text">{{ $myAllEventsCount }}個</p>
-                                </a>
+                                <!-- </a> -->
                             </div>
                             <hr/>
                             <p class="text-right"><a href="{{ url('/user/event/create') }}">イベントを作る<span><i class="bi bi-arrow-right-short"></i></span></a></p>    

@@ -3,10 +3,26 @@
 @section('content')
 
 <div class="container">
+
+{{ Breadcrumbs::render('admin.phrase_category.create') }}
+
+    <div class="row">
+        <div class="col-sm-12">
+            @if(session()->get('success'))
+            <div class="alert alert-success">
+                {{ session()->get('success') }} 
+            </div>
+            @endif
+        </div>
+    </div>
+</div>
+
+<div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1 class="display-3">カテゴリ追加</h1>
             <div class="card base-card">
-                <div class="card-header">{{ __('PhraseCategory') }}</div>
+                <div class="card-header">{{ __('カテゴリ追加') }}</div>
                 <div class="card-body">
                     @if ($errors->any())
                     <div class="alert alert-danger">
@@ -20,21 +36,21 @@
                     <form method="post" action="{{ route('admin.phrase_category.store') }}">
                     @csrf
                         <div class="form-group row">
-                            <label for="phrase_category" class="col-md-4 col-form-label text-md-right">{{ __('PhraseCategory') }}</label>
+                            <label for="phrase_category" class="col-md-4 col-form-label text-md-right">{{ __('カテゴリ') }}</label>
                             <div class="col-md-6">
                                 <input id="" type="text" class="form-control" name="phrase_category" value="{{ old('phrase_category') }}" required autocomplete="" autofocus />
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="phrase_category_name" class="col-md-4 col-form-label text-md-right">{{ __('PhraseCategoryName') }}</label>
+                            <label for="phrase_category_name" class="col-md-4 col-form-label text-md-right">{{ __('カテゴリの読み方') }}</label>
                             <div class="col-md-6">
                                 <input id="" type="text" class="form-control" name="phrase_category_name" value="{{ old('phrase_category_name') }}" required autocomplete="" autofocus />
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="phrase_category" class="col-md-4 col-form-label text-md-right">大カテゴリ</label>
+                            <label for="phrase_category" class="col-md-4 col-form-label text-md-right">カテゴリの分類</label>
                             <div class="col-md-6">
                                 <ul>
                                     @foreach($base_categories as $base_category)
@@ -64,7 +80,5 @@
         </div>
     </div>
 </div>
-
-<button><a href="{{route('admin.phrase_category.index')}}">管理者カテゴリ一覧</a></button>
 
 @endsection('content')

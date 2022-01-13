@@ -7,8 +7,8 @@
 {{ Breadcrumbs::render('user.phrase.edit', $phrase) }}
 
 <div class="container">
-    <div class="row"><!-- "row justify-content-center -->
-        <div class="col-sm-8 offset-sm-2">
+    <div class="row justify-content-center"><!-- "row justify-content-center -->
+        <div class="col-sm-8">
             <div class="card base-card">
                 <div class="card-header">{{ __('表現変更') }}</div>
                 <div class="card-body">
@@ -31,7 +31,7 @@
                             <div class="col-md-6 textarea-space">
                             <!-- <textarea class="form-control" rows="4" name="phrase">{{-- $phrase->phrase --}}</textarea> -->
                             <!-- <input type="text" name="phrase" value="{{-- $phrase->phrase --}}" class="m-form-text" /> -->
-                                <textarea name="phrase" class="m-form-textarea">{{ $phrase->phrase }}</textarea>
+                                <textarea name="phrase" class="m-form-textarea" rows="2">{{ $phrase->phrase }}</textarea>
                                 <small class="form-text text-muted">max length is xxxxx</small>
                             </div>
                         </div>

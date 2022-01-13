@@ -19,7 +19,7 @@ class AdminLoginController extends Controller
 		//ログイン成功
 		if($user_id == "hogehoge" && $password == "fugafuga"){
 			$request->session()->put("admin_auth", true);
-			return redirect("/admin");///admin/top
+			return redirect("/admin");
 		}
 		//ログイン失敗
 		return redirect("admin/login")->withErrors([

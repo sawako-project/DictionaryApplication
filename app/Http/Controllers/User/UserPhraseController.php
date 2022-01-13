@@ -190,26 +190,26 @@ class UserPhraseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    // public function show($id)
+    // {
 
-        $phrase = Phrase::find($id);
+    //     $phrase = Phrase::find($id);
         
-        if(!$phrase){
-            return back()->withError("これはだめだ");//return redirect()?
-        }
+    //     if(!$phrase){
+    //         return back()->withError("これはだめだ");//return redirect()?
+    //     }
         
-        //Likeの取得
-        $like = PhraseLike::where("user_id","=",Auth::id())
-        ->where("phrase_id","=",$phrase->id)->first();
+    //     //Likeの取得
+    //     $like = PhraseLike::where("user_id","=",Auth::id())
+    //     ->where("phrase_id","=",$phrase->id)->first();
 
-        return view('user.phrases.show',[
-            'phrase' => $phrase,
-            "like" => $like,
-            "editable" => $phrase->user_id == Auth::id()
-        ]);
+    //     return view('user.phrases.show',[
+    //         'phrase' => $phrase,
+    //         "like" => $like,
+    //         "editable" => $phrase->user_id == Auth::id()
+    //     ]);
     
-    }
+    // }
 
     /**
      * Show the form for editing the specified resource.

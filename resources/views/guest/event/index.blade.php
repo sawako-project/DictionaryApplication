@@ -1,6 +1,6 @@
 @extends('layouts.dictionary',["title"=>"Dectionary","show_mv" => false])
  
-@section('header-title', 'イベント')
+@section('header-title', 'イベントメニュー')
 
 @section('content')
 
@@ -10,9 +10,30 @@
 </div>
 @endif
 
+<div class="container"><!-- container-fluid -->
+    <div class="row"><!-- row no-gutters -->
+        <div class="col-sm-12">
+            <div class="card text-center mb-5 base-card">
+                <div class="card-body">
+                    <p>イベントのグループは｢イベントの掲示板｣、｢開催中のイベント｣、｢まもなく終了するイベント｣、｢終了したイベント｣に分けられています。</p>
+                    <hr/>
+                    <p>｢イベントの掲示板｣は｢開催中のイベント｣、｢まもなく終了するイベント｣、｢終了したイベント｣を含んだ今までのイベントを見れます。</p>
+                    <hr/>
+                    <p>｢開催中のイベント｣はイベントが開催中で、ユーザーの方はそのイベントへのエントリーと他のエントリーへの投票ができます。非ユーザーの方はエントリーへの投票のみできます。</p>
+                    <hr/>
+                    <p>｢まもなく終了するイベント｣はエントリーやそれに対しての投票の受付がまもなく終了するイベントが集められます。イベントの終了日時の二日前になるとここに表示されます。</p>
+                    <hr/>
+                    <p>｢終了したイベント｣は開催が終了したイベントで、エントリーに対する投票数の結果が確認できます。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @auth
 <div class="event_create" id="event_create">
-    <a href="{{ route('user.event.create') }}"><i class="bi bi-plus-square fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="イベントを作る"></i></a>
+    <!-- <a href="{{-- route('user.event.create') --}}"><i class="bi bi-plus-square fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="イベントを作る"></i></a> -->
+    <a href="{{ route('user.event.create') }}" class="btn btn-outline-primary text-nowrap mb-3">イベントを作る</a>
 </div>
 @endauth
 
@@ -26,7 +47,7 @@
 
 @isset($events)
 <div class="heading">
-    <h2><strong><span class="under">全てのイベント</span></strong></h2>
+    <h2><strong><span class="under">イベントの掲示板</span></strong></h2>
 </div>
 @if(count($events) < 1)
 <p>イベントはありません</p>
@@ -36,18 +57,9 @@
     <div class="row"><!-- row no-gutters -->
         @foreach($events as $event)
         <div class="col-sm-12">
-            <div class="card event-item text-center mb-5 pop-card">
-                <div class="card-body">
-                    <h5 class="card-title">お題・テーマ: ｢<strong>{{ $event->event_text }}</strong>｣<span>な状況(時)の表現</span></h5>
-                    <p class="card-text"><i class="bi bi-person-fill"></i> イベント発案者: {{ ($event->user) ? $event->user->name : "-"}}</p>
-                    <p class="card-text">終了日時: {{ $event->schedule_end }}</p>
-                    <p class="card-text">
-                        <small class="text-muted"><time datetime="{{ $event->updated_at->format('Y-m-d H:i:s') }}">作成日時: {{ $event->updated_at->format("Y-m-d H:i:s") }}</time></small>
-                    </p>
-                    <p><span class="badge badge-primary">エントリー数: {{ $event->posts->count() }}件</span></p>
-                </div>
-                <p class="text-right"><a href="{{ url('/event/detail', ['event_id' => $event->id]) }}">このイベントに参加する<span><i class="bi bi-arrow-right-short"></i></span></a></p>
-            </div>
+            
+            @include("parts.event.event_info", ["event" => $event])
+            
         </div>
         @endforeach
     </div>
@@ -71,18 +83,9 @@
     <div class="row"><!-- row no-gutters -->
         @foreach($events_hold as $event)
         <div class="col-sm-12">
-            <div class="card event-item text-center mb-5 pop-card">
-                <div class="card-body">
-                    <h5 class="card-title">その作成するグループタグに入れる表現についての説明(内容): {{ $event->event_text }}</h5>
-                    <p class="card-text"><i class="bi bi-person-fill"></i>イベント発案者: {{ ($event->user) ? $event->user->name : "-"}}</p>
-                    <p class="card-text">終了日時: {{ $event->schedule_end }}</p>
-                    <p class="card-text">
-                        <small class="text-muted"><time datetime="{{ $event->updated_at->format('Y-m-d H:i:s') }}">作成日時: {{ $event->updated_at->format("Y-m-d H:i:s") }}</time></small>
-                    </p>
-                    <p><span class="badge badge-primary">エントリー数: {{ $event->posts->count() }}件</span></p>
-                </div>
-                <p class="text-right"><a href="{{ url('/event/detail', ['event_id' => $event->id]) }}">このイベントに参加する<span><i class="bi bi-arrow-right-short"></i></span></a></p>
-            </div>
+
+        @include("parts.event.event_info", ["event" => $event])
+
         </div>
         @endforeach
     </div>
@@ -104,22 +107,13 @@
 
 <div class="container"><!-- container-fluid -->
     <div class="row"><!-- row no-gutters -->
+        <div class="col-sm-12">
     @foreach($event_soonEnd as $event)
-    <div class="col-sm-12">
-        <div class="card event-item text-center mb-5 pop-card">
-            <div class="card-body">
-                <h5 class="card-title">その作成するグループタグに入れる表現についての説明(内容): {{ $event->event_text }}</h5>
-                <p class="card-text"><i class="bi bi-person-fill"></i>イベント発案者: {{ ($event->user) ? $event->user->name : "-"}}</p>
-                <p class="card-text">終了日時: {{ $event->schedule_end }}</p>
-                <p class="card-text">
-                    <small class="text-muted"><time datetime="{{ $event->updated_at->format('Y-m-d H:i:s') }}">作成日時: {{ $event->updated_at->format("Y-m-d H:i:s") }}</time></small>
-                </p>
-                <p><span class="badge badge-primary">エントリー数: {{ $event->posts->count() }}件</span></p>
-            </div>
-            <p class="text-right"><a href="{{ url('/event/detail', ['event_id' => $event->id]) }}">このイベントに参加する<span><i class="bi bi-arrow-right-short"></i></span></a></p>
-        </div>
-    </div>
+        
+        @include("parts.event.event_info", ["event" => $event])
+
     @endforeach
+        </div>
     </div>
 </div>
 
@@ -130,29 +124,20 @@
 
 @isset($events_end)
 <div class="heading">
-    <h2><strong><span class="under">終了したイベント履歴</span></strong></h2>
+    <h2><strong><span class="under">終了したイベント</span></strong></h2>
 </div>
 
 @if(count($events_end) < 1)
-<p>終了したイベント履歴はありません</p>
+<p>終了したイベントはありません</p>
 @endif
 
 <div class="container"><!-- container-fluid -->
     <div class="row"><!-- row no-gutters -->
         @foreach($events_end as $event)
         <div class="col-sm-12">
-            <div class="card event-item text-center mb-5 pop-card">
-                <div class="card-body">
-                    <h5 class="card-title">その作成するグループタグに入れる表現についての説明(内容): {{ $event->event_text }}</h5>
-                    <p class="card-text"><i class="bi bi-person-fill"></i>イベント発案者: {{ ($event->user) ? $event->user->name : "-"}}</p>
-                    <p class="card-text">終了日時: {{ $event->schedule_end }}</p>
-                    <p class="card-text">
-                        <small class="text-muted"><time datetime="{{ $event->updated_at->format('Y-m-d H:i:s') }}">作成日時: {{ $event->updated_at->format("Y-m-d H:i:s") }}</time></small>
-                    </p>
-                    <p><span class="badge badge-primary">エントリー数: {{ $event->posts->count() }}件</span></p>
-                </div>
-                <p class="text-right"><a href="{{ url('/event/detail', ['event_id' => $event->id]) }}">このイベントに参加する<span><i class="bi bi-arrow-right-short"></i></span></a></p>
-            </div>
+
+        @include("parts.event.event_info", ["event" => $event])
+
         </div>
         @endforeach
     </div>
@@ -171,6 +156,7 @@
 
 </style>
 
-<a class="btn btn-outline-primary" href="{{ url('/event') }}">イベント全体</a>
+<hr>
+<a class="btn btn-outline-primary" href="{{ url('/event') }}">イベントメニューに戻る</a>
 
 @endsection('content')

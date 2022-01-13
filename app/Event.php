@@ -19,7 +19,7 @@ class Event extends Model
         return $this->hasMany("App\EventPost");
     }
 
-    //
+    //イベントの締切
     function isClosed(){
     
         $end = strtotime($this->schedule_end);

@@ -1,3 +1,4 @@
+<style>
 @charset "UTF-8";
 
 /* 全般 */
@@ -613,3 +614,4 @@ p{
 /* .contact input,textarea{
   visibility: hidden;
 } */
+</style>

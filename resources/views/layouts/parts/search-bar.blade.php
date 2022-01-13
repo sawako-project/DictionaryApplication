@@ -1,5 +1,5 @@
-<div id="backgroundImg">
-    <h1 class="glowAnime">表現を見つけましょう。</h1>
+<!-- <div id="backgroundImg">
+    <h1 class="glowAnime">表現を見つけましょう。</h1> -->
     <div class="search-area">
         <div class="search-area-inner">
             <form action="{{url('/search_phrases')}}" method="get" name="search">
@@ -14,4 +14,4 @@
             </form>
         </div>
     </div>
-</div>
+<!-- </div> -->

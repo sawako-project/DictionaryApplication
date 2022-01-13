@@ -13,15 +13,7 @@
                 <div class="card-body">              
                 @if($phrases)      
                 @foreach ($phrases as $phrase)
-                    <div class="item_box">
-                        <p class="card-text">{{ $phrase->updated_at }}</p>
-                        <p class="card-text">{{ $phrase->phrase }}</p>
-                        @foreach($phrase->phraseCategories as $phraseCategory)
-                        <!-- <p class="card-text"><a href="{{-- route('phrase.category', ['category' => $phraseCategory->phrase_category]) --}}" class="btn btn-secondary">{{-- $phraseCategory->phrase_category --}}</a></p> -->
-                        <p class="card-text">{{ $phraseCategory->phrase_category }}</p>
-                        <p class="card-text">by:{{ ($phrase->user) ? $phrase->user->name : "-"}}<i class="bi bi-person-fill"></i></p> 
-                        @endforeach
-                    </div>
+                    @include("parts.phrase.phrase_item", ["phrase" => $phrase])
                     <hr/>
                 @endforeach
                 @endif

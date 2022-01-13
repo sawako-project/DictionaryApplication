@@ -3,20 +3,24 @@
 @section('content')
 
 <div class="container">
-	<div class="card base-card">
-		<div class="card-header">管理側TOP</div>
-		<div class="card-body">
-			<!-- <div>
-				<a href="{{-- url('admin/user_list') --}}" class="btn btn-primary">ユーザー一覧</a>
-			</div> -->
-            <button><a href="{{route('admin.phrase.index')}}">管理者表現一覧</a></button>
-            <button><a href="{{route('admin.phrase_category.index')}}">管理者カテゴリ一覧</a></button>
-            <!-- <button><a href="{{--route('admin.base_category.index')--}}"> ｢管理者分類一覧｣</a></button> --> 
-			<button><a href="{{route('admin.event.index')}}">管理者イベント一覧</a></button>
-			<form method="post" action="{{ url('admin/logout') }}">
-				@csrf
-				<input type="submit" class="btn btn-danger" value="ログアウト" />
-			</form>
+	<div class="row justify-content-center">
+		<div class="col-sm-8">
+			<div class="card base-card">
+				<div class="card-header">管理側トップ</div>
+				<div class="card-body">
+					<a href="{{route('admin.phrase.index')}}" class="btn btn-primary">管理者表現一覧</a>
+					<a href="{{route('admin.phrase_category.index')}}" class="btn btn-primary">管理者カテゴリ一覧</a>
+					<!-- <a href="{{--route('admin.base_category.index')--}}" class="btn btn-primary">管理者分類一覧</a> -->
+					<a href="{{route('admin.event.index')}}" class="btn btn-primary">管理者イベント一覧</a>
+					<form method="post" action="{{ url('admin/logout') }}">
+						@csrf
+						<!-- <input type="submit" class="btn btn-danger" value="ログアウト" /> -->
+						<button type="submit" class="btn btn-danger my-1">
+							{{ __('ログアウト') }}
+						</button>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

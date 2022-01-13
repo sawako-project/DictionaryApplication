@@ -28,18 +28,18 @@
                     <form method="post" action="{{ route('about.contact.confirm') }}">
                     @csrf
                         <div class="form-group row">
-                            <label for="call_name" class="col-md-4 col-form-label text-md-right">お問い合わせ時氏名(カタカナ・フリガナ・読み方(カタカナ))</label>
-                            <div class="col-md-6">
-                                <input type="text" name="call_name" value="{{ old('call_name') }}" class="m-form-text" />
-                            </div>
-                            <small class="form-text text-muted">全角で記入してください</small>
-                        </div>
-                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">お問い合わせ時氏名(漢字)</label>
                             <div class="col-md-6">
                                 <input type="text" name="name" value="{{ old('name') }}" class="m-form-text" />
+                                <small class="form-text text-muted">全角で記入してください</small>
                             </div>
-                            <small class="form-text text-muted">全角で記入してください</small>
+                        </div>
+                        <div class="form-group row">
+                            <label for="call_name" class="col-md-4 col-form-label text-md-right">お問い合わせ時氏名(フリガナ)</label>
+                            <div class="col-md-6">
+                                <input type="text" name="call_name" value="{{ old('call_name') }}" class="m-form-text" />
+                                <small class="form-text text-muted">全角で記入してください</small>
+                            </div>
                         </div>
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('メールアドレス') }}</label>
@@ -50,8 +50,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <small class="form-text text-muted">メールアドレスを記入してください</small>
                             </div>
-                            <small class="form-text text-muted">メールアドレスを記入してください</small>
                         </div>
                         <div class="form-group row">
                             <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('タイトル') }}</label>
@@ -62,8 +62,8 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
+                                <small class="form-text text-muted">※なくても大丈夫です。</small>
                             </div>
-                            <small class="form-text text-muted">※なくても大丈夫です。</small>
                         </div>
                         <div class="form-group row">
                             <label for="contact_text" class="col-md-4 col-form-label text-md-right">{{ __('お問い合わせ内容') }}</label>

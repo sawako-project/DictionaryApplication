@@ -89,16 +89,16 @@
                                 <button type="submit" class="btn btn-primary"><!-- class="btn btn-primary"class="btn btn-success"-->
                                     {{ __('ログイン') }}
                                 </button>
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
                             </div>
+                            @if (Route::has('password.request'))
+                            <a class="btn btn-link" href="{{ route('password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a>
+                            @endif
                         </div>
-                        <p><a href="{{ url('/register') }}">まだ登録していない方はこちら</a></p>
                     </form>
                 </div>
+                <p><a href="{{ url('/register') }}">まだ登録していない方はこちら</a></p>
             </div>
         </div>
     </div>

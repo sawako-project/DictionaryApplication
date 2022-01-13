@@ -71,65 +71,88 @@
 <div class="container"><!-- container-fluid -->
     <div class="row"><!-- row no-gutters -->
         <div class="col-sm-6">
-            <h2>非会員が利用可能なサービス</h2>
-            <ul>
-                <li>表現探し</li>
-                <li>イベントに投稿されたエントリーへの投票</li>
-            </ul>
+            <div class="card text-center mb-5 base-card">
+                <div class="card-body">
+                    <h2>非ユーザーの方がご利用いただけるサービス</h2>
+                    <hr/>          
+                    <ul>
+                        <li>検索バーでの表現探し</li>
+                        <li>イベントに投稿されたエントリーへの投票</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+
         <div class="col-sm-6">
-            <h2><strong>ユーザーになれば利用可能なサービス</strong></h2>
-            <ul>
-                <li>お気に入りブックマーク登録</li>
-                <li>表現の作成、登録</li>
-                <li>イベントの作成、イベントへのエントリー投稿</li>
-            </ul>
+            <div class="card text-center mb-5 base-card">
+                <div class="card-body">
+                    <h2><strong>ユーザーになればご利用いただけるサービス</strong></h2>
+                    <hr/>
+                    <ul>
+                        <li>気に入った表現のお気に入り、ブックマーク登録</li>
+                        <li>表現の作成、カテゴリでの登録</li>
+                        <li>イベントの作成、イベントへのエントリー投稿</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
+
     <div class="row">
         <div class="col-sm-12">
-            <h2><strong>ご利用ガイド</strong></h2>
-            <h2><strong>ユーザーの方がご利用可能なサービス</strong></h2>
+
+            <div class="heading mb-5">
+                <h2><strong><span class="under">ユーザーの方がご利用可能なサービス</span></strong></h2>
+            </div>
+            <section class="card mb-5 pop-card">
+                <div class="title">表現のブックマークの仕方</div>
+                <div class="box">
+                    <p>上のナビバーの｢<i class="bi bi-person-fill"></i>(ユーザー名)｣をクリックして｢MyMenu｣を開き、メニューリストから｢表現を見る｣を開きます。そして気になった表現のカード下の<span class="btn btn-light"><i class="bi bi-bookmark"></i></span>をクリックすると<span class="btn btn-light"><i class="bi bi-bookmark-fill"></i></span>になります。 <span class="btn btn-light"><i class="bi bi-bookmark-fill"></i></span>になるとブックマーク完了です。</p>   
+                    </p>また、再度
+                        <span class="btn btn-light"><i class="bi bi-bookmark-fill"></i></span>をクリックすると
+                        <span class="btn btn-light"><i class="bi bi-bookmark"></i></span>になります。     
+                    </p>
+                    <p>ブックマークした表現は、上のナビバーの｢<i class="bi bi-person-fill"></i>(ユーザー名)｣→MyMenuの｢ブックマーク｣から一覧で見れます。なお、<span class="btn btn-light"><i class="bi bi-bookmark-fill"></i></span>をクリックするとその表現は｢ブックマーク｣から削除されます。</p>
+                    <p>※非ユーザーの方は利用いただけないサービスとなっております。</p> 
+                </div>
+                
+            </section>
 
             <section class="card mb-5 pop-card">
-                <div class="title">表現の作成、登録の仕方</div>
-                <!-- <h3 class="title">表現の作成、登録の仕方</h3> -->
+                <div class="title">表現の作成の仕方</div>
                 <div class="box">
-                    <p>上のナビバー又は下のメニューの｢｣を開き、作成登録したい表現を表現欄に記入して、それに当てはまるカテゴリを選択して、作成ボタンを押していただいたら表現の作成、登録ができます。</p>
+                    <p>上のナビバーの｢<i class="bi bi-person-fill"></i>(ユーザー名)｣をクリックして｢MyMenu｣を開き、メニューリストから｢表現作成｣を開きます。そして作成したい表現の項目を欄内に記入し、それに当てはまるカテゴリを選択して、作成ボタンを押していただいたら表現の作成ができます。</p>
                     <p>※非ユーザーの方は利用いただけないサービスとなっております。</p>
                 </div>
             </section>
 
             <section class="card mb-5 pop-card">
-                <div class="title">イベントの作成</div>
-                <!-- <h3 class="title">イベントの作成</h3> -->
+                <div class="title">イベントの作成の仕方</div>
                 <div class="box">
-                    <p>上のナビバー又は下のメニューの｢｣を開き、作成したいイベントについてをイベント内容欄に記入して、(それに当てはまるカテゴリを選択して、)イベント終了日時の指定をして、作成ボタンを押していただいたらイベントの作成ができます。</p>
+                    <p>上のナビバーの｢<i class="bi bi-person-fill"></i>(ユーザー名)｣をクリックして｢MyMenu｣を開き、メニューリストから｢イベント作成｣を開きます。そして作成したいイベントの項目をイベント内容欄に記入し、それに当てはまるカテゴリを選択、イベント終了日時の指定をして、作成ボタンを押していただいたらイベントの作成ができます。</p>
                     <p>※非ユーザーの方は利用いただけないサービスとなっております。</p>
                 </div>
             </section>
 
             <section class="card mb-5 pop-card">
-                <div class="title">エントリーの作成</div>
-                <!-- <h3 class="title">エントリーの作成</h3> -->
+                <div class="title">エントリーの作成の仕方</div>
                 <div class="box">
-                    <p>上のナビバー又は下のメニューの｢｣を開き、作成したいイベントについてをイベント内容欄に記入して、(それに当てはまるカテゴリを選択して、)イベント終了日時の指定をして、作成ボタンを押していただいたらイベントの作成ができます。</p>
+                    <p>上のナビバーの｢<i class="bi bi-person-fill"></i>(ユーザー名)｣をクリックして｢MyMenu｣を開き、メニューリストから｢イベント｣を開きます。そして｢イベントメニュー｣の｢開催中のイベント｣、｢まもなく終了するイベント｣から参加したいイベントを選び、イベント内容下の｢イベントエントリー｣を押してエントリー欄に記入して、エントリーボタンを押していただいたらそのイベントへのエントリーの作成ができます。</p>
                     <p>※非ユーザーの方は利用いただけないサービスとなっております。</p>
                 </div>
             </section>
 
-            <h2><strong>ご利用ガイド</strong></h2>
-            <h2><strong>非ユーザーの方もご利用可能なサービス</strong></h2>
-
+            <div class="heading mb-5">
+                <h2><strong><span class="under">非ユーザーの方もご利用可能なサービス</span></strong></h2>
+            </div>
             <section class="card mb-5 pop-card">
-                <div class="title">投票の仕方</div>
-                <!-- <h3 class="title">投票の仕方</h3> -->
+                <div class="title">エントリーへの投票の仕方</div>
                 <div class="box">
-                    <p>各イベントに投稿されているエントリーの下に｢｣ボタンがあるので</p>
+                    <p>非ユーザーの方は、上のナビバーの｢イベント｣を開き、｢イベントメニュー｣の｢開催中のイベント｣、｢まもなく終了するイベント｣から見たいイベントを選ぶと、イベント内容下に表示されているエントリーが見れます。そして各エントリー下に投票アイコン<span class="btn btn-light"><i class="bi bi-hand-thumbs-up"></i></span>があるのでその中で気になるエントリーを見つけて<span class="btn btn-light"><i class="bi bi-hand-thumbs-up"></i></span>を押していただくと<span class="btn btn-light"><i class="bi bi-hand-thumbs-up-fill"></i></span>になり、その気になるエントリーへの投票ができます。</p>
+                    <p>ユーザーの方は、上のナビバーの｢<i class="bi bi-person-fill"></i>(ユーザー名)｣をクリックして｢MyMenu｣を開き、メニューリストから｢イベント｣を開きます。次に｢イベントメニュー｣の｢開催中のイベント｣、｢まもなく終了するイベント｣から見たいイベントを選ぶと、イベント内容下に表示されているエントリーが見れます。そして各エントリー下に投票アイコンがあるのでその中で気になるエントリーを見つけて投票アイコンを押していただいたらその気になるエントリーへの投票ができます。</p>
                     <p>※こちらは非ユーザーの方もご利用いただけるサービスとなっております。</p>
                 </div>
             </section>
-
         </div>
     </div>
 </div>

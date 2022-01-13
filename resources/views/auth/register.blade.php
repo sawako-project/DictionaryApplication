@@ -77,9 +77,9 @@
                                 </button>
                             </div>
                         </div>
-                        <a href="{{ url('/login') }}">既に登録している方はこちら</a>
                     </form>
                 </div>
+                <a href="{{ url('/login') }}">既に登録している方はこちら</a>
             </div>
         </div>
     </div>

@@ -60,14 +60,14 @@ class AdminEventController extends Controller
             $events_hold = Event::where("schedule_end",">",$nowTime)->orderBy("updated_at","desc")->paginate(2, ["*"], 'events_hold')->withPath("/admin/event/status/events_hold");
             //$events_hold = Event::where("schedule_end",">",$nowTime)->orderBy("updated_at","desc")->get();
         }
-        // dd($events_hold);
+
         if($mode == "all" || $mode == "event_soonEnd"){
             //まもなく終了(今日～2日後まで)
             $soon_min = Carbon::today();
             $soon_max = Carbon::parse("+2 days");
             
-             $event_soonEnd = Event::where("schedule_end",">=",$soon_min)->where("schedule_end","<=",$soon_max)->orderBy('schedule_end','asc')->paginate(2, ["*"], 'event_soonEnd')->withPath("/admin/event/status/event_soonEnd");
-             }
+            $event_soonEnd = Event::where("schedule_end",">=",$soon_min)->where("schedule_end","<=",$soon_max)->orderBy('schedule_end','asc')->paginate(2, ["*"], 'event_soonEnd')->withPath("/admin/event/status/event_soonEnd");
+        }
 
         if($mode == "all" || $mode == "events_end"){
             $events_end = Event::where("schedule_end","<",$nowTime)->orderBy("updated_at","desc")->paginate(2, ["*"], 'events_end')->withPath("/admin/event/status/events_end");
@@ -94,7 +94,7 @@ class AdminEventController extends Controller
         
     }
         
-    function detail(Request $request,$eventId){//{event_id}
+    function detail(Request $request,$eventId){
 
         $event = Event::findOrFail($eventId);
         $eventPost = EventPost::where('event_id',$eventId)->orderBy("id", "desc")->paginate(10);
@@ -124,19 +124,6 @@ class AdminEventController extends Controller
                 $event_posts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc');//->get()->all();
                 //$array = $event_posts->get()->toArray();
                 $array = $event_posts->pluck('post_text')->toArray();
-                ////////////
-                //dd($array);
-                //         //dd($event_posts);
-                //         //dd($eventPosts);
-                $arrays = array_slice($array , 0, 3);
-                dd($arrays);
-                // foreach($eventPost as $key => $value){
-                //     dd( "キー(\$key) : {$key}　値(\$value) : {$value}<br/>\n");
-                // }
-                // foreach($arrays as  $value){
-                //     //dd($value);
-                // }
-                /////////////
 
                 return view('admin.event.closed_situation',[//guest.event.closed_detail
                     'event' => $event,
@@ -159,12 +146,14 @@ class AdminEventController extends Controller
 
     }
   
-    function postDetail(Request $request,$eventPostId){//event_post_id
+    function postDetail(Request $request,$eventPostId){
 
         $eventPost = EventPost::findOrFail($eventPostId);
         //$eventPost = EventPost::where('id',$eventPostId)->orderBy("id", "desc")->paginate(10);
         if(!$eventPost){
-            return back()->withError("これはだめだ");//return redirect()?
+
+            //return redirect()
+            return back()->withError("これはだめだ");
         }
 
         if(!Auth::id()){
@@ -187,7 +176,6 @@ class AdminEventController extends Controller
         // ->whereIn("event_post_id",$postIdList)
         // ->get();
 
-        
         // $votes = [];
         // foreach($allVotes as $vote){
         //     $votes[$vote->event_post_id] = $vote->vote;
@@ -228,6 +216,7 @@ class AdminEventController extends Controller
                     }
                     //else{//$eventIdがなければ
                     //}   
+
                 $eventVote->event_post_id = $eventPostId;
                 $eventVote->save();
 
@@ -235,7 +224,8 @@ class AdminEventController extends Controller
 
                 $eventVote = new EventVote();
                 $eventVote->vote = true;
-                $eventVote->user_id = Auth::id();//ログインしているidをDBのカラム｢user_id｣に置き換え？
+                $eventVote->user_id = Auth::id();
+
                     if (isset($eventId)){
                         $eventVote->event_id = $eventId;
                     }

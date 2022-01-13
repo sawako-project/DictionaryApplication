@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-sm-12 "><!-- border -->
             <div class="card base-card">
-            <div class="card-header">検索結果: ｢{{ $keyword }}｣についての表現</div>
+            <div class="card-header">検索結果: ｢<strong>{{ $keyword }}</strong>｣についての表現</div>
                 <div class="card-body">
                     <div class="item_box">
                         <p class="card-title"><strong><span style="border-bottom: solid 1px #000;">カテゴリ</span></strong></p><!-- h5 -->
@@ -93,20 +93,12 @@
             <div class="card mb-5 pop-card">
                 <div class="card-header">新規の表現(10件、総合)</div>
                 <div class="card-body">
-                    @if($phrases)      
-                    @foreach ($phrases as $phrase)
-                    <div class="item_box">
-                        <p class="card-text">{{ $phrase->updated_at }}</p>
-                        <p class="card-text">{{ $phrase->phrase }}</p>
-                        @foreach($phrase->phraseCategories as $phraseCategory)
-                        <!-- <p class="card-text"><a href="{{-- route('phrase.category', ['category' => $phraseCategory->phrase_category]) --}}" class="btn btn-secondary">{{-- $phraseCategory->phrase_category --}}</a></p> -->
-                        <p class="card-text">{{ $phraseCategory->phrase_category }}</p>
-                        <p class="card-text">by:{{ ($phrase->user) ? $phrase->user->name : "-"}}<i class="bi bi-person-fill"></i></p>
-                        @endforeach
-                    </div>
+                @if($phrases)      
+                @foreach ($phrases as $phrase)
+                    @include("parts.phrase.phrase_item", ["phrase" => $phrase])
                     <hr/>
-                    @endforeach
-                    @endif
+                @endforeach
+                @endif
                     <hr/>
                     <p class="text-right"><a href="{{ url('/phrase') }}">表現一覧(掲示板)を開く(もっと見る)<span><i class="bi bi-arrow-right-short"></i></span></a></p>
                 </div>

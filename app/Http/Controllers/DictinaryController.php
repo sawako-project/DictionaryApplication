@@ -50,20 +50,20 @@ class DictinaryController extends Controller
         $phraseCategories_feelings = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "feeling");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();//->pluck("phrase_category");
+        })->orderBy("phrase_category_name", "asc")->get();//->pluck("phrase_category");->get();//
 
         //"code", "action"
         $phraseCategories_actions = PhraseCategory::whereHas("baseCategories", function ($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "action");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();
+        })->orderBy("phrase_category_name", "asc")->get();//->get();//
 
 
         //"code", "expression"
         $phraseCategories_expressions = PhraseCategory::whereHas("baseCategories", function ($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "expression");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();
+        })->orderBy("phrase_category_name", "asc")->get();//->get();//
 
         //イベント
         $nowTime = Carbon::now();//現在時刻

@@ -49,9 +49,36 @@
 
 /* css/admin_style.css */
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap');
+
 /* #app {
     background-color: pink;
 } */
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none; 
+    color: inherit;
+}
+
+.display-3 {
+    font-family: 'Noto Serif JP', serif;
+}
+
+.heading {
+    font-family: 'Noto Serif JP', serif;
+}
+
+p {
+    font-family: 'Noto Serif JP', serif;
+}
+
+.card-header {
+    font-weight: bold;
+}
 
 .table {
     font-family: 'Kiwi Maru', serif!important;
@@ -78,11 +105,80 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('admin.top') }}">
-                {{ config('app.name', 'Laravel') }}管理者ページ
+                    {{ config('app.name', 'Laravel') }}管理者ページ
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Left Side Of Navbar -->
+                    <!-- <ul class="navbar-nav mr-auto">
+                    </ul> -->
+                    <ul class="navbar-nav ml-auto">
+                    @if (Session::has('admin_auth'))
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{-- Auth::user()->name --}}
+                                管理者
+                            </a>
+                            <!-- <p>{{-- Session::get('admin_auth') --}}</p> -->
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <ul>
+                                    <li class="dropdown-item">
+                                        <a href="{{ route('admin.top') }}">管理者トップ</a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="{{route('admin.phrase.index')}}">管理者表現一覧</a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a href="{{route('admin.phrase_category.index')}}">管理者カテゴリ一覧</a>
+                                    </li>
+                                    <!-- <li class="dropdown-item">
+                                        <a href="{{--route('admin.base_category.index')--}}">管理者分類一覧</a>
+                                    </li> -->
+                                    <li class="dropdown-item">
+                                        <a href="{{route('admin.event.index')}}">管理者イベント一覧</a>
+                                    </li>
+                                    <li class="dropdown-item">
+                                        <a  href="{{ url('admin/logout') }}" style=""
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        {{ __('ログアウト') }}
+                                        </a>
+                                <!-- <form method="post" action="{{-- url('admin/logout') --}}">
+                                    {{--@csrf--}}
+                                    <input type="submit" class="btn btn-danger" value="ログアウト" />
+                                </form> -->
+                                        <form id="logout-form" action="{{ url('admin/logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                        </form>
+                                    </li>
+                                </ul>
+                                <!-- <a class="dropdown-item" href="{{-- route('logout') --}}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                    {{-- __('Logout') --}}
+                                </a>
+                                <form id="logout-form" action="{{-- route('logout') --}}" method="POST" class="d-none">
+                                    {{--@csrf--}}
+                                </form> -->
+                            </div>
+                        </li>
+                    @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('admin/login') }}">{{ __('Login') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/') }}">{{ __('Dictionary.サイトトップ') }}</a>
+                        </li>
+                    @endif
+                    </ul>
+         
+                    <!-- Right Side Of Navbar -->
+                    
+                        <!-- Authentication Links -->
+                </div>
             </div>
         </nav>
 

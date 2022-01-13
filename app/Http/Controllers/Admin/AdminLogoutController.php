@@ -10,7 +10,7 @@ class AdminLogoutController extends Controller
     //
     function logout(Request $request){
 		$request->session()->forget("admin_auth");
-		return redirect("/admin");///admin/top
+		return redirect("/admin");
 	}
 
 }

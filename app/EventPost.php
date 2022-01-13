@@ -29,39 +29,51 @@ class EventPost extends Model
         return $this->belongsTo("App\Phrase");
     }
 
-    function createPhrase(Event $event){
+////////
+    function isClosed(){
 
-        //phraseがあればスルー
-        if($this->phrase){
-            return;
+        $end = strtotime($this->event->schedule_end);
+        if(time() > $end){
+            return true;
         }
+        
+        return false;
+    }
+////////
+
+    // function createPhrase(Event $event){
+
+    //     //phraseがあればスルー
+    //     if($this->phrase){
+    //         return;
+    //     }
          
-        //phraseがなければ作成
-        $phrase = new Phrase([
-            "user_id" => $this->user_id,
-            "phrase" => $this->post_text,
-        ]);
-        $phrase->save();
+    //     //phraseがなければ作成
+    //     $phrase = new Phrase([
+    //         "user_id" => $this->user_id,
+    //         "phrase" => $this->post_text,
+    //     ]);
+    //     $phrase->save();
 
         
-        //イベントの名前でタグを自動で作って割り当てる
-        $tagLabel = "Event:" . $event->event_text;
+    //     //イベントの名前でタグを自動で作って割り当てる
+    //     $tagLabel = "Event:" . $event->event_text;
 
-        //tagがあれば取得
-        $tag = PhraseTag::where("phrase_tag", $tagLabel)->first();//PhraseTagのphrase_tagと参照
-        //tagがなければ作成
-        if(!$tag){
-            $tag = PhraseTag::create(["phrase_tag" => $tagLabel]);//PhraseTagのphrase_tagに入れる
-        }
+    //     //tagがあれば取得
+    //     $tag = PhraseTag::where("phrase_tag", $tagLabel)->first();//PhraseTagのphrase_tagと参照
+    //     //tagがなければ作成
+    //     if(!$tag){
+    //         $tag = PhraseTag::create(["phrase_tag" => $tagLabel]);//PhraseTagのphrase_tagに入れる
+    //     }
 
-        //PhraseTagのphrase_tagとして更新
-        $tagList = [];
-        $tagList[] = $tag->id;
-        $phrase->phraseTags()->attach($tagList);
+    //     //PhraseTagのphrase_tagとして更新
+    //     $tagList = [];
+    //     $tagList[] = $tag->id;
+    //     $phrase->phraseTags()->attach($tagList);
 
-        //連携
-        $this->phrase_id = $phrase->id;
-        $this->save();
-    }
+    //     //連携
+    //     $this->phrase_id = $phrase->id;
+    //     $this->save();
+    // }
     
 }
