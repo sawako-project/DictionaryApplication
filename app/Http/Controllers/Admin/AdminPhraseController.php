@@ -102,7 +102,7 @@ class AdminPhraseController extends Controller
 
         $phrase->phraseTags()->attach($tagList);
 
-        return redirect()->route("admin.phrase.index")->with('success', 'saved!');
+        return redirect()->route("admin.phrase.index")->with('success', '作成完了しました!');
     
     }
 
@@ -169,7 +169,7 @@ class AdminPhraseController extends Controller
         $tagList = $phraseTagService->phraseTagJsonDecode($tags);
         $phrase->phraseTags()->sync($tagList);
         
-        return redirect()->route("admin.phrase.index")->with('success', 'saved!');
+        return redirect()->route("admin.phrase.index")->with('success', '作成完了しました!');
     }
 
     /**
@@ -182,7 +182,7 @@ class AdminPhraseController extends Controller
     {
         //
         Phrase::find($id)->delete();
-        return redirect()->route("admin.phrase.index")->with('success', 'deleted!');
+        return redirect()->route("admin.phrase.index")->with('success', '削除しました!');
     }
 
 }

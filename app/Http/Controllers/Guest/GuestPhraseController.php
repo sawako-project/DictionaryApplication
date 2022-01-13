@@ -59,7 +59,7 @@ class GuestPhraseController extends Controller
         $phrase = Phrase::find($id);
         if(!$phrase){
             //return redirect()
-            return back()->withError("これはだめだ");
+            return back()->withError("エラーが発生しました");
         }
         
         //Likeの取得
@@ -79,7 +79,7 @@ class GuestPhraseController extends Controller
         $category = PhraseCategory::where("phrase_category","=",$category)->first();
         if(!$category){
             //return redirect()
-            return back()->withError("これはだめだ");
+            return back()->withError("エラーが発生しました");
         }
 
         $phraseCategory_id = $category->id;
@@ -102,7 +102,7 @@ class GuestPhraseController extends Controller
         $tag = PhraseTag::where("phrase_tag","=",$tag)->first();
         if(!$tag){
             //return redirect()
-            return back()->withError("これはだめだ");
+            return back()->withError("エラーが発生しました");
         }
 
         $phraseTag_id = $tag->id;

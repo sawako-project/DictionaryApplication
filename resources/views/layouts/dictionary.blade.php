@@ -15,37 +15,39 @@
 
 <div id="app">
  
-<!-- @if(session()->get('success'))
-          <div class="alert alert-success">
-          {{-- session()->get('success') --}}
-          </div>
-          @endif -->
-<!-- @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                  <li>{{-- $error --}}</li>
-                  @endforeach
-              </ul>
-          </div><br />
-          @endif -->
-          <main class="py-4 col">
-    <div class="container">
-        <div class="row">
-
-        @hasSection('header-title')
-
-        {{ Breadcrumbs::render(request()->route()->getName()) }}
-
-        <div class="heading mb-5">
-            <h2><strong><span class="under">@yield('header-title')</span></strong></h2>
-        </div>
-        @endif
-        
-        </div>
+    @if(session()->get('success'))
+    <div class="alert alert-success">
+    {{ session()->get('success') }}
     </div>
+    @endif
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div><br />
+    @endif
+
+    <main class="py-4 col">
+        <div class="container">
+            <div class="row">
+
+            @hasSection('header-title')
+
+            {{ Breadcrumbs::render(request()->route()->getName()) }}
+
+            <div class="heading mb-5">
+                <h2><strong><span class="under">@yield('header-title')</span></strong></h2>
+            </div>
+            @endif
+            
+            </div>
+        </div>
    
-    @yield('content')
+        @yield('content')
     </main>
 </div>
 

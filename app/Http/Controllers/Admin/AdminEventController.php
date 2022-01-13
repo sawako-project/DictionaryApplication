@@ -121,7 +121,7 @@ class AdminEventController extends Controller
                 $event = Event::findOrFail($eventId);
                 $eventPosts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc')->paginate(10);
 
-                return view('admin.event.closed_situation',[
+                return view('admin.event.closed_detail',[
                     'event' => $event,
                     'eventPosts' => $eventPosts    
                 ]);
@@ -148,7 +148,7 @@ class AdminEventController extends Controller
         if(!$eventPost){
 
             //return redirect()
-            return back()->withError("これはだめだ");
+            return back()->withError("エラーが発生しました");
         }
 
         if(!Auth::id()){
@@ -254,7 +254,7 @@ class AdminEventController extends Controller
 
         $event->save();
 
-        return redirect()->route("admin.event.index")->with('success', 'saved!');
+        return redirect()->route("admin.event.index")->with('success', '作成完了しました!');
 
     }
 
@@ -294,7 +294,7 @@ class AdminEventController extends Controller
         // $event_post->createPhrase($event);
         // }
 
-        return redirect()->route("admin.event.detail",['event_id' => $eventId])->with('success', 'saved!');
+        return redirect()->route("admin.event.detail",['event_id' => $eventId])->with('success', '作成完了しました!');
     }
 
 

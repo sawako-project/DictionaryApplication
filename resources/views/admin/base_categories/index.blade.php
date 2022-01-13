@@ -4,11 +4,6 @@
 
 <div class="container">
     <div class="row">
-        @if(session()->get('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}  
-        </div>
-        @endif
         <h1 class="display-3">表現の分類一覧</h1> 
         <div>
             <a style="margin: 15px;" href="{{ route('admin.base_category.create')}}" class="btn btn-primary">分類追加</a>

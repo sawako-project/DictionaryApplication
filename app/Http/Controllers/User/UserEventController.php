@@ -62,7 +62,7 @@ class UserEventController extends Controller
 
         $event->save();
 
-        return redirect()->route("event.index")->with('success', 'saved!');
+        return redirect()->route("event.index")->with('success', '作成完了しました!');
 
     }
 
@@ -100,7 +100,7 @@ class UserEventController extends Controller
         // $event_post->createPhrase($event);
         // }
 
-        return redirect()->route("event.detail",['event_id' => $eventId])->with('success', 'saved!');
+        return redirect()->route("event.detail",['event_id' => $eventId])->with('success', '作成完了しました!');
     }
 
 

@@ -4,11 +4,6 @@
 
 @section('content')
     
-@if(session()->get('success'))
-<div class="alert alert-success">
-   {{ session()->get('success') }} 
-</div>
-@endif
 
 <h1 class="text-center" style="font-family: 'Kiwi Maru', serif;">{{ __('送信完了') }}</h1>
 

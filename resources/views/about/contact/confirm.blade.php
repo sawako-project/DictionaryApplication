@@ -3,12 +3,7 @@
 @section('header-title', 'お問い合わせ内容の確認画面')
 
 @section('content')
-    
-@if(session()->get('success'))
-<div class="alert alert-success">
-   {{ session()->get('success') }} 
-</div>
-@endif
+
 <style>
 
 .contact input,textarea {
@@ -23,15 +18,6 @@
             <div class="card mb-3 base-card" >
                 <div class="card-header">{{ __('お問い合わせ') }}</div>
                 <div class="card-body">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div><br />
-                    @endif
                     <div class="contact">
                         <form method="post" action="{{ route('about.contact.send') }}">
                         @csrf

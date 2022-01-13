@@ -1,11 +1,21 @@
-@extends('layouts.dictionary',["title"=>"U_Dectionary"])
- 
-{{--@section('header-title', 'イベント終了(結果)')--}}
- 
+@extends('layouts.admin.admin',["title"=>"U_Dectionary"])
+
 @section('content')
- 
-{{ Breadcrumbs::render('event.detail', $event) }}
- 
+
+<div class="container">
+
+{{ Breadcrumbs::render('admin.event.detail',$event) }}
+
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+</div>
+
+<div class="heading">
+    <h2><strong><span class="under">イベント終了</span></strong></h2>
+</div>
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -25,11 +35,11 @@
         </div>
     </div>
 </div>
- 
+
 <div class="heading">
     <h2><strong><span class="under">ランキング(投票結果)</span></strong></h2>
 </div>
- 
+
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -47,7 +57,7 @@
             <div class="card post-item text-center mb-5 pop-card">
             
                 @include("parts.event.post_info", ["post" => $post])
-                <p><i class="bi bi-hand-thumbs-up-fill"></i><span class="badge badge-primary">いいね!: {{ $post->votes_count }}個</span></p>
+                <!-- <p><i class="bi bi-hand-thumbs-up-fill"></i><span class="badge badge-primary">いいね!: {{-- $post->votes_count --}}個</span></p> -->
             </div>
             @endforeach
 
@@ -57,8 +67,9 @@
         </div>
     </div>
 </div>
- 
-<hr>
-<a class="btn btn-outline-primary" href="{{ url('/event') }}">イベント一覧に戻る</a>
- 
+
+<hr/>
+<a class="btn btn-outline-primary mx-1" href="{{route('admin.top')}}">管理者トップ</a>
+<a class="btn btn-outline-primary mx-1" href="{{route('admin.event.index')}}">管理者イベント一覧</a>
+
 @endsection('content')

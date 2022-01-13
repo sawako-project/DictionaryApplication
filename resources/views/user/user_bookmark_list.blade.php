@@ -6,13 +6,6 @@
 
 <div class="container">
     <div class="row py-3">
-      
-        @if(session()->get('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}  
-        </div>
-        @endif
-
     </div>
 
     @if(count($phraseLikes) < 1)

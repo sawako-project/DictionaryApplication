@@ -8,11 +8,6 @@
 
     <div class="row">
         <div class="col-sm-12">
-            @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }} 
-            </div>
-            @endif
         </div>
     </div>
 </div>
@@ -24,15 +19,6 @@
             <div class="card base-card">
                 <div class="card-header">{{ __('表現登録') }}</div>
                 <div class="card-body">
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div><br />
-                @endif
                     <form method="post" action="{{ route('admin.phrase.store') }}">
                         @csrf
                         <div class="form-group row">

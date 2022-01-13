@@ -122,7 +122,7 @@ class GuestEventController extends Controller
                 $event = Event::findOrFail($eventId);
                 $eventPosts = EventPost::where('event_id',$eventId)->withCount('votes')->orderBy('votes_count','desc')->paginate(10);
 
-                return view('guest.event.closed_situation',[
+                return view('guest.event.closed_detail',[
                     'event' => $event,
                     'eventPosts' => $eventPosts    
                 ]);
@@ -150,7 +150,7 @@ class GuestEventController extends Controller
         if(!$eventPost){
 
             //return redirect()
-            return back()->withError("これはだめだ");
+            return back()->withError("エラーが発生しました");
         }
 
         if(!Auth::id()){

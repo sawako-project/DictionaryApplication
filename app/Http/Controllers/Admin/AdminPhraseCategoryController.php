@@ -87,7 +87,7 @@ class AdminPhraseCategoryController extends Controller
             $baseCategory->save();
         }
 
-        return redirect()->route("admin.phrase_category.index")->with('success', 'saved!');
+        return redirect()->route("admin.phrase_category.index")->with('success', '作成完了しました!');
         
     }
 
@@ -177,7 +177,7 @@ class AdminPhraseCategoryController extends Controller
             $baseCategory->save();
         }
 
-        return redirect()->route("admin.phrase_category.index")->with('success', 'saved!');
+        return redirect()->route("admin.phrase_category.index")->with('success', '作成完了しました!');
     }
 
 
@@ -191,7 +191,7 @@ class AdminPhraseCategoryController extends Controller
     {
         //
         PhraseCategory::find($id)->delete();
-        return redirect()->route("admin.phrase_category.index")->with('success', 'deleted!');
+        return redirect()->route("admin.phrase_category.index")->with('success', '削除しました!');
     }
     
 }

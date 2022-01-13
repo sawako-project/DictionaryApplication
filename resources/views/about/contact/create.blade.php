@@ -3,12 +3,6 @@
 @section('header-title', 'お問い合わせ')
 
 @section('content')
-    
-@if(session()->get('success'))
-<div class="alert alert-success">
-   {{ session()->get('success') }} 
-</div>
-@endif
 
 <div class="container">
     <div class="row" >
@@ -16,15 +10,6 @@
             <div class="card mb-3 base-card" >
                 <div class="card-header">{{ __('お問い合わせ') }}</div>
                 <div class="card-body">
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div><br />
-                    @endif
                     <form method="post" action="{{ route('about.contact.confirm') }}">
                     @csrf
                         <div class="form-group row">

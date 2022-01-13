@@ -68,7 +68,7 @@ class UserInfoController extends Controller
         $user->save();
 
         //return back();
-        return redirect()->route("user_name.edit")->with('success', 'saved!');
+        return redirect()->route("user_name.edit")->with('success', '作成完了しました!');
     }
 
 
@@ -94,7 +94,7 @@ class UserInfoController extends Controller
         $user->save();
 
         //return back();
-        return redirect()->route("user_email.edit")->with('success', 'saved!');
+        return redirect()->route("user_email.edit")->with('success', '作成完了しました!');
     }
 
     public function passwordEdit(Request $request)
@@ -118,7 +118,7 @@ class UserInfoController extends Controller
         $user->save();
 
         //return back();
-        return redirect()->route("user_password.edit")->with('success', 'saved!');
+        return redirect()->route("user_password.edit")->with('success', '作成完了しました!');
     }
 
     //退会画面

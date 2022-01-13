@@ -8,15 +8,6 @@
 			<div class="card base-card">
 				<div class="card-header">ログイン</div>
 				<div class="card-body">
-					@if ($errors->any())
-					<div style="color:red;">
-					<ul>
-						@foreach ($errors->all() as $error)
-						<li>{{ $error }}</li>
-						@endforeach
-					</ul>
-					</div>
-					@endif
 					<form method="post" action="{{ url('admin/login') }}">
 					@csrf 
 						<div>

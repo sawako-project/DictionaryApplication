@@ -114,7 +114,7 @@ class UserPhraseController extends Controller
 
         $phrase->phraseTags()->attach($tagList);
 
-        return redirect()->route("user.phrase.index")->with('success', 'saved!');
+        return redirect()->route("user.phrase.index")->with('success', '作成完了しました!');
     
     }
 
@@ -208,7 +208,7 @@ class UserPhraseController extends Controller
         $tagList = $phraseTagService->phraseTagJsonDecode($tags);
         $phrase->phraseTags()->sync($tagList);
                 
-        return redirect()->route("user.phrase.index")->with('success', 'saved!');
+        return redirect()->route("user.phrase.index")->with('success', '作成完了しました!');
     }
 
     /**
@@ -226,7 +226,7 @@ class UserPhraseController extends Controller
 
         Phrase::find($id)->delete();
         
-        return redirect()->route("user.phrase.index")->with('success', 'deleted!');
+        return redirect()->route("user.phrase.index")->with('success', '削除しました!');
     }
     
 }

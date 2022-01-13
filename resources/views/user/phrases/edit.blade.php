@@ -12,18 +12,6 @@
             <div class="card base-card">
                 <div class="card-header">{{ __('表現変更') }}</div>
                 <div class="card-body">
-
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <br />
-                    @endif
-
                     <form method="post" action="{{ route('user.phrase.update', $phrase->id) }}">
                     @csrf
                         <div class="form-group row">

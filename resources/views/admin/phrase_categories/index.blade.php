@@ -8,11 +8,6 @@
 
     <div class="row">
         <div class="col-sm-12">
-            @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }} 
-            </div>
-            @endif
         </div>
     </div>
 </div>
@@ -20,11 +15,6 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }}  
-            </div>
-            @endif
             <h1 class="display-3">表現のカテゴリ一覧</h1> 
             <div>
                 <a style="margin: 15px;" href="{{ route('admin.phrase_category.create')}}" class="btn btn-primary">カテゴリ追加</a>

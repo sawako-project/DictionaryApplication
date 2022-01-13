@@ -8,13 +8,6 @@
 
     <div class="row">
         <div class="col-sm-12">
-
-            @if(session()->get('success'))
-            <div class="alert alert-success">
-                {{ session()->get('success') }} 
-            </div>
-            @endif
-
             <h1 class="display-3">イベント一覧</h1>
             <div>
                 <a style="margin: 15px;" href="{{ route('admin.event.create') }}" class="btn btn-primary">イベント作成</a>

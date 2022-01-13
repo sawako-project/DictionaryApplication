@@ -7,12 +7,6 @@
 <div class="container">
     <div class="row py-3">
 
-        @if(session()->get('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}  
-        </div>
-        @endif
-
     </div>
     
     <div class="phrase_create" id="phrase_create">
