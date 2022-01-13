@@ -77,7 +77,7 @@ $(function(){
     // initialize Tagify on the above input node reference
     new Tagify(input,{
 
-        whitelist: whitelist,//@json($whitelist),//whitelist
+        whitelist: whitelist,
         dropdown: {
 
             maxItems: 20,           // <- mixumum allowed rendered suggestions

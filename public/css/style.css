@@ -86,7 +86,7 @@ a:active {
     font-family: 'Kiwi Maru', serif; 
 }
 
-/*==768px以下の形状*/
+/*==990px以下の形状*/
 
 @media screen and (max-width:990px){
 
@@ -448,16 +448,15 @@ hr {
     flex-basis: 15%;
     padding: 20px;
     background-color: #f1f1f1;
-      border-top: 1px solid #ccc;
+    border-top: 1px solid #ccc;
 }
 
 .phrase-list dd {
     flex-basis: 85%;
     padding: 20px;
     background-color: #fff;
-      border-top: 1px solid #ccc;
-      /* border-right: 1px solid #ddd; */
-    /* border-bottom: 1px solid #ccc; */
+    border-top: 1px solid #ccc;
+
 }
 
 /* .phrase-list dt:first-child {

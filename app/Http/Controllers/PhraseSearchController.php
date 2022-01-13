@@ -10,7 +10,6 @@ use App\PhraseCategory;
 use App\PhraseTag;
 use App\Word;
 
-//表現探し、｢/search_phrases｣
 
 class PhraseSearchController extends Controller
 {

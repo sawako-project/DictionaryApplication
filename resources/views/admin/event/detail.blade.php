@@ -6,10 +6,6 @@
 
 {{ Breadcrumbs::render('admin.event.detail',$event) }}
 
-    <div class="row">
-        <div class="col-sm-12">
-        </div>
-    </div>
 </div>
 
 <div class="container">
@@ -53,6 +49,9 @@
             
             @include("parts.event.post_info", ["post" => $post])
 
+            @if (Session::has('admin_auth'))
+
+            @else
             @if($post->user_id !== null)
             <hr/>
             <div class="vote-function mb-2">
@@ -66,6 +65,7 @@
                 </a>
             @endif
             </div>
+            @endif
             @endif
 
         </div>

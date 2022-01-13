@@ -11,8 +11,6 @@
             <h1 class="display-3">イベント一覧</h1>
             <div>
                 <a style="margin: 15px;" href="{{ route('admin.event.create') }}" class="btn btn-primary">イベント作成</a>
-                <!-- <a style="margin: 15px;" href="{{-- route('admin.phrase_category.index')--}}" class="btn btn-primary">カテゴリ一覧</a> -->
-                <!-- <a style="margin: 15px;" href="{{-- route('admin.base_category.index')--}}" class="btn btn-primary">分類一覧</a> -->
             </div>
             <br/>
         </div>

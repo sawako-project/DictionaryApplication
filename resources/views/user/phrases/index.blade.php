@@ -12,9 +12,6 @@
     <div class="phrase_create" id="phrase_create">
         <!-- <a href="{{-- route('user.phrase.create') --}}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="表現を作成する"></i></a> -->
         <a href="{{ route('user.phrase.create') }}" class="btn btn-outline-primary text-nowrap mb-3">表現を作成する</a>
-        <!-- <div>
-            <a style="margin: 15px;" href="{{-- route('user.phrase.create') --}}" class="btn btn-primary">表現を作成する</a>
-        </div> -->
     </div>
 
     @if(count($phrases) < 1)

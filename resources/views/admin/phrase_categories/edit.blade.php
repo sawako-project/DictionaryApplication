@@ -6,10 +6,6 @@
 
 {{ Breadcrumbs::render('admin.phrase_category.edit',$phraseCategory) }}
 
-    <div class="row">
-        <div class="col-sm-12">
-        </div>
-    </div>
 </div>
 
 <div class="container">

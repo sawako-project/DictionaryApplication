@@ -152,7 +152,7 @@ class AdminPhraseCategoryController extends Controller
         //check外したらdbから消えてください
         $phraseCategory->baseCategories()->each(function($baseCategory) use($base_categories){
             
-            if(in_array($baseCategory->code, $base_categories)){//｢base_categories｣テーブルの｢code｣カラム
+            if(in_array($baseCategory->code, $base_categories)){
                 //チェックが入っているので削除しない
                 //絡むにその項目が登録されていたら
                 return;

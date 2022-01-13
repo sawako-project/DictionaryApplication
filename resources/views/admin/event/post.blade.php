@@ -6,10 +6,6 @@
 
 {{ Breadcrumbs::render('admin.event.post',$event) }}
 
-    <div class="row">
-        <div class="col-sm-12">
-        </div>
-    </div>
 </div>
 
 <div class="container">
@@ -32,9 +28,9 @@
     </div>
 </div>
 
-        <!-- <div class="heading">
+<div class="heading">
     <h2><strong><span class="under">イベントエントリー</span></strong></h2>
-</div> -->
+</div>
 
 <div class="container">
     <div class="row justify-content-center">

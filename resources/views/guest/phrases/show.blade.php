@@ -46,7 +46,6 @@
 
                     @guest
                     <div class="like-function">
-                        {{--@if(isset($likes[$phrase->id]) && $likes[$phrase->id])--}}<!--$likes[$like->phrase_id]-->
                         @if($like && $like->liked == 1)
                         <a href="{{ url('/user/phrase/like/'.$phrase->id) }}" class="btn btn-light">
                             <i class="bi bi-bookmark-fill"></i>
@@ -61,8 +60,7 @@
 
                     @auth
                     @if($phrase->user_id !== Auth::id())
-                    <div class="like-function">  
-                        {{--@if(isset($likes[$phrase->id]) && $likes[$phrase->id])--}}<!--$likes[$like->phrase_id]-->
+                    <div class="like-function">
                         @if($like && $like->liked == 1)
                         <a href="{{ url('/user/phrase/like/'.$phrase->id) }}" class="btn btn-light">
                             <i class="bi bi-bookmark-fill"></i>

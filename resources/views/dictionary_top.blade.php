@@ -50,10 +50,6 @@
                     <hr/>
                     @endforeach
 
-                    <!-- <div class='pagination justify-content-center'>
-                    {{-- $event_soonEnd->links() --}}
-                    </div> -->
-
                     @endisset
                     <hr/>
                     <p class="text-right"><a href="{{ url('/event') }}">イベントを開く(もっと見る)<span><i class="bi bi-arrow-right-short"></i></span></a></p>
@@ -82,10 +78,6 @@
                     </div>
                     <hr/>
                     @endforeach
-
-                    <!-- <div class='pagination justify-content-center'>
-                        {{-- $events_hold->links() --}}
-                    </div> -->
 
                     @endisset
                     <hr/>

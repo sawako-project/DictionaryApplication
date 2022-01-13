@@ -47,7 +47,7 @@
             <div class="card post-item text-center mb-5 pop-card">
             
                 @include("parts.event.post_info", ["post" => $post])
-                <!-- <p><i class="bi bi-hand-thumbs-up-fill"></i><span class="badge badge-primary">いいね!: {{-- $post->votes_count --}}個</span></p> -->
+                <p><i class="bi bi-hand-thumbs-up-fill"></i><span class="badge badge-primary">いいね!: {{ $post->votes_count }}個</span></p>
             </div>
             @endforeach
 

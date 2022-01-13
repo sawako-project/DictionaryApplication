@@ -74,7 +74,6 @@ class UserPhraseController extends Controller
 
         $phraseCategories = PhraseCategory::all();
         
-        //初期値
         $category_ids = $req->input("category_id", []);
 
         list($phraseTags, $whitelist) = $phraseTagService->phraseTagWhitelist();
@@ -127,22 +126,6 @@ class UserPhraseController extends Controller
      */
     // public function show($id)
     // {
-
-    //     $phrase = Phrase::find($id);
-        
-    //     if(!$phrase){
-    //         return back()->withError("エラーが発生しました");//return redirect()
-    //     }
-        
-    //     //Likeの取得
-    //     $like = PhraseLike::where("user_id","=",Auth::id())
-    //     ->where("phrase_id","=",$phrase->id)->first();
-
-    //     return view('user.phrases.show',[
-    //         'phrase' => $phrase,
-    //         "like" => $like,
-    //         "editable" => $phrase->user_id == Auth::id()
-    //     ]);
     
     // }
 

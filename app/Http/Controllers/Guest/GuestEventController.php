@@ -142,10 +142,8 @@ class GuestEventController extends Controller
     }
   
     function postDetail(Request $request,$eventPostId){
-    // function postDetail(Request $request,$eventId,$eventPostId){
 
         $eventPost = EventPost::findOrFail($eventPostId);
-        //$eventPost = EventPost::where('id',$eventPostId)->orderBy("id", "desc")->paginate(10);
         
         if(!$eventPost){
 
@@ -178,7 +176,6 @@ class GuestEventController extends Controller
             return view('guest.event.post_detail', [
                 'eventPost' => $eventPost,
                 'vote' => $vote
-                //"editable" => $eventPosts->user_id == Auth::id()
             ]);
         }
 

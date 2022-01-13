@@ -6,10 +6,6 @@
 
 {{ Breadcrumbs::render('admin.phrase.edit',$phrase) }}
 
-    <div class="row">
-        <div class="col-sm-12">
-        </div>
-    </div>
 </div>
 <div class="container">
     <div class="row justify-content-center">

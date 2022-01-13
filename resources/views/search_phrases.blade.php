@@ -82,7 +82,7 @@
                 <!-- <hr/> -->
             </div>
         </div>    
-    </div><!-- "row" -->
+    </div>
 
     <div class="heading mb-5">
         <h2><strong><span class="under">表現を探す</span></strong></h2>
@@ -107,7 +107,7 @@
                 </div>
             </div>  
         </div>
-    </div><!-- "row" -->
+    </div>
 
     <div class="row">
         <div class="col-sm-12">

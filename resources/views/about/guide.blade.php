@@ -4,9 +4,6 @@
 
 @section('content')
 
-<!--==============レイアウトを制御する独自のCSSを読み込み===============-->
-<!-- <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
-<link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/9-2-1/css/9-2-1.css"> -->
 <style>
 
 @charset "UTF-8";

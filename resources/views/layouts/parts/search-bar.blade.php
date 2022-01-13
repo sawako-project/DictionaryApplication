@@ -20,9 +20,9 @@
         <form action="{{url('/search_phrases')}}" method="get" name="search">
             <div id="search" class="form-group">
                 <div class="input-group">
-                    <input type="text" name="keyword" value="{{ @$keyword }}" class="form-control" placeholder="言葉を入力して検索する" ><!--form-search {{-- @//$keyword --}}-->
+                    <input type="text" name="keyword" value="{{ @$keyword }}" class="form-control" placeholder="言葉を入力して検索する" >
                     <div class="input-group-append">
-                        <button class="btn btn-light text-dark" type="submit"><span><i class="fas fa-search"></i></span></button><!--button class="btn-search"-->
+                        <button class="btn btn-light text-dark" type="submit"><span><i class="fas fa-search"></i></span></button>
                     </div>
                 </div>
             </div>

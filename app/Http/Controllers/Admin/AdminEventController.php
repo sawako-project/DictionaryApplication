@@ -220,7 +220,7 @@ class AdminEventController extends Controller
         $eventVote->save();
         return back();
 
-    }//vote
+    }
 
     public function create(){
 

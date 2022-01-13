@@ -5,11 +5,7 @@
 @section('content')
  
 {{ Breadcrumbs::render('event.post.detail', $eventPost) }}
-{{-- Breadcrumbs::render('event.post.detail', ['event' => $event, 'eventPost' => $eventPost] ) --}}
- 
-<!-- <div class="heading">
-           <h2><strong><span class="under">エントリー詳細</span></strong></h2>
-       </div> -->
+
 
 <div class="container">
     <div class="row">
@@ -26,12 +22,9 @@
                     </ul>
                 </div>
 
-                {{--@if($eventPost->event->schedule_end >= date("Y/m/d H:i:s")))--}}
-
                 @guest       
                 <hr/>
                 <div class="text-center">
-                    <!--(isset($votes[$post->id]) && $votes[$post->id])-->
                     @if($vote && $vote->vote == 1)
                     <a class="btn btn-info" href="{{ url('/event/vote', ['event_id' => $eventPost->event_id, 'event_post_id' => $eventPost->id]) }}">
                         <i class="bi bi-hand-thumbs-up-fill"></i> いいね! <!--投票済み-->
@@ -48,7 +41,6 @@
                 @if($eventPost->user_id !== Auth::id())
                 <hr/>
                 <div class="text-center">
-                    <!--(isset($votes[$post->id]) && $votes[$post->id])-->
                     @if($vote && $vote->vote == 1)
                     <a class="btn btn-info" href="{{ url('/event/vote', ['event_id' => $eventPost->event_id, 'event_post_id' => $eventPost->id]) }}">
                         <i class="bi bi-hand-thumbs-up-fill"></i> いいね! <!--投票済み-->
@@ -61,8 +53,6 @@
                 </div>
                 @endif
                 @endauth
-
-                {{--@endif--}}
  
             </div>
         </div>

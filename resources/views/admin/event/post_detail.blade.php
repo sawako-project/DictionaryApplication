@@ -6,10 +6,6 @@
 
 {{ Breadcrumbs::render('admin.event.post.detail',$eventPost) }}
 
-    <div class="row">
-        <div class="col-sm-12">
-        </div>
-    </div>
 </div>
 
 <div class="container">
@@ -30,7 +26,6 @@
                 @if($eventPost->user_id !== Auth::id())
                 <hr/>
                 <div class="text-center">
-                    <!--$likes[$phrase->id] $likes[$like->phrase_id]-->
                     @if($vote && $vote->vote == 1)
                     <a class="btn btn-info" href="{{ url('admin.event.vote', ['event_id' => $eventPost->event_id, 'event_post_id' => $eventPost->id]) }}">
                         <i class="bi bi-hand-thumbs-up-fill"></i> いいね! <!--投票済み-->

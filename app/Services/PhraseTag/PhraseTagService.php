@@ -5,24 +5,6 @@ use App\PhraseTag;
 
 class PhraseTagService {
 
-    // function getAllLikes($userId, $phrase_id_list){
-
-    //     //whereInで絞り込み
-    //     $allLikes = PhraseLike::where("user_id","=",$userId)
-    //         ->whereIn("phrase_id",$phrase_id_list)
-    //         ->get();
-    //         //dd($allLikes);//PhraseLikeのidとphrase_id,user_idの一覧。一回されると追加される
-        
-    //     //Viewで使いやすいように変換
-    //     $likes = [];
-    //     foreach($allLikes as $like){
-    //         $likes[$like->phrase_id] = $like->liked;
-    //     }
-
-    //     return $likes;
-
-    // } 
-
 
     function phraseTagWhitelist(){
 
@@ -41,13 +23,7 @@ class PhraseTagService {
 
     function phraseTagJsonDecode($tags){
 
-        //$tags = $request->get('phrase_tag');
- 
-        // //タグを改行で分割
-        // $tags = array_unique(array_filter(           //空文字を除去
-        //  array_map("trim",explode("\n", $tags))  //改行で分割＆改行コードを除去
-        // ));
-
+        
         //tagfyでJSON形式になっている
         $tags = json_decode($tags, true);
             

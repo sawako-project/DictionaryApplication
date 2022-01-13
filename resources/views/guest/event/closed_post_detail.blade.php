@@ -5,11 +5,6 @@
 @section('content')
  
 {{ Breadcrumbs::render('event.post.detail', $eventPost) }}
-{{-- Breadcrumbs::render('event.post.detail', ['event' => $event, 'eventPost' => $eventPost] ) --}}
- 
-<!-- <div class="heading">
-           <h2><strong><span class="under">エントリー詳細</span></strong></h2>
-       </div> -->
 
 <div class="container">
     <div class="row">

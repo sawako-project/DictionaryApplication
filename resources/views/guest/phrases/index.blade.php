@@ -11,9 +11,6 @@
         <div class="phrase_create" id="phrase_create">
             <!-- <a href="{{-- route('user.phrase.create') --}}"><i class="bi bi-plus-square fa-pull-right fa-2x" data-bs-toggle="tooltip" data-bs-placement="top" title="表現を作成する"></i></a> -->
             <a href="{{ route('user.phrase.create') }}" class="btn btn-outline-primary text-nowrap mb-3">表現を作成する</a>
-            <!-- <div>
-                <a style="margin: 15px;" href="{{-- route('user.phrase.create') --}}" class="btn btn-primary">表現追加</a>
-            </div> -->
         </div>
         <hr/>
         @endauth
@@ -47,9 +44,7 @@
 
                     @guest
                     <div class="like-function">
-                        <!--$likes[$like->phrase_id]-->
                         @if(isset($likes[$phrase->id]) && $likes[$phrase->id])
-                        {{--@if($like && $like->liked == 1)--}}
                         <a href="{{ url('/user/phrase/like/'.$phrase->id) }}" class="btn btn-light">
                             <i class="bi bi-bookmark-fill"></i>
                         </a>
@@ -64,9 +59,7 @@
                     @auth
                     @if($phrase->user_id !== Auth::id())
                     <div class="like-function">
-                        <!--$likes[$like->phrase_id]-->
                         @if(isset($likes[$phrase->id]) && $likes[$phrase->id])
-                        {{--@if($like && $like->liked == 1)--}}
                         <a href="{{ url('/user/phrase/like/'.$phrase->id) }}" class="btn btn-light">
                             <i class="bi bi-bookmark-fill"></i>
                         </a>
