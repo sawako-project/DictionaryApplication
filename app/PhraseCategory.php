@@ -11,7 +11,7 @@ class PhraseCategory extends Model
 
     //protected $primaryKey = 'phrase_category_id';
 
-    protected $fillable = ['phrase_category','phrase_category_name'];
+    protected $fillable = ['phrase_category'];//,'phrase_category_name'
    
     // public function getLists()
     // {

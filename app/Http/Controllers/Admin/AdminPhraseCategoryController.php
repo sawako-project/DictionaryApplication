@@ -63,18 +63,18 @@ class AdminPhraseCategoryController extends Controller
     {
         $request->validate([
             'phrase_category'=>'required',
-            'phrase_category_name' =>'nullable',
+            //'phrase_category_name' =>'nullable',
             "base_categories" => 'required'
         ]);
 
         $phrase_category = new PhraseCategory();
         $phrase_category->phrase_category = $request->get('phrase_category');
 
-        if(isset($phrase_category_name)){
-            $phrase_category_name = $request->get('phrase_category_name');
-            $phrase_category->phrase_category_name = $phrase_category_name;
-            $phrase_category->save();
-        }
+        // if(isset($phrase_category_name)){
+        //     $phrase_category_name = $request->get('phrase_category_name');
+        //     $phrase_category->phrase_category_name = $phrase_category_name;
+        //     $phrase_category->save();
+        // }
 
         $phrase_category->save();
 
@@ -127,17 +127,17 @@ class AdminPhraseCategoryController extends Controller
 
         $request->validate([
             'phrase_category'=>'required',
-            'phrase_category_name' =>'nullable',
+            //'phrase_category_name' =>'nullable',
             "base_categories" => 'required'
         ]);
 
         $phraseCategory->phrase_category = $request->get('phrase_category');
 
-        $phrase_category_name = $request->get('phrase_category_name');
-        if(isset($phrase_category_name)){
-            $phraseCategory->phrase_category_name = $phrase_category_name;
-            $phraseCategory->save();
-        }
+        //$phrase_category_name = $request->get('phrase_category_name');
+        // if(isset($phrase_category_name)){
+        //     $phraseCategory->phrase_category_name = $phrase_category_name;
+        //     $phraseCategory->save();
+        // }
 
         $phraseCategory->save();
 

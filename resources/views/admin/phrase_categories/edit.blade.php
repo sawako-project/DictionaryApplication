@@ -24,12 +24,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <!-- <div class="form-group row">
                             <label for="phrase_category_name" class="col-md-4 col-form-label text-md-right">カテゴリの振り仮名</label>
                             <div class="col-md-6">
-                                <input id="" type="text" class="form-control" name="phrase_category_name" value="{{ $phraseCategory->phrase_category_name }}" required autocomplete="" autofocus />
+                                <input id="" type="text" class="form-control" name="phrase_category_name" value="{{-- $phraseCategory->phrase_category_name --}}" required autocomplete="" autofocus />
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="form-group row">
                             <label for="phrase_category" class="col-md-4 col-form-label text-md-right">大カテゴリ</label>
