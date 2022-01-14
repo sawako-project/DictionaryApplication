@@ -55,13 +55,6 @@
                             @endforeach
                             </div>
                         </div>
-
-                        <div class="form-group row">
-                            <label for="phrase_tag" class="col-md-4 col-form-label text-md-right">追加タグ</label>
-                            <div class="col-md-6">
-                                <input type="text" name="auto_tag" value="{{ old('auto_tag') }}" class="m-form-text" />
-                            </div>
-                        </div>
                         
                         <div class="form-group row">
                             <label for="event_text" class="col-md-4 col-form-label text-md-right">{{ __('お題・テーマ') }}</label>

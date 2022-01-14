@@ -18,7 +18,6 @@
                         <li class="list-group-item">エントリー: <strong>{{ $eventPost->post_text }}</strong></li>
                         <li class="list-group-item"><i class="bi bi-person-fill"></i>エントリーユーザー: {{ ($eventPost->user) ? $eventPost->user->name : "-"}}</li>
                         <li class="list-group-item"><time datetime="{{ $eventPost->updated_at->format('Y-m-d H:i:s') }}">作成日時: {{ $eventPost->updated_at->format("Y-m-d H:i:s") }}</time></li>
-                        <li class="list-group-item"><i class="bi bi-hand-thumbs-up-fill"></i><span class="badge badge-primary">いいね!: {{ $eventPost->votes->count() }}個</span></li>
                     </ul>
                 </div>
 
