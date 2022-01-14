@@ -20,23 +20,23 @@ class PhraseSearchController extends Controller
         //表現
         $phrases = Phrase::orderBy('updated_at','desc')->take(10)->get();
 
-        //code,feelingのphrase_category_name
+        //code,feeling
         $phraseCategories_feelings = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "feeling");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();
+        })->get();
         
-        //code,actionのphrase_category_name
+        //code,action
         $phraseCategories_actions = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "action");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();
+        })->get();
 
-        //code,expressionのphrase_category_name
+        //code,expression
         $phraseCategories_expressions = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "expression");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();
+        })->get();
 
         return view('search', compact('phrases','phraseCategories_feelings','phraseCategories_actions','phraseCategories_expressions'));
 
@@ -60,19 +60,19 @@ class PhraseSearchController extends Controller
         $phraseCategories_feelings = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "feeling");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();
+        })->get();
         
         //"code", "action"
         $phraseCategories_actions = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "action");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();
+        })->get();
 
         //"code", "expression"
         $phraseCategories_expressions = PhraseCategory::whereHas("baseCategories", function($query) {
             //ここはBaseCategoryの絞り込み条件を書く
             $query->where("code", "expression");
-        })->get();//->orderBy("phrase_category_name", "asc")->get();
+        })->get();
         
         return view('search_phrases',compact('keyword','phrase_result','category_result','tag_result','results','phrases','phraseCategories_feelings','phraseCategories_actions','phraseCategories_expressions'));
 
