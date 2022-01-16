@@ -105,7 +105,7 @@ Route::group(['middleware' => ['auth']], function(){
  
    //パスワードリセット
    Route::get('/reset', function () {
-       return view('auth.passwords.reset')->name('password.request');
+      return view('auth.passwords.reset')->name('password.request');
    });
  
    //表現作成

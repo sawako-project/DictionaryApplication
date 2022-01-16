@@ -290,9 +290,9 @@ class AdminEventController extends Controller
         
 
         //Phraseの自動作成
-        // if($request->input("auto_phrase")){
-        // $event_post->createPhrase($event);
-        // }
+        if($request->input("auto_phrase")){
+        $event_post->createPhrase($event);
+        }
 
         return redirect()->route("admin.event.detail",['event_id' => $eventId])->with('success', '作成完了しました!');
     }

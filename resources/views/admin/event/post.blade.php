@@ -55,10 +55,10 @@
                                 <textarea class="form-control" rows="4" name="post_text">{{ old('post_text') }}</textarea>
                                 <p>はどう？</p>
                             </div>
-                            <!-- <div class="col-md-6">
+                            <div class="col-md-6">
                                 <input type="checkbox" name="auto_phrase" value="1" checked/>
                                 表現にも自動で投稿する
-                            </div> -->
+                            </div>
                         </div>
 
                         <div class="form-group row mb-0">

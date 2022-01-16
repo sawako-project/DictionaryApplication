@@ -20,7 +20,7 @@
                     <tr class="text-white bg-dark font-weight-bold">
                         <td>ID</td>
                         <td>カテゴリ</td>
-                        <td >親玉カテゴリ</td>
+                        <td >カテゴリの分類</td>
                         <td colspan = 2>Actions</td>
                     </tr>
                 </thead>

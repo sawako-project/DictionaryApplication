@@ -5,7 +5,6 @@
     <p class="card-text">
         <time datetime="{{ $post->updated_at->format('Y-m-d H:i:s') }}">作成日時: {{ $post->updated_at->format("Y-m-d H:i:s") }}</time>
     </p>
-    <!-- <p><i class="bi bi-hand-thumbs-up-fill"></i><span class="badge badge-primary">いいね!{{-- $post->votes->count() --}}個</span></p> -->
 </div>
 @if (Session::has('admin_auth'))
 <p class="text-right"><a href="{{ route('admin.event.post.detail', ['event_post_id' => $post->id]) }}">エントリー詳細<span><i class="bi bi-arrow-right-short"></i></span></a></p>

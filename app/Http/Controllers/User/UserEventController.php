@@ -96,9 +96,9 @@ class UserEventController extends Controller
         
 
         //Phraseの自動作成
-        // if($request->input("auto_phrase")){
-        // $event_post->createPhrase($event);
-        // }
+        if($request->input("auto_phrase")){
+        $event_post->createPhrase($event);
+        }
 
         return redirect()->route("event.detail",['event_id' => $eventId])->with('success', '作成完了しました!');
     }
